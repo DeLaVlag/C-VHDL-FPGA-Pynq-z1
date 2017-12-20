@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Messages>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1312" content="Analyzing design file &apos;video1/main.cpp&apos; ... " tag=""/>
+</Messages>
