@@ -1,4 +1,6 @@
-ap_uint<32> outImage2 [720*1280];
+#include "main.h"
+
+//ap_uint<32> outImage2 [720*1280];
 
 void copystream( pixel_stream &src, pixel_stream &dst)
 {
@@ -9,85 +11,40 @@ void copystream( pixel_stream &src, pixel_stream &dst)
 #pragma HLS INTERFACE s_axilite port=c
 #pragma HLS INTERFACE s_axilite port=r
 
-	static uint16_t x = 0;
-	static uint16_t y = 0;
 
-	pixel_data valIn;
-	pixel_data valOut;
-	pixel_data valOut2;
-
-	//just an image copy
-	for (int idxPixel = 0; idxPixel < (1280*720); idxPixel++)
-	{
-
-		//tie output to input
-		//dst.write(src.read());
-
-		//src.read(valOut2);
-		valIn = src.read();
-		//
-		//valIn << src;
-
-		valOut.data = valIn.data;
-		valOut.keep = valIn.keep;
-		valOut.strb = valIn.strb;
-		valOut.user = valIn.user;
-		valOut.last = valIn.last;
-		valOut.id = valIn.id;
-		valOut.dest = valIn.dest;
-
-		outImage2[idxPixel] = valOut.data;
-
-		dst.write(valOut);
-
-		//dst<<valOut;
-
-	}
-
-	//printf("%d",dst.size());
-
-
-//
-//	for (int idxPixel = 0; idxPixel < (1280*720); idxPixel++)
-//	{
-//		valOut2 = src.read();
-//		outImage2[idxPixel] = valOut2.data;
-//	}
-
-	cv::Mat imgCvOut(cv::Size(WIDTH, HEIGHT), CV_8UC4, outImage2);
-	cv::imwrite(std::string(OUTPUT_IMG_COPYSTREAM) ,imgCvOut);
-
-	//dst<<src;
-	//dst.write(src.read());
-	/*
-	pixel_data p_in, p_out;
+	pixel_data streamIn;
+	pixel_data streamOut;
 	LINEBUFFER lb;
+	int k;
 
-	p_in = src.read();
+	// init die fuckbuffer
+	for(int i;i<3;i++)
+		for(int j;j<WIDTH;j++){
+			lb.insert_bottom(i,j);
+		}
 
-	//iterator initialize
-	if (p_in.user)
-		x = y = 0;
-	//filling line buffer
-	lb.shift_up(x);
-	lb.insert_bottom(p_in,x);
+	//buffer filling
+	for (int rows=0; rows < HEIGHT; rows++)
+		for (int cols=0; cols < WIDTH; cols++)
+		{
+		streamIn = src.read();
 
-	dst.write(lb.getval(2,x));
+		//filling the buffers
+		lb.shift_up(cols);
+		lb.insert_bottom(streamIn.data,cols);
 
+		streamOut.data = lb.getval(2,cols);
 
+		streamOut.keep = streamIn.keep;
+		streamOut.strb = streamIn.strb;
+		streamOut.user = streamIn.user;
+		streamOut.last = streamIn.last;
+		streamOut.id = streamIn.id;
+		streamOut.dest = streamIn.dest;
 
-	//writing back to stream
-	//dst.write(p_out);
+		dst.write(streamOut);
 
-	//iterators
-	if (p_in.last)
-	{
-		x = 0;
-		y++;
-	}
-	else
-		x++;
+		}
 
-	*/
 }
 
