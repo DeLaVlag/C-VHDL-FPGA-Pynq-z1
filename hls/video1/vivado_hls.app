@@ -1,4 +1,4 @@
-<project xmlns="com.autoesl.autopilot.project" name="video1" top="stream">
+<project xmlns="com.autoesl.autopilot.project" name="video1" top="copystream">
     <files>
         <file name="../testbench.cpp" sc="0" tb="1" cflags=""/>
         <file name="video1/main.cpp" sc="0" tb="false" cflags=""/>
@@ -7,7 +7,7 @@
     <includePaths/>
     <libraryPaths/>
     <Simulation>
-        <SimFlow name="csim" csimMode="0" lastCsimMode="0"/>
+        <SimFlow askAgain="false" name="csim" csimMode="0" lastCsimMode="2"/>
     </Simulation>
     <solutions xmlns="">
         <solution name="solution1" status="active"/>

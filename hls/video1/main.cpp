@@ -1,6 +1,6 @@
-#include "main.h"
+ap_uint<32> outImage2 [720*1280];
 
-void stream(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t r)
+void copystream( pixel_stream &src, pixel_stream &dst)
 {
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=&src
@@ -12,7 +12,53 @@ void stream(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t 
 	static uint16_t x = 0;
 	static uint16_t y = 0;
 
-	dst.write(src.read());
+	pixel_data valIn;
+	pixel_data valOut;
+	pixel_data valOut2;
+
+	//just an image copy
+	for (int idxPixel = 0; idxPixel < (1280*720); idxPixel++)
+	{
+
+		//tie output to input
+		//dst.write(src.read());
+
+		//src.read(valOut2);
+		valIn = src.read();
+		//
+		//valIn << src;
+
+		valOut.data = valIn.data;
+		valOut.keep = valIn.keep;
+		valOut.strb = valIn.strb;
+		valOut.user = valIn.user;
+		valOut.last = valIn.last;
+		valOut.id = valIn.id;
+		valOut.dest = valIn.dest;
+
+		outImage2[idxPixel] = valOut.data;
+
+		dst.write(valOut);
+
+		//dst<<valOut;
+
+	}
+
+	//printf("%d",dst.size());
+
+
+//
+//	for (int idxPixel = 0; idxPixel < (1280*720); idxPixel++)
+//	{
+//		valOut2 = src.read();
+//		outImage2[idxPixel] = valOut2.data;
+//	}
+
+	cv::Mat imgCvOut(cv::Size(WIDTH, HEIGHT), CV_8UC4, outImage2);
+	cv::imwrite(std::string(OUTPUT_IMG_COPYSTREAM) ,imgCvOut);
+
+	//dst<<src;
+	//dst.write(src.read());
 	/*
 	pixel_data p_in, p_out;
 	LINEBUFFER lb;

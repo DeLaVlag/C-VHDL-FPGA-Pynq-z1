@@ -1,5 +1,7 @@
 obj/main.o: ../../../main.cpp ../../../main.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls_stream.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls_video.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_axi_io.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/ap_axi_sdata.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/ap_int.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls_half.h \
@@ -14,8 +16,6 @@ obj/main.o: ../../../main.cpp ../../../main.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls_half.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/etc/ap_fixed_sim.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/etc/ap_int_sim.h \
- D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls_video.h \
- D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_axi_io.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/utils/x_hls_utils.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/ap_fixed.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls_math.h \
@@ -44,4 +44,33 @@ obj/main.o: ../../../main.cpp ../../../main.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_hough.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_harris.h \
  D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_haar.h \
- D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_stereobm.h
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_stereobm.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls_opencv.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/opencv.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/core/core_c.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/core/types_c.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/core/core.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/core/version.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/core/operations.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/core/mat.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/flann/miniflann.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/flann/defines.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/flann/config.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/imgproc/imgproc_c.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/imgproc/types_c.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/imgproc/imgproc.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/photo/photo.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/photo/photo_c.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/video/video.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/video/tracking.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/video/background_segm.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/features2d/features2d.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/objdetect/objdetect.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/calib3d/calib3d.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/ml/ml.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/highgui/highgui_c.h \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/highgui/highgui.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/contrib/contrib.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/contrib/retina.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/opencv2/contrib/openfabmap.hpp \
+ D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls_video.h

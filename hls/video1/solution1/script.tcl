@@ -4,7 +4,7 @@
 ## Copyright (C) 1986-2017 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project video1
-set_top stream
+set_top copystream
 add_files video1/main.cpp
 add_files video1/main.h
 add_files -tb video1/testbench.cpp

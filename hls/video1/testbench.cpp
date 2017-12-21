@@ -1,75 +1,46 @@
-#include <stdio.h>
-#include <opencv2/core/core.hpp>
-#include <hls_opencv.h>
 #include "main.h"
 
-#define INPUT_IMAGE_CORE       "D:\\studie\\RCD\\YTproj\\Lab_10_Conv2d\\download.bmp"
-#define OUTPUT_IMAGE_CORE "D:\\studie\\RCD\\YTproj\\Lab_10_Conv2d\\download.bmp"
-
-typedef ap_axiu<32,1,1,1> pixel_data;
-
-uint8_t l, c, r;
-
-// Image File path
-char outImage[HEIGHT][WIDTH];
-
-void saveImage(const std::string path, cv::InputArray inArr)
-{
-	double min;
-	double max;
-	cv::minMaxIdx(inArr, &min, &max);
-	cv::Mat adjMap;
-	cv::convertScaleAbs(inArr, adjMap, 255 / max);
-	cv::imwrite(path,adjMap);
-}
+//array for output image
+ap_uint<32> pixeldata[HEIGHT][WIDTH];
 
 int main()
 {
 	// Read input image
-	printf("Load image %s\n",INPUT_IMAGE_CORE);
-	cv::Mat imageSrc;
-	imageSrc = cv::imread(INPUT_IMAGE_CORE);
-	// Convert to grayscale
-	cv::cvtColor(imageSrc, imageSrc, CV_BGR2GRAY);
-	printf("Image Rows:%d Cols:%d\n",imageSrc.rows, imageSrc.cols);
+	cv::Mat sourceImg;
+	sourceImg = cv::imread(INPUT_IMG);
 
-	// Define streams for input and output
+	// A necessary conversion to obtain the right format...
+	cv::cvtColor(sourceImg, sourceImg, CV_BGR2BGRA);
+
+	// Define streams and pixeldata
 	hls::stream<pixel_data> inputStream;
 	hls::stream<pixel_data> outputStream;
+	pixel_data streamIn;
+	pixel_data streamOut;
 
-	// OpenCV mat that point to a array (cv::Size(Width, Height))
-	cv::Mat imgCvOut(cv::Size(imageSrc.cols, imageSrc.rows), CV_8UC1, outImage, cv::Mat::AUTO_STEP);
-
-	// Populate the input stream with the image bytes
-	for (int idxRows=0; idxRows < imageSrc.rows; idxRows++)
-	{
-		for (int idxCols=0; idxCols < imageSrc.cols; idxCols++)
+	// Writing to stream
+	for (int rows=0; rows < HEIGHT; rows++)
+		for (int cols=0; cols < WIDTH; cols++)
 		{
-			pixel_data valIn;
-			valIn.data = imageSrc.at<unsigned int>(idxRows,idxCols);
-			valIn.user = 1;
-			inputStream << valIn;
+			streamIn.data = sourceImg.at<int>(rows,cols);
+			inputStream << streamIn;
 		}
-	}
 
-	// Do the convolution on the core (Third parameter choose operation 0(conv),1(erode),2(dilate)
-	printf("Init stream for main\n");
-	stream(inputStream, outputStream, l, c, r);
-	printf("End stream for main\n");
+	// Calling the copy function
+	copystream(inputStream, outputStream);
 
-	// Take data from the output stream to our array outImage (Pointed in opencv)
-	for (int idxRows=0; idxRows < imageSrc.rows; idxRows++)
-	{
-		for (int idxCols=0; idxCols < imageSrc.cols; idxCols++)
+	// Reading from stream
+	for (int rows=0; rows < HEIGHT; rows++)
+		for (int cols=0; cols < WIDTH; cols++)
 		{
-			pixel_data valOut;
-			outputStream.read(valOut);
-			outImage[idxRows][idxCols] = valOut.data;
+			outputStream.read(streamOut);
+			pixeldata[rows][cols] = streamOut.data;
 		}
-	}
 
-	// Save image out printf("Saving image\n");
-	saveImage(std::string(OUTPUT_IMAGE_CORE) ,imgCvOut);
+	// Save image by converting .data array to matrix
+	// Depth or precision: CV_8UC4: 8 bit unsigned chars x 4 channels = 32 bit per pixel;
+	cv::Mat imgCvOut(cv::Size(WIDTH, HEIGHT), CV_8UC4, pixeldata);
+	cv::imwrite(std::string(OUTPUT_IMG) ,imgCvOut);
 
 	return 0;
 }
