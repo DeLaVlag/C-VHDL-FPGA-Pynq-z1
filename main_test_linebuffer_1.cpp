@@ -19,21 +19,19 @@ typedef hls::LineBuffer<3, WIDTH, pixel_data> LINEBUFFER;
 
 void stream(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t r)
 {
-	#pragma HLS INTERFACE ap_ctrl_none port=return
-	#pragma HLS INTERFACE axis port=&src
-	#pragma HLS INTERFACE axis port=&dst
-	#pragma HLS INTERFACE s_axilite port=l
-	#pragma HLS INTERFACE s_axilite port=c
-	#pragma HLS INTERFACE s_axilite port=r
-	#pragma HLS PIPELINE II=1
+	#pragma HLS INTERFACE	ap_ctrl_none 	port=return
+	#pragma HLS INTERFACE 	axis 			port=&src
+	#pragma HLS INTERFACE 	axis 			port=&dst
+	#pragma HLS INTERFACE 	s_axilite 		port=l
+	#pragma HLS INTERFACE 	s_axilite 		port=c
+	#pragma HLS INTERFACE 	s_axilite 		port=r
+	#pragma HLS 			PIPELINE 		II=1
 
-	pixel_data p_in, p_tmp;
+	pixel_data p_in;
 	src >> p_in; 					        // read 1 pixel
 	
 	static uint16_t x 		= 0;
 	static uint16_t y 		= 0;
-	static bool blFirsttime = false;
-	static pixel_data p_out = p_in;
 	
 	LINEBUFFER linebuf; 					// left-upper corners = (0,0)
 
@@ -44,14 +42,14 @@ void stream(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t 
 	linebuf.shift_up(x); 				    // shift pixel_data in column x up one place
 	linebuf.insert_bottom(p_in,x);
 
-	// Send data back 1 line later
-	if(y != 0){
-		blFirsttime = true;
+	if(y != 0){                             // Send data back 1 line later
+		p_in = linebuf.getval(1,x);
 	}
-	if(blFirsttime){						// in the first line no data can be send
-		p_out = linebuf.getval(1,x);
-		dst << 	p_out;
+	else{
+		p_in.data = 0;                      // first-line black
 	}
+
+	dst << 	p_in;
 
 	if (p_in.last){
 		x = 0;
