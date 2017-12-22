@@ -2,49 +2,52 @@
 
 //ap_uint<32> outImage2 [720*1280];
 
-void copystream( pixel_stream &src, pixel_stream &dst)
+void stream( pixel_stream &src, pixel_stream &dst)
 {
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=&src
 #pragma HLS INTERFACE axis port=&dst
-#pragma HLS INTERFACE s_axilite port=l
-#pragma HLS INTERFACE s_axilite port=c
-#pragma HLS INTERFACE s_axilite port=r
+//#pragma HLS INTERFACE s_axilite port=l
+//#pragma HLS INTERFACE s_axilite port=c
+//#pragma HLS INTERFACE s_axilite port=r
 
 
 	pixel_data streamIn;
 	pixel_data streamOut;
 	LINEBUFFER lb;
-	int k;
+	static uint16_t x = 0;
+	static uint16_t y = 0;
 
-	// init die fuckbuffer
-	for(int i;i<3;i++)
-		for(int j;j<WIDTH;j++){
-			lb.insert_bottom(i,j);
-		}
+	for(int pixels=0;pixels<WIDTH*HEIGHT;pixels++){
+//Force only 1 clockcycle between start times of consecutive loop iterations
+#pragma HLS PIPELINE II=1
+//Full unroll if factor = WIDTH*HEIGHT
+#pragma HLS unroll factor=16
 
-	//buffer filling
-	for (int rows=0; rows < HEIGHT; rows++)
-		for (int cols=0; cols < WIDTH; cols++)
-		{
 		streamIn = src.read();
 
 		//filling the buffers
-		lb.shift_up(cols);
-		lb.insert_bottom(streamIn.data,cols);
+		//LineBuffer shift down, while contents shift up (?!). Xilinx documentatie beweert het tegenovergestelde!
+		lb.shift_down(x);
+		lb.insert_bottom(streamIn.data,x);
 
-		streamOut.data = lb.getval(2,cols);
+		streamOut.data = lb.getval(2,x);
 
-		streamOut.keep = streamIn.keep;
-		streamOut.strb = streamIn.strb;
-		streamOut.user = streamIn.user;
-		streamOut.last = streamIn.last;
-		streamOut.id = streamIn.id;
-		streamOut.dest = streamIn.dest;
+//		streamOut.keep = streamIn.keep;
+//		streamOut.strb = streamIn.strb;
+//		streamOut.user = streamIn.user;
+//		streamOut.last = streamIn.last;
+//		streamOut.id = streamIn.id;
+//		streamOut.dest = streamIn.dest;
 
 		dst.write(streamOut);
 
+		if (x>=WIDTH-1){
+			x = 0;
+			y++;
+		}else {
+			x++;
 		}
-
+	}
 }
 
