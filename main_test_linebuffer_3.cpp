@@ -29,22 +29,22 @@ void stream(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t 
 
 	pixel_data p_in, p_tmp;
 	src >> p_in; 					        // read 1 pixel
-	
+
 	static uint16_t x 		= 0;
 	static uint16_t y 		= 0;
-	
+
 	LINEBUFFER linebuf; 					// left-upper corners = (0,0)
 
 	if (p_in.user){							// new frame
 		x = y = 0;
 	}
 
-	linebuf.shift_up(x); 				    // shift pixel_data in column x up one place
+	linebuf.shift_down(x); 				    // shift pixel_data in column x up one place
 	linebuf.insert_bottom(p_in,x);
 
 	if(y != 0){                             // Send data back 1 line later
 		p_tmp = linebuf.getval(1,x);
-		p_in.data = p_tmp.data;  
+		p_in.data = p_tmp.data;
 	}
 	else{
 		p_in.data = 50;                      // first-line black
