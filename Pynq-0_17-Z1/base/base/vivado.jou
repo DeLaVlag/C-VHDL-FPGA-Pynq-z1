@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2017.3 (64-bit)
+# SW Build 2018833 on Wed Oct  4 19:58:22 MDT 2017
+# IP Build 2016188 on Wed Oct  4 21:52:56 MDT 2017
+# Start of session at: Thu Dec 14 10:00:31 2017
+# Process ID: 8496
+# Current directory: D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent5900 D:\Studie\RCD\PYNQ\PYNQ\Pynq-0_17-Z1\base\base\base.xpr
+# Log file: D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/vivado.log
+# Journal file: D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.xpr

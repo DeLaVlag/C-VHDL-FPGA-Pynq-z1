@@ -1,0 +1,155 @@
+{
+   guistr: "# # String gsaved with Nlview 6.5.12  2016-01-29 bk=1.3547 VDI=39 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port sw2shield_scl_o_out -pg 1 -y 1290 -defaultsOSRD
+preplace port shield2sw_scl_i_in -pg 1 -y 1680 -defaultsOSRD
+preplace port Vp_Vn -pg 1 -y 1210 -defaultsOSRD
+preplace port shield2sw_sda_i_in -pg 1 -y 1700 -defaultsOSRD
+preplace port spi_sw_shield -pg 1 -y 1110 -defaultsOSRD
+preplace port sw2shield_sda_o_out -pg 1 -y 1250 -defaultsOSRD
+preplace port mb_debug_sys_rst -pg 1 -y 130 -defaultsOSRD
+preplace port Vaux0 -pg 1 -y 1230 -defaultsOSRD
+preplace port mb3_intr_req -pg 1 -y 1940 -defaultsOSRD
+preplace port ck_io -pg 1 -y 1710 -defaultsOSRD
+preplace port Vaux1 -pg 1 -y 1250 -defaultsOSRD
+preplace port S_AXI -pg 1 -y 210 -defaultsOSRD
+preplace port DEBUG -pg 1 -y 20 -defaultsOSRD
+preplace port sw2shield_scl_t_out -pg 1 -y 1310 -defaultsOSRD
+preplace port Vaux12 -pg 1 -y 1350 -defaultsOSRD
+preplace port Vaux5 -pg 1 -y 1270 -defaultsOSRD
+preplace port Vaux13 -pg 1 -y 1370 -defaultsOSRD
+preplace port Vaux6 -pg 1 -y 1290 -defaultsOSRD
+preplace port clk -pg 1 -y 70 -defaultsOSRD
+preplace port sw2shield_sda_t_out -pg 1 -y 1270 -defaultsOSRD
+preplace port Vaux15 -pg 1 -y 1390 -defaultsOSRD
+preplace port Vaux8 -pg 1 -y 1310 -defaultsOSRD
+preplace port M18_AXI -pg 1 -y 580 -defaultsOSRD
+preplace port Vaux9 -pg 1 -y 1330 -defaultsOSRD
+preplace portBus sw2shield_data_out_a5_a0 -pg 1 -y 1130 -defaultsOSRD
+preplace portBus shield2sw_data_in_d1_d0 -pg 1 -y 1640 -defaultsOSRD
+preplace portBus sw2shield_tri_out_d13_d2 -pg 1 -y 1230 -defaultsOSRD
+preplace portBus peripheral_aresetn -pg 1 -y 1640 -defaultsOSRD
+preplace portBus mb3_intr_ack -pg 1 -y 1970 -defaultsOSRD
+preplace portBus aux_reset_in -pg 1 -y 110 -defaultsOSRD
+preplace portBus sw2shield_data_out_d1_d0 -pg 1 -y 1170 -defaultsOSRD
+preplace portBus sw2shield_data_out_d13_d2 -pg 1 -y 1210 -defaultsOSRD
+preplace portBus shield2sw_data_in_a5_a0 -pg 1 -y 1620 -defaultsOSRD
+preplace portBus sw2shield_tri_out_a5_a0 -pg 1 -y 1150 -defaultsOSRD
+preplace portBus s_axi_aresetn -pg 1 -y 710 -defaultsOSRD
+preplace portBus shield2sw_data_in_d13_d2 -pg 1 -y 1660 -defaultsOSRD
+preplace portBus sw2shield_tri_out_d1_d0 -pg 1 -y 1190 -defaultsOSRD
+preplace portBus ext_reset_in -pg 1 -y 90 -defaultsOSRD
+preplace inst mb3_spi_subsystem -pg 1 -lvl 6 -y 1290 -defaultsOSRD
+preplace inst mb3_uartlite_d1_d0 -pg 1 -lvl 6 -y 1140 -defaultsOSRD
+preplace inst mb3_xadc -pg 1 -lvl 4 -y 1310 -defaultsOSRD
+preplace inst mb -pg 1 -lvl 4 -y 100 -defaultsOSRD
+preplace inst microblaze_0_axi_periph -pg 1 -lvl 2 -y 690 -defaultsOSRD
+preplace inst mb_bram_ctrl -pg 1 -lvl 4 -y 230 -defaultsOSRD
+preplace inst logic_0 -pg 1 -lvl 6 -y 1430 -defaultsOSRD
+preplace inst arduino_io_switch_0 -pg 1 -lvl 7 -y 1250 -defaultsOSRD
+preplace inst logic_1 -pg 1 -lvl 6 -y 1910 -defaultsOSRD
+preplace inst mb3_iic_subsystem -pg 1 -lvl 6 -y 1000 -defaultsOSRD
+preplace inst mb3_lmb -pg 1 -lvl 5 -y 100 -defaultsOSRD
+preplace inst mb3_intc -pg 1 -lvl 3 -y 660 -defaultsOSRD
+preplace inst dff_en_reset_0 -pg 1 -lvl 7 -y 1940 -defaultsOSRD
+preplace inst rst_clk_wiz_1_100M -pg 1 -lvl 1 -y 110 -defaultsOSRD
+preplace inst logic_0_6bits -pg 1 -lvl 6 -y 1510 -defaultsOSRD
+preplace inst mb3_intr -pg 1 -lvl 3 -y 1100 -defaultsOSRD
+preplace inst mb3_timers_subsystem -pg 1 -lvl 3 -y 890 -defaultsOSRD
+preplace inst mb3_gpio_subsystem -pg 1 -lvl 7 -y 1770 -defaultsOSRD
+preplace inst mb3_concat -pg 1 -lvl 2 -y 1510 -defaultsOSRD
+preplace netloc microblaze_0_axi_periph_M02_AXI 1 2 5 710 1480 NJ 1480 NJ 1480 NJ 1380 NJ
+preplace netloc microblaze_0_axi_periph_M16_AXI 1 2 1 830
+preplace netloc dff_en_reset_0_q 1 7 1 NJ
+preplace netloc Conn10 1 0 4 NJ 1290 NJ 1290 NJ 1290 NJ
+preplace netloc mb3_shared_iic_sw_IIC 1 6 1 2380
+preplace netloc Conn11 1 0 4 NJ 1330 NJ 1330 NJ 1330 NJ
+preplace netloc mb3_iic_pl_sw_IIC 1 6 1 2350
+preplace netloc microblaze_0_axi_periph_M03_AXI 1 2 5 700 1730 NJ 1730 NJ 1730 NJ 1730 NJ
+preplace netloc Conn12 1 0 4 NJ 1370 NJ 1370 NJ 1370 NJ
+preplace netloc microblaze_0_axi_periph_M01_AXI 1 2 4 NJ 530 NJ 530 NJ 530 2000
+preplace netloc Conn13 1 0 4 NJ 1390 NJ 1390 NJ 1390 NJ
+preplace netloc Conn14 1 0 4 NJ 1350 NJ 1350 NJ 1350 NJ
+preplace netloc mb3_timers_subsystem_dout2 1 1 3 350 1200 NJ 1170 1200
+preplace netloc mb3_intr_gpio_io_o 1 3 4 NJ 1110 NJ 1100 NJ 900 2320
+preplace netloc microblaze_0_dlmb_1 1 4 1 N
+preplace netloc microblaze_0_axi_periph_M00_AXI 1 2 4 NJ 510 NJ 510 NJ 510 1990
+preplace netloc shield2sw_data_in_a5_a0_1 1 0 7 NJ 1620 NJ 1640 NJ 1630 NJ 1630 NJ 1630 NJ 1630 NJ
+preplace netloc mb3_gpio_subsystem_Dout 1 6 2 2460 920 2970
+preplace netloc microblaze_0_axi_periph_M17_AXI 1 2 1 790
+preplace netloc rst_clk_wiz_1_100M_mb_reset 1 1 3 390 130 NJ 130 NJ
+preplace netloc microblaze_0_M_AXI_DP 1 1 4 400 40 NJ 40 NJ 20 1700
+preplace netloc arduino_io_switch_0_sw2shield_tri_out_d1_d0 1 7 1 NJ
+preplace netloc mb3_uartlite_d1_d0_interrupt 1 1 6 400 1710 NJ 1700 NJ 1700 NJ 1700 NJ 1700 2270
+preplace netloc arduino_io_switch_0_sw2shield_tri_out_d13_d2 1 7 1 NJ
+preplace netloc shield2sw_data_in_d1_d0_1 1 0 7 NJ 1640 NJ 1650 NJ 1640 NJ 1640 NJ 1640 NJ 1640 NJ
+preplace netloc shield2sw_scl_i_in_1 1 0 7 NJ 1680 NJ 1670 NJ 1660 NJ 1660 NJ 1660 NJ 1660 NJ
+preplace netloc logic_0_6bits_dout 1 6 1 NJ
+preplace netloc rst_clk_wiz_1_100M_bus_struct_reset 1 1 4 NJ 30 NJ 30 NJ 10 1720
+preplace netloc logic_0_dout 1 6 1 NJ
+preplace netloc microblaze_0_axi_periph_M14_AXI 1 2 1 760
+preplace netloc arduino_io_switch_0_sw2pl_data_in_a5_a0 1 6 1 2410
+preplace netloc s_axi_aresetn_1 1 0 6 NJ 710 390 1190 810 1180 1230 1140 NJ 1140 1980
+preplace netloc microblaze_0_axi_periph_M12_AXI 1 2 1 860
+preplace netloc arduino_io_switch_0_sw2shield_data_out_d1_d0 1 7 1 NJ
+preplace netloc microblaze_0_ilmb_1 1 4 1 N
+preplace netloc microblaze_0_axi_periph_M08_AXI 1 2 4 NJ 570 NJ 570 NJ 570 1960
+preplace netloc arduino_io_switch_0_sw2shield_data_out_a5_a0 1 7 1 NJ
+preplace netloc mb3_gpio_subsystem_Dout1 1 6 2 2450 1650 2930
+preplace netloc BRAM_PORTB_1 1 4 1 1710
+preplace netloc mdm_1_debug_sys_rst 1 0 1 NJ
+preplace netloc mb3_gpio_subsystem_Dout2 1 6 2 2440 910 2980
+preplace netloc shield2sw_data_in_d13_d2_1 1 0 7 NJ 1660 NJ 1660 NJ 1650 NJ 1650 NJ 1650 NJ 1650 NJ
+preplace netloc mb3_gpio_subsystem_Dout3 1 6 2 2470 1580 2960
+preplace netloc arduino_io_switch_0_sw2pl_data_in_d1_d0 1 6 1 2440
+preplace netloc microblaze_0_axi_periph_M13_AXI 1 2 1 850
+preplace netloc arduino_io_switch_0_sw2shield_sda_o_out 1 7 1 NJ
+preplace netloc mb3_intr_ack_1 1 0 7 NJ 1970 NJ 1970 NJ 1970 NJ 1970 NJ 1970 NJ 1970 NJ
+preplace netloc mb3_gpio_subsystem_gpio2_io_o 1 6 2 2420 1590 2920
+preplace netloc arduino_io_switch_0_interrupt_i_in_a5_a0 1 1 7 400 1400 NJ 1490 NJ 1490 NJ 1490 NJ 1580 NJ 1610 2910
+preplace netloc arduino_io_switch_0_sw2shield_scl_o_out 1 7 1 NJ
+preplace netloc arduino_io_switch_0_sw2pl_data_in_d13_d2 1 6 1 2460
+preplace netloc arduino_io_switch_0_interrupt_i_in_d1_d0 1 1 7 360 1620 NJ 1610 NJ 1610 NJ 1610 NJ 1610 NJ 1620 2930
+preplace netloc arduino_io_switch_0_timer_i_in 1 2 6 880 1030 NJ 1030 NJ 1030 NJ 890 NJ 890 2960
+preplace netloc mb3_gpio_subsystem_gpio2_io_t 1 6 2 2430 1600 2940
+preplace netloc microblaze_0_axi_periph_M11_AXI 1 2 1 870
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 7 20 200 350 1170 780 740 1220 1130 1730 1110 2000 1560 2390
+preplace netloc microblaze_0_axi_periph_M10_AXI 1 2 1 880
+preplace netloc microblaze_0_axi_periph_M09_AXI 1 2 1 740
+preplace netloc microblaze_0_debug 1 0 4 NJ 20 NJ 20 NJ 20 NJ
+preplace netloc mb3_spi_pl_sw_SPI_0 1 6 1 N
+preplace netloc shield2sw_sda_i_in_1 1 0 7 NJ 1700 NJ 1680 NJ 1670 NJ 1670 NJ 1670 NJ 1670 NJ
+preplace netloc logic_1_dout1 1 6 1 NJ
+preplace netloc arduino_io_switch_0_interrupt_i_in_d13_d2 1 1 7 370 1630 NJ 1620 NJ 1620 NJ 1620 NJ 1620 NJ 1630 2950
+preplace netloc mb3_intc_interrupt 1 3 1 1200
+preplace netloc rst_clk_wiz_1_100M_interconnect_aresetn 1 1 1 370
+preplace netloc mb_1_reset_Dout 1 0 1 NJ
+preplace netloc mb3_timer_pwm_dout 1 3 4 NJ 910 NJ 910 NJ 880 2390
+preplace netloc microblaze_0_axi_periph_M06_AXI 1 2 4 NJ 550 NJ 550 NJ 550 1970
+preplace netloc Conn1 1 7 1 NJ
+preplace netloc mb3_iic_subsystem_iic2intc_irpt 1 1 6 380 1690 NJ 1680 NJ 1680 NJ 1680 NJ 1680 2260
+preplace netloc arduino_io_switch_0_sw2shield_data_out_d13_d2 1 7 1 NJ
+preplace netloc Conn2 1 0 4 NJ 210 NJ 210 NJ 210 NJ
+preplace netloc mb3_timer_generate_dout 1 3 4 NJ 870 NJ 870 NJ 870 2400
+preplace netloc mb3_concat_dout 1 2 1 820
+preplace netloc Conn3 1 2 6 NJ 580 NJ 580 NJ 580 NJ 580 NJ 580 NJ
+preplace netloc Conn4 1 0 4 NJ 1230 NJ 1230 NJ 1230 NJ
+preplace netloc Conn5 1 7 1 NJ
+preplace netloc microblaze_0_axi_periph_M07_AXI 1 2 4 NJ 560 NJ 560 NJ 560 1980
+preplace netloc logic_1_dout 1 0 1 NJ
+preplace netloc Conn6 1 0 4 NJ 1310 NJ 1310 NJ 1310 NJ
+preplace netloc mb3_spi_subsystem_ip2intc_irpt 1 1 6 390 1700 NJ 1690 NJ 1690 NJ 1690 NJ 1690 2250
+preplace netloc Conn7 1 0 4 NJ 1210 NJ 1210 NJ 1210 NJ
+preplace netloc arduino_io_switch_0_sw2shield_sda_t_out 1 7 1 NJ
+preplace netloc Conn8 1 0 4 NJ 1250 NJ 1250 NJ 1250 NJ
+preplace netloc microblaze_0_axi_periph_M15_AXI 1 2 2 800 1200 NJ
+preplace netloc arduino_io_switch_0_sw2shield_tri_out_a5_a0 1 7 1 NJ
+preplace netloc mb3_uartlite_d1_d0_UART 1 6 1 2340
+preplace netloc microblaze_0_axi_periph_M05_AXI 1 2 5 840 1710 NJ 1710 NJ 1710 NJ 1710 NJ
+preplace netloc Conn9 1 0 4 NJ 1270 NJ 1270 NJ 1270 NJ
+preplace netloc mb3_spi_pl_sw_d13_d10_SPI_0 1 6 1 2290
+preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 1 7 360 1180 770 1190 NJ 1120 NJ 1120 1940 1570 2400 1640 NJ
+preplace netloc arduino_io_switch_0_sw2shield_scl_t_out 1 7 1 NJ
+levelinfo -pg 1 0 180 550 1040 1470 1830 2130 2690 3000 -top 0 -bot 2020
+",
+}

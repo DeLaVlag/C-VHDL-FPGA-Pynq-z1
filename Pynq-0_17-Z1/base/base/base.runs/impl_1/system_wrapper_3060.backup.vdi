@@ -1,0 +1,1093 @@
+#-----------------------------------------------------------
+# Vivado v2017.3 (64-bit)
+# SW Build 2018833 on Wed Oct  4 19:58:22 MDT 2017
+# IP Build 2016188 on Wed Oct  4 21:52:56 MDT 2017
+# Start of session at: Mon Dec 18 22:56:55 2017
+# Process ID: 3060
+# Current directory: D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1
+# Command line: vivado.exe -log system_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source system_wrapper.tcl -notrace
+# Log file: D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper.vdi
+# Journal file: D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source system_wrapper.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/Studie/RCD/PYNQ/PYNQ/ip'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'd:/Studie/RCD/PYNQ/PYNQ/hls/video1/solution1/impl/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip'.
+add_files: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 294.602 ; gain = 49.672
+Command: link_design -top system_wrapper -part xc7z020clg400-1
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Netlist 29-17] Analyzing 888 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2017.3
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_proc_sys_reset_fclk1_0/system_proc_sys_reset_fclk1_0_board.xdc] for cell 'system_i/proc_sys_reset_fclk1/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_proc_sys_reset_fclk1_0/system_proc_sys_reset_fclk1_0_board.xdc] for cell 'system_i/proc_sys_reset_fclk1/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_proc_sys_reset_fclk1_0/system_proc_sys_reset_fclk1_0.xdc] for cell 'system_i/proc_sys_reset_fclk1/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_proc_sys_reset_fclk1_0/system_proc_sys_reset_fclk1_0.xdc] for cell 'system_i/proc_sys_reset_fclk1/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_processing_system7_0_0/system_processing_system7_0_0.xdc] for cell 'system_i/processing_system7_0/inst'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_processing_system7_0_0/system_processing_system7_0_0.xdc] for cell 'system_i/processing_system7_0/inst'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_rst_processing_system7_0_fclk0_0/system_rst_processing_system7_0_fclk0_0_board.xdc] for cell 'system_i/rst_processing_system7_0_fclk0/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_rst_processing_system7_0_fclk0_0/system_rst_processing_system7_0_fclk0_0_board.xdc] for cell 'system_i/rst_processing_system7_0_fclk0/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_rst_processing_system7_0_fclk0_0/system_rst_processing_system7_0_fclk0_0.xdc] for cell 'system_i/rst_processing_system7_0_fclk0/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_rst_processing_system7_0_fclk0_0/system_rst_processing_system7_0_fclk0_0.xdc] for cell 'system_i/rst_processing_system7_0_fclk0/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_system_interrupts_0/system_system_interrupts_0.xdc] for cell 'system_i/system_interrupts/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_system_interrupts_0/system_system_interrupts_0.xdc] for cell 'system_i/system_interrupts/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_axi_vdma_0/system_axi_vdma_0.xdc] for cell 'system_i/video/axi_vdma/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_axi_vdma_0/system_axi_vdma_0.xdc] for cell 'system_i/video/axi_vdma/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_axi_gpio_hdmiin_0/system_axi_gpio_hdmiin_0_board.xdc] for cell 'system_i/video/hdmi_in/frontend/axi_gpio_hdmiin/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_axi_gpio_hdmiin_0/system_axi_gpio_hdmiin_0_board.xdc] for cell 'system_i/video/hdmi_in/frontend/axi_gpio_hdmiin/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_axi_gpio_hdmiin_0/system_axi_gpio_hdmiin_0.xdc] for cell 'system_i/video/hdmi_in/frontend/axi_gpio_hdmiin/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_axi_gpio_hdmiin_0/system_axi_gpio_hdmiin_0.xdc] for cell 'system_i/video/hdmi_in/frontend/axi_gpio_hdmiin/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_dvi2rgb_0_0/src/dvi2rgb.xdc] for cell 'system_i/video/hdmi_in/frontend/dvi2rgb_0/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_dvi2rgb_0_0/src/dvi2rgb.xdc] for cell 'system_i/video/hdmi_in/frontend/dvi2rgb_0/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_hdmi_out_hpd_video_0/system_hdmi_out_hpd_video_0_board.xdc] for cell 'system_i/video/hdmi_out/frontend/hdmi_out_hpd_video/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_hdmi_out_hpd_video_0/system_hdmi_out_hpd_video_0_board.xdc] for cell 'system_i/video/hdmi_out/frontend/hdmi_out_hpd_video/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_hdmi_out_hpd_video_0/system_hdmi_out_hpd_video_0.xdc] for cell 'system_i/video/hdmi_out/frontend/hdmi_out_hpd_video/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_hdmi_out_hpd_video_0/system_hdmi_out_hpd_video_0.xdc] for cell 'system_i/video/hdmi_out/frontend/hdmi_out_hpd_video/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_proc_sys_reset_pixelclk_0/system_proc_sys_reset_pixelclk_0_board.xdc] for cell 'system_i/video/hdmi_out/frontend/proc_sys_reset_pixelclk/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_proc_sys_reset_pixelclk_0/system_proc_sys_reset_pixelclk_0_board.xdc] for cell 'system_i/video/hdmi_out/frontend/proc_sys_reset_pixelclk/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_proc_sys_reset_pixelclk_0/system_proc_sys_reset_pixelclk_0.xdc] for cell 'system_i/video/hdmi_out/frontend/proc_sys_reset_pixelclk/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_proc_sys_reset_pixelclk_0/system_proc_sys_reset_pixelclk_0.xdc] for cell 'system_i/video/hdmi_out/frontend/proc_sys_reset_pixelclk/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_rgb2dvi_0_0/src/rgb2dvi.xdc] for cell 'system_i/video/hdmi_out/frontend/rgb2dvi_0/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_rgb2dvi_0_0/src/rgb2dvi.xdc] for cell 'system_i/video/hdmi_out/frontend/rgb2dvi_0/U0'
+Parsing XDC File [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc]
+WARNING: [Vivado 12-584] No ports matched 'sws_2bits_tri_i[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:2]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:2]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'sws_2bits_tri_i[1]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:3]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:3]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'btns_4bits_tri_i[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:6]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:6]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'btns_4bits_tri_i[1]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:7]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:7]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'btns_4bits_tri_i[2]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:8]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:8]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'btns_4bits_tri_i[3]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:9]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:9]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'leds_4bits_tri_o[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:12]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:12]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'leds_4bits_tri_o[1]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:13]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:13]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'leds_4bits_tri_o[2]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:14]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:14]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'leds_4bits_tri_o[3]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:15]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:15]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'rgbleds_6bits_tri_o[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:18]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:18]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'rgbleds_6bits_tri_o[1]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:19]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:19]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'rgbleds_6bits_tri_o[2]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:20]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:20]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'rgbleds_6bits_tri_o[3]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:21]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:21]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'rgbleds_6bits_tri_o[4]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:22]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:22]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'rgbleds_6bits_tri_o[5]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:23]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:23]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pdm_m_clk[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:27]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:27]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pdm_m_data_i'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:28]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:28]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pwm_audio_o[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:30]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:30]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pdm_audio_shutdown[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:31]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:31]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Constraints 18-619] A clock with name 'hdmi_in_clk_p' already exists, overwriting the previous clock with the same name. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:34]
+WARNING: [Vivado 12-508] No pins matched 'system_i/video/axi_dynclk/PXL_CLK_O'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:35]
+CRITICAL WARNING: [Vivado 12-4739] create_clock:No valid object(s) found for '-objects [get_pins system_i/video/axi_dynclk/PXL_CLK_O]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:35]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[1]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:64]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:64]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:65]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:65]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[3]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:66]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:66]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[2]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:67]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:67]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[5]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:68]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:68]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[4]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:69]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:69]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[7]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:70]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:70]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[6]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:71]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:71]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[2]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:72]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:72]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[3]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:73]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:73]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[6]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:74]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:74]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJA[7]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:75]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:75]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[1]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:78]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:78]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:79]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:79]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[3]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:80]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:80]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[2]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:81]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:81]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[5]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:82]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:82]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[4]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:83]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:83]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[7]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:84]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:84]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[6]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:85]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:85]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[2]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:86]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:86]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[3]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:87]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:87]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[6]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:88]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:88]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'pmodJB[7]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:89]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:89]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d1_d0_tri_io[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:92]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:92]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d1_d0_tri_io[1]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:93]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:93]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:94]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:94]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[1]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:95]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:95]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[2]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:96]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:96]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[3]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:97]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:97]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[4]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:98]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:98]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[5]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:99]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:99]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[6]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:100]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:100]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[7]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:101]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:101]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[8]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:102]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:102]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[9]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:103]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:103]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[10]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:104]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:104]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_d13_d2_tri_io[11]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:105]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:105]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'iic_sw_shield_scl_io'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:107]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:107]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'iic_sw_shield_sda_io'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:108]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:108]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'spi_sw_shield_io1_io'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:110]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:110]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'spi_sw_shield_io0_io'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:111]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:111]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'spi_sw_shield_sck_io'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:112]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:112]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'spi_sw_shield_ss_io'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:113]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:113]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux1_v_n'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:115]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:115]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux1_v_p'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:116]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:116]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux9_v_n'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:117]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:117]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux9_v_p'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:118]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:118]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux6_v_n'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:119]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:119]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux6_v_p'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:120]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:120]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux15_v_n'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:121]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:121]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux15_v_p'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:122]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:122]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux5_v_n'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:123]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:123]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux5_v_p'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:124]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:124]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux13_v_n'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:125]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:125]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'Vaux13_v_p'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:126]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:126]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_a5_a0_tri_io[5]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:129]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:129]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_a5_a0_tri_io[4]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:130]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:130]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_a5_a0_tri_io[3]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:131]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:131]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_a5_a0_tri_io[2]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:132]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:132]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_a5_a0_tri_io[1]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:133]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:133]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_a5_a0_tri_io[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:134]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:134]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_a5_a0_tri_io[5]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:136]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:136]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'gpio_shield_sw_a5_a0_tri_io[4]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:137]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:137]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[0]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:140]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:140]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[1]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:141]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:141]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[2]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:142]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:142]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[3]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:143]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:143]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[4]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:144]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:144]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[5]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:145]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:145]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[6]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:146]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:146]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[7]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:147]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:147]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[8]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:148]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:148]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[9]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:149]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:149]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[10]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:150]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:150]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[11]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:151]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:151]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[12]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:152]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:152]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[13]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:153]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:153]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[14]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:154]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:154]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'ck_gpio_tri_io[15]'. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:155]
+INFO: [Common 17-14] Message 'Vivado 12-584' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:155]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:155]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+INFO: [Common 17-14] Message 'Common 17-55' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings. [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc:155]
+Finished Parsing XDC File [D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/top.xdc]
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_system_interrupts_0/system_system_interrupts_0_clocks.xdc] for cell 'system_i/system_interrupts/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_system_interrupts_0/system_system_interrupts_0_clocks.xdc] for cell 'system_i/system_interrupts/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_axi_vdma_0/system_axi_vdma_0_clocks.xdc] for cell 'system_i/video/axi_vdma/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_axi_vdma_0/system_axi_vdma_0_clocks.xdc] for cell 'system_i/video/axi_vdma/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_v_vid_in_axi4s_0_0/system_v_vid_in_axi4s_0_0_clocks.xdc] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_v_vid_in_axi4s_0_0/system_v_vid_in_axi4s_0_0_clocks.xdc] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_vtc_in_0/system_vtc_in_0_clocks.xdc] for cell 'system_i/video/hdmi_in/frontend/vtc_in/U0'
+INFO: [Timing 38-35] Done setting XDC timing constraints. [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_vtc_in_0/system_vtc_in_0_clocks.xdc:2]
+INFO: [Timing 38-2] Deriving generated clocks [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_vtc_in_0/system_vtc_in_0_clocks.xdc:2]
+get_clocks: Time (s): cpu = 00:00:14 ; elapsed = 00:00:13 . Memory (MB): peak = 1204.195 ; gain = 515.168
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_vtc_in_0/system_vtc_in_0_clocks.xdc] for cell 'system_i/video/hdmi_in/frontend/vtc_in/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_rgb2dvi_0_0/src/rgb2dvi_clocks.xdc] for cell 'system_i/video/hdmi_out/frontend/rgb2dvi_0/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_rgb2dvi_0_0/src/rgb2dvi_clocks.xdc] for cell 'system_i/video/hdmi_out/frontend/rgb2dvi_0/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_v_axi4s_vid_out_0_0/system_v_axi4s_vid_out_0_0_clocks.xdc] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_v_axi4s_vid_out_0_0/system_v_axi4s_vid_out_0_0_clocks.xdc] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_vtc_out_0/system_vtc_out_0_clocks.xdc] for cell 'system_i/video/hdmi_out/frontend/vtc_out/U0'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_vtc_out_0/system_vtc_out_0_clocks.xdc] for cell 'system_i/video/hdmi_out/frontend/vtc_out/U0'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_us_0/system_auto_us_0_clocks.xdc] for cell 'system_i/video/axi_mem_intercon/s01_couplers/auto_us/inst'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_us_0/system_auto_us_0_clocks.xdc] for cell 'system_i/video/axi_mem_intercon/s01_couplers/auto_us/inst'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_cc_4/system_auto_cc_4_clocks.xdc] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_cc_4/system_auto_cc_4_clocks.xdc] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_cc_3/system_auto_cc_3_clocks.xdc] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_cc_3/system_auto_cc_3_clocks.xdc] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_cc_2/system_auto_cc_2_clocks.xdc] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_cc_2/system_auto_cc_2_clocks.xdc] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_cc_1/system_auto_cc_1_clocks.xdc] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_cc_1/system_auto_cc_1_clocks.xdc] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst'
+Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_cc_0/system_auto_cc_0_clocks.xdc] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst'
+Finished Parsing XDC File [d:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.srcs/sources_1/bd/system/ip/system_auto_cc_0/system_auto_cc_0_clocks.xdc] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/video/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/video/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_B_CHANNEL.cmd_b_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/video/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/video/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_WRITE.write_addr_inst/USE_BURSTS.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/video/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_async_rst.tcl] for cell 'system_i/video/axi_mem_intercon/m00_couplers/auto_pc/inst/gen_axi4_axi3.axi3_conv_inst/USE_READ.USE_SPLIT_R.read_addr_inst/USE_R_CHANNEL.cmd_queue/inst/fifo_gen_inst/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/ngwrdrst.grst.g7serrst.gnsckt_wrst.rst_wr_reg2_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.rd_pntr_cdc_dc_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.rd_pntr_cdc_dc_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.rd_pntr_cdc_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.rd_pntr_cdc_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.wr_pntr_cdc_dc_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.wr_pntr_cdc_dc_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.wr_pntr_cdc_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.wr_pntr_cdc_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.rd_pntr_cdc_dc_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.rd_pntr_cdc_dc_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.rd_pntr_cdc_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.rd_pntr_cdc_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.wr_pntr_cdc_dc_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.wr_pntr_cdc_dc_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.wr_pntr_cdc_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/gen_cdc_pntr.wr_pntr_cdc_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_handshake.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/CDC_SINGLE_REMAP_UNDERFLOW_INST/xpm_cdc_single_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/CDC_SINGLE_REMAP_UNDERFLOW_INST/xpm_cdc_single_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/CDC_SINGLE_REMAP_OVERFLOW_INST/xpm_cdc_single_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/CDC_SINGLE_REMAP_OVERFLOW_INST/xpm_cdc_single_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/CDC_SINGLE_COUPLER_OVERFLOW_INST/xpm_cdc_single_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/CDC_SINGLE_COUPLER_OVERFLOW_INST/xpm_cdc_single_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m10_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m07_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m06_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m02_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.w_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.r_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.b_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.aw_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_dest2src_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_single.tcl] for cell 'system_i/video/axi_interconnect_0/m01_couplers/auto_cc/inst/gen_clock_conv.gen_async_lite_conv.ar_handshake/handshake/xpm_cdc_single_src2dest_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_sync_rst.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.rrst_wr_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_sync_rst.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.rrst_wr_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_sync_rst.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.wrst_rd_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_sync_rst.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.wrst_rd_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_sync_rst.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.rrst_wr_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_sync_rst.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.rrst_wr_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_sync_rst.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.wrst_rd_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_sync_rst.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst/xpm_fifo_rst_inst/gen_rst_ic.wrst_rd_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'system_i/video/hdmi_out/frontend/v_axi4s_vid_out_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'system_i/video/hdmi_in/frontend/v_vid_in_axi4s_0/inst/COUPLER_INST/generate_async_fifo.FIFO_INST/XPM_FIFO_ASYNC_INST/gnuram_async_fifo.xpm_fifo_base_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'system_i/video/axi_vdma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_XD_FIFO/NON_BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'system_i/video/axi_vdma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_XD_FIFO/NON_BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst'
+Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'system_i/video/axi_vdma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst'
+Finished Sourcing Tcl File [D:/Program_Files2/Xilinx/Vivado/2017.3/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'system_i/video/axi_vdma/U0/I_PRMRY_DATAMOVER/GEN_S2MM_FULL.I_S2MM_FULL_WRAPPER/GEN_ENABLE_INDET_BTT_SF.I_INDET_BTT/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst'
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 15 instances were transformed.
+  IOBUF => IOBUF (IBUF, OBUFT): 4 instances
+  RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 10 instances
+  RAM32X1D => RAM32X1D (RAMD32, RAMD32): 1 instances
+
+15 Infos, 102 Warnings, 101 Critical Warnings and 0 Errors encountered.
+link_design completed successfully
+link_design: Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1204.195 ; gain = 909.594
+zip_exception: Failed to open zip archive D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper.hwdef. This may indicate that the file is corrupt, that there is insufficient free disk space available to uncompress it, or that you do not have permission to create fileszip_exception: Failed to open zip archive D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper.hwdef. This may indicate that the file is corrupt, that there is insufficient free disk space available to uncompress it, or that you do not have permission to create fileszip_exception: Failed to open zip archive D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper.hwdef. This may indicate that the file is corrupt, that there is insufficient free disk space available to uncompress it, or that you do not have permission to create fileszip_exception: Failed to open zip archive D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper.hwdef. This may indicate that the file is corrupt, that there is insufficient free disk space available to uncompress it, or that you do not have permission to create fileszip_exception: Failed to open zip archive D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper.hwdef. This may indicate that the file is corrupt, that there is insufficient free disk space available to uncompress it, or that you do not have permission to create fileszip_exception: Failed to open zip archive D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper.hwdef. This may indicate that the file is corrupt, that there is insufficient free disk space available to uncompress it, or that you do not have permission to create fileszip_exception: Failed to open zip archive D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper.hwdef. This may indicate that the file is corrupt, that there is insufficient free disk space available to uncompress it, or that you do not have permission to create fileszip_exception: Failed to open zip archive D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper.hwdef. This may indicate that the file is corrupt, that there is insufficient free disk space available to uncompress it, or that you do not have permission to create filesCommand: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:00.989 . Memory (MB): peak = 1204.195 ; gain = 0.000
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Starting Logic Optimization Task
+CRITICAL WARNING: [Timing 38-249] Generated clock system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/SerialClk has no logical paths from master clock axi_dynclk_0_PXL_CLK_O.
+Resolution: Review the path between the master clock and the generated clock with the schematic viewer and correct the -source option. If it is correct and the master clock does not have a timing path to the generated clock, define the generated clock as a primary clock by using create_clock.
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 6 inverter(s) to 27 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: 1d0e11210
+
+Time (s): cpu = 00:00:04 ; elapsed = 00:00:03 . Memory (MB): peak = 1204.195 ; gain = 0.000
+INFO: [Opt 31-389] Phase Retarget created 670 cells and removed 987 cells
+
+Phase 2 Constant propagation
+INFO: [Opt 31-138] Pushed 6 inverter(s) to 25 load pin(s).
+Phase 2 Constant propagation | Checksum: 1c5a059df
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1204.195 ; gain = 0.000
+INFO: [Opt 31-389] Phase Constant propagation created 306 cells and removed 1644 cells
+
+Phase 3 Sweep
+Phase 3 Sweep | Checksum: 19caabda8
+
+Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1204.195 ; gain = 0.000
+INFO: [Opt 31-389] Phase Sweep created 0 cells and removed 3623 cells
+
+Phase 4 BUFG optimization
+Phase 4 BUFG optimization | Checksum: 19caabda8
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1204.195 ; gain = 0.000
+INFO: [Opt 31-389] Phase BUFG optimization created 0 cells and removed 0 cells
+
+Phase 5 Shift Register Optimization
+Phase 5 Shift Register Optimization | Checksum: 19caabda8
+
+Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1204.195 ; gain = 0.000
+INFO: [Opt 31-389] Phase Shift Register Optimization created 0 cells and removed 0 cells
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.078 . Memory (MB): peak = 1204.195 ; gain = 0.000
+Ending Logic Optimization Task | Checksum: 1db546a15
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1204.195 ; gain = 0.000
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+CRITICAL WARNING: [Timing 38-249] Generated clock system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/SerialClk has no logical paths from master clock axi_dynclk_0_PXL_CLK_O.
+Resolution: Review the path between the master clock and the generated clock with the schematic viewer and correct the -source option. If it is correct and the master clock does not have a timing path to the generated clock, define the generated clock as a primary clock by using create_clock.
+INFO: [Physopt 32-619] Estimated Timing Summary | WNS=-0.925 | TNS=-6.701 |
+CRITICAL WARNING: [Timing 38-249] Generated clock system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/SerialClk has no logical paths from master clock axi_dynclk_0_PXL_CLK_O.
+Resolution: Review the path between the master clock and the generated clock with the schematic viewer and correct the -source option. If it is correct and the master clock does not have a timing path to the generated clock, define the generated clock as a primary clock by using create_clock.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 4 BRAM(s) out of a total of 11 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 7 newly gated: 0 Total Ports: 22
+Ending PowerOpt Patch Enables Task | Checksum: 13e21ad1f
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.203 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Ending Power Optimization Task | Checksum: 13e21ad1f
+
+Time (s): cpu = 00:00:17 ; elapsed = 00:00:10 . Memory (MB): peak = 1548.723 ; gain = 344.527
+INFO: [Common 17-83] Releasing license: Implementation
+36 Infos, 102 Warnings, 104 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:33 ; elapsed = 00:00:24 . Memory (MB): peak = 1548.723 ; gain = 344.527
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.083 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper_opt.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:08 ; elapsed = 00:00:05 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_drc -file system_wrapper_drc_opted.rpt -pb system_wrapper_drc_opted.pb -rpx system_wrapper_drc_opted.rpx
+Command: report_drc -file system_wrapper_drc_opted.rpt -pb system_wrapper_drc_opted.pb -rpx system_wrapper_drc_opted.rpx
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Coretcl 2-168] The results of DRC are in file D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper_drc_opted.rpt.
+report_drc completed successfully
+INFO: [Chipscope 16-241] No debug cores found in the current design.
+Before running the implement_debug_core command, either use the Set Up Debug wizard (GUI mode)
+or use the create_debug_core and connect_debug_core Tcl commands to insert debug cores into the design.
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 2 threads
+CRITICAL WARNING: [DRC AVAL-46] v7v8_mmcm_fvco_rule1: The current computed target frequency, FVCO, is out of range for cell system_i/video/hdmi_in/frontend/dvi2rgb_0/U0/TMDS_ClockingX/DVI_ClkGenerator. The computed FVCO is 599.952 MHz. The valid FVCO range for speed grade -1 is 600MHz to 1200MHz. The cell attribute values used to compute FVCO are CLKFBOUT_MULT_F = 5.000, CLKIN1_PERIOD = 8.33400, and DIVCLK_DIVIDE = 1 (FVCO = 1000 * CLKFBOUT_MULT_F/(CLKIN1_PERIOD * DIVCLK_DIVIDE)).
+This violation may be corrected by:
+  1. The timer uses timing constraints for clock period or clock frequency that affect CLKIN1 to set cell attribute CLKIN1_PERIOD, over-riding any previous value. This may already be in place and, if so this violation will be resolved once Timing is run.  Otherwise, consider modifying timing constraints to adjust the CLKIN1_PERIOD and bring FVCO into the allowed range.
+  2. In the absence of timing constraints that affect CLKIN1, consider modifying the cell CLKIN1_PERIOD to bring FVCO into the allowed range.
+  3. If CLKIN1_PERIOD is satisfactory, modify the CLKFBOUT_MULT_F or DIVCLK_DIVIDE cell attributes to bring FVCO into the allowed range.
+  4. The MMCM configuration may be dynamically modified by use of DRP which is recognized by an ACTIVE signal on DCLK pin.
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors, 1 Critical Warnings
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 2 CPUs
+
+Phase 1 Placer Initialization
+
+Phase 1.1 Placer Initialization Netlist Sorting
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.053 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Phase 1.1 Placer Initialization Netlist Sorting | Checksum: fc229aeb
+
+Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.061 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.056 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Phase 1.2 IO Placement/ Clock Placement/ Build Placer Device | Checksum: 10531e793
+
+Time (s): cpu = 00:00:13 ; elapsed = 00:00:11 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 1.3 Build Placer Netlist Model
+CRITICAL WARNING: [Timing 38-249] Generated clock system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/SerialClk has no logical paths from master clock axi_dynclk_0_PXL_CLK_O.
+Resolution: Review the path between the master clock and the generated clock with the schematic viewer and correct the -source option. If it is correct and the master clock does not have a timing path to the generated clock, define the generated clock as a primary clock by using create_clock.
+Phase 1.3 Build Placer Netlist Model | Checksum: 145d854d5
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:16 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 1.4 Constrain Clocks/Macros
+Phase 1.4 Constrain Clocks/Macros | Checksum: 145d854d5
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:17 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Phase 1 Placer Initialization | Checksum: 145d854d5
+
+Time (s): cpu = 00:00:21 ; elapsed = 00:00:17 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 2 Global Placement
+Phase 2 Global Placement | Checksum: 25e10a1e6
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:32 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 25e10a1e6
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:32 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 2c32a9d31
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:35 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 1f30a625c
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:35 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3.4 Pipeline Register Optimization
+Phase 3.4 Pipeline Register Optimization | Checksum: 27b79ff92
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:35 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3.5 Timing Path Optimizer
+Phase 3.5 Timing Path Optimizer | Checksum: 27b79ff92
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:35 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3.6 Fast Optimization
+Phase 3.6 Fast Optimization | Checksum: 2abdfb7b7
+
+Time (s): cpu = 00:00:54 ; elapsed = 00:00:36 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3.7 Small Shape Detail Placement
+Phase 3.7 Small Shape Detail Placement | Checksum: 26dfeb55b
+
+Time (s): cpu = 00:01:03 ; elapsed = 00:00:45 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3.8 Re-assign LUT pins
+Phase 3.8 Re-assign LUT pins | Checksum: 20d701eea
+
+Time (s): cpu = 00:01:04 ; elapsed = 00:00:46 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3.9 Pipeline Register Optimization
+Phase 3.9 Pipeline Register Optimization | Checksum: 21e1f6e75
+
+Time (s): cpu = 00:01:04 ; elapsed = 00:00:46 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3.10 Fast Optimization
+Phase 3.10 Fast Optimization | Checksum: 2b52cd061
+
+Time (s): cpu = 00:01:07 ; elapsed = 00:00:48 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Phase 3 Detail Placement | Checksum: 2b52cd061
+
+Time (s): cpu = 00:01:07 ; elapsed = 00:00:48 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+CRITICAL WARNING: [Timing 38-249] Generated clock system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/SerialClk has no logical paths from master clock axi_dynclk_0_PXL_CLK_O.
+Resolution: Review the path between the master clock and the generated clock with the schematic viewer and correct the -source option. If it is correct and the master clock does not have a timing path to the generated clock, define the generated clock as a primary clock by using create_clock.
+
+Phase 4.1.1 Post Placement Optimization
+Post Placement Optimization Initialization | Checksum: 1a0d7eb71
+
+Phase 4.1.1.1 BUFG Insertion
+INFO: [Physopt 32-721] Multithreading enabled for phys_opt_design using a maximum of 2 CPUs
+INFO: [Place 46-33] Processed net system_i/video/hdmi_out/frontend/vtc_out/U0/U_VIDEO_CTRL/GEN_HAS_IRQ.irq_i_1_n_0, BUFG insertion was skipped due to placement/routing conflicts.
+INFO: [Place 46-31] BUFG insertion identified 1 candidate nets, 0 success, 1 skipped for placement/routing, 0 skipped for timing, 0 skipped for netlist change reason.
+Phase 4.1.1.1 BUFG Insertion | Checksum: 1a0d7eb71
+
+Time (s): cpu = 00:01:15 ; elapsed = 00:00:53 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [Place 30-746] Post Placement Timing Summary WNS=0.383. For the most accurate timing information please run report_timing.
+Phase 4.1.1 Post Placement Optimization | Checksum: 146152438
+
+Time (s): cpu = 00:01:20 ; elapsed = 00:00:58 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Phase 4.1 Post Commit Optimization | Checksum: 146152438
+
+Time (s): cpu = 00:01:20 ; elapsed = 00:00:58 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 4.2 Post Placement Cleanup
+Phase 4.2 Post Placement Cleanup | Checksum: 146152438
+
+Time (s): cpu = 00:01:20 ; elapsed = 00:00:58 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 4.3 Placer Reporting
+Phase 4.3 Placer Reporting | Checksum: 146152438
+
+Time (s): cpu = 00:01:20 ; elapsed = 00:00:58 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 4.4 Final Placement Cleanup
+Phase 4.4 Final Placement Cleanup | Checksum: 1cd383828
+
+Time (s): cpu = 00:01:21 ; elapsed = 00:00:59 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 1cd383828
+
+Time (s): cpu = 00:01:21 ; elapsed = 00:00:59 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Ending Placer Task | Checksum: 1a9accb13
+
+Time (s): cpu = 00:01:21 ; elapsed = 00:00:59 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [Common 17-83] Releasing license: Implementation
+58 Infos, 102 Warnings, 107 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:01:26 ; elapsed = 00:01:02 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:07 ; elapsed = 00:00:02 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper_placed.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:11 ; elapsed = 00:00:05 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_io -file system_wrapper_io_placed.rpt
+report_io: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.068 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_utilization -file system_wrapper_utilization_placed.rpt -pb system_wrapper_utilization_placed.pb
+report_utilization: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.357 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_control_sets -file system_wrapper_control_sets_placed.rpt
+report_control_sets: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.090 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7z020'
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 2 CPUs
+Checksum: PlaceDB: c109c8ea ConstDB: 0 ShapeSum: e8a30229 RouteDB: 0
+
+Phase 1 Build RT Design
+Phase 1 Build RT Design | Checksum: 1af0cd57a
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:23 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Post Restoration Checksum: NetGraph: fd93ef34 NumContArr: b178e646 Constraints: 0 Timing: 0
+
+Phase 2 Router Initialization
+
+Phase 2.1 Create Timer
+Phase 2.1 Create Timer | Checksum: 1af0cd57a
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:24 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 2.2 Fix Topology Constraints
+Phase 2.2 Fix Topology Constraints | Checksum: 1af0cd57a
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:24 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 2.3 Pre Route Cleanup
+Phase 2.3 Pre Route Cleanup | Checksum: 1af0cd57a
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:24 . Memory (MB): peak = 1548.723 ; gain = 0.000
+ Number of Nodes with overlaps = 0
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: 1d965cccf
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:31 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.419  | TNS=0.000  | WHS=-0.354 | THS=-272.084|
+
+
+Phase 2.5 Update Timing for Bus Skew
+
+Phase 2.5.1 Update Timing
+Phase 2.5.1 Update Timing | Checksum: 180b741ea
+
+Time (s): cpu = 00:00:48 ; elapsed = 00:00:35 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.419  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 2.5 Update Timing for Bus Skew | Checksum: 1bd08e199
+
+Time (s): cpu = 00:00:48 ; elapsed = 00:00:36 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Phase 2 Router Initialization | Checksum: 180e96f4c
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:36 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 3 Initial Routing
+Phase 3 Initial Routing | Checksum: 289ac8b09
+
+Time (s): cpu = 00:00:53 ; elapsed = 00:00:38 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 2130
+ Number of Nodes with overlaps = 272
+ Number of Nodes with overlaps = 67
+ Number of Nodes with overlaps = 12
+ Number of Nodes with overlaps = 4
+ Number of Nodes with overlaps = 4
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.179  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 4.1 Global Iteration 0 | Checksum: d4df336b
+
+Time (s): cpu = 00:01:10 ; elapsed = 00:00:48 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 4.2 Global Iteration 1
+ Number of Nodes with overlaps = 5
+ Number of Nodes with overlaps = 12
+ Number of Nodes with overlaps = 4
+ Number of Nodes with overlaps = 5
+ Number of Nodes with overlaps = 2
+ Number of Nodes with overlaps = 0
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.005  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 4.2 Global Iteration 1 | Checksum: fa2112b6
+
+Time (s): cpu = 00:01:14 ; elapsed = 00:00:51 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Phase 4 Rip-up And Reroute | Checksum: fa2112b6
+
+Time (s): cpu = 00:01:14 ; elapsed = 00:00:51 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+Phase 5.1 Delay CleanUp | Checksum: fa2112b6
+
+Time (s): cpu = 00:01:15 ; elapsed = 00:00:51 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: fa2112b6
+
+Time (s): cpu = 00:01:15 ; elapsed = 00:00:51 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Phase 5 Delay and Skew Optimization | Checksum: fa2112b6
+
+Time (s): cpu = 00:01:15 ; elapsed = 00:00:51 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 77ec751a
+
+Time (s): cpu = 00:01:17 ; elapsed = 00:00:53 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=0.120  | TNS=0.000  | WHS=0.019  | THS=0.000  |
+
+Phase 6.1 Hold Fix Iter | Checksum: 6f03e6ed
+
+Time (s): cpu = 00:01:17 ; elapsed = 00:00:53 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Phase 6 Post Hold Fix | Checksum: 6f03e6ed
+
+Time (s): cpu = 00:01:17 ; elapsed = 00:00:53 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 3.7187 %
+  Global Horizontal Routing Utilization  = 4.65179 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 7 Route finalize | Checksum: 116f32a24
+
+Time (s): cpu = 00:01:17 ; elapsed = 00:00:53 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: 116f32a24
+
+Time (s): cpu = 00:01:17 ; elapsed = 00:00:53 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: 141682cae
+
+Time (s): cpu = 00:01:19 ; elapsed = 00:00:55 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Phase 10 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=0.120  | TNS=0.000  | WHS=0.019  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 10 Post Router Timing | Checksum: 141682cae
+
+Time (s): cpu = 00:01:19 ; elapsed = 00:00:55 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:01:19 ; elapsed = 00:00:55 . Memory (MB): peak = 1548.723 ; gain = 0.000
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+76 Infos, 102 Warnings, 107 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:01:27 ; elapsed = 00:01:00 . Memory (MB): peak = 1548.723 ; gain = 0.000
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:10 ; elapsed = 00:00:03 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper_routed.dcp' has been generated.
+write_checkpoint: Time (s): cpu = 00:00:13 ; elapsed = 00:00:06 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_drc -file system_wrapper_drc_routed.rpt -pb system_wrapper_drc_routed.pb -rpx system_wrapper_drc_routed.rpx
+Command: report_drc -file system_wrapper_drc_routed.rpt -pb system_wrapper_drc_routed.pb -rpx system_wrapper_drc_routed.rpx
+INFO: [DRC 23-27] Running DRC with 2 threads
+INFO: [Coretcl 2-168] The results of DRC are in file D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper_drc_routed.rpt.
+report_drc completed successfully
+report_drc: Time (s): cpu = 00:00:15 ; elapsed = 00:00:08 . Memory (MB): peak = 1548.723 ; gain = 0.000
+INFO: [runtcl-4] Executing : report_methodology -file system_wrapper_methodology_drc_routed.rpt -pb system_wrapper_methodology_drc_routed.pb -rpx system_wrapper_methodology_drc_routed.rpx
+Command: report_methodology -file system_wrapper_methodology_drc_routed.rpt -pb system_wrapper_methodology_drc_routed.pb -rpx system_wrapper_methodology_drc_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+CRITICAL WARNING: [Timing 38-249] Generated clock system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/SerialClk has no logical paths from master clock axi_dynclk_0_PXL_CLK_O.
+Resolution: Review the path between the master clock and the generated clock with the schematic viewer and correct the -source option. If it is correct and the master clock does not have a timing path to the generated clock, define the generated clock as a primary clock by using create_clock.
+INFO: [DRC 23-133] Running Methodology with 2 threads
+INFO: [Coretcl 2-1520] The results of Report Methodology are in file D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/impl_1/system_wrapper_methodology_drc_routed.rpt.
+report_methodology completed successfully
+report_methodology: Time (s): cpu = 00:00:20 ; elapsed = 00:00:12 . Memory (MB): peak = 1618.355 ; gain = 69.633
+INFO: [runtcl-4] Executing : report_power -file system_wrapper_power_routed.rpt -pb system_wrapper_power_summary_routed.pb -rpx system_wrapper_power_routed.rpx
+Command: report_power -file system_wrapper_power_routed.rpt -pb system_wrapper_power_summary_routed.pb -rpx system_wrapper_power_routed.rpx
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+CRITICAL WARNING: [Timing 38-249] Generated clock system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/SerialClk has no logical paths from master clock axi_dynclk_0_PXL_CLK_O.
+Resolution: Review the path between the master clock and the generated clock with the schematic viewer and correct the -source option. If it is correct and the master clock does not have a timing path to the generated clock, define the generated clock as a primary clock by using create_clock.
+Running Vector-less Activity Propagation...
+CRITICAL WARNING: [Timing 38-249] Generated clock system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/SerialClk has no logical paths from master clock axi_dynclk_0_PXL_CLK_O.
+Resolution: Review the path between the master clock and the generated clock with the schematic viewer and correct the -source option. If it is correct and the master clock does not have a timing path to the generated clock, define the generated clock as a primary clock by using create_clock.
+
+Finished Running Vector-less Activity Propagation
+WARNING: [Power 33-332] Found switching activity that implies high-fanout reset nets being asserted for excessive periods of time which may result in inaccurate power analysis.
+Resolution: To review and fix problems, please run Power Constraints Advisor in the GUI from Tools > Power Constraints Advisor or run report_power with the -advisory option to generate a text report.
+87 Infos, 103 Warnings, 110 Critical Warnings and 0 Errors encountered.
+report_power completed successfully
+report_power: Time (s): cpu = 00:00:15 ; elapsed = 00:00:08 . Memory (MB): peak = 1686.047 ; gain = 67.691
+INFO: [runtcl-4] Executing : report_route_status -file system_wrapper_route_status.rpt -pb system_wrapper_route_status.pb
+INFO: [runtcl-4] Executing : report_timing_summary -file system_wrapper_timing_summary_routed.rpt -warn_on_violation  -rpx system_wrapper_timing_summary_routed.rpx
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+CRITICAL WARNING: [Timing 38-249] Generated clock system_i/video/hdmi_out/frontend/rgb2dvi_0/U0/SerialClk has no logical paths from master clock axi_dynclk_0_PXL_CLK_O.
+Resolution: Review the path between the master clock and the generated clock with the schematic viewer and correct the -source option. If it is correct and the master clock does not have a timing path to the generated clock, define the generated clock as a primary clock by using create_clock.
+WARNING: [Timing 38-436] There are set_bus_skew constraint(s) in this design. Please run report_bus_skew to ensure that bus skew requirements are met.
+INFO: [runtcl-4] Executing : report_incremental_reuse -file system_wrapper_incremental_reuse_routed.rpt
+INFO: [Vivado_Tcl 4-545] No incremental reuse to report, no incremental placement and routing data was found.
+INFO: [runtcl-4] Executing : report_clock_utilization -file system_wrapper_clock_utilization_routed.rpt
+INFO: [Common 17-206] Exiting Vivado at Mon Dec 18 23:00:57 2017...

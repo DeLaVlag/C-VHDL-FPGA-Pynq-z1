@@ -1,0 +1,97 @@
+{
+   guistr: "# # String gsaved with Nlview 6.5.12  2016-01-29 bk=1.3547 VDI=39 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port M07_AXI -pg 1 -y 1710 -defaultsOSRD
+preplace port mb_debug_sys_rst -pg 1 -y 1900 -defaultsOSRD
+preplace port S_AXI -pg 1 -y 2060 -defaultsOSRD
+preplace port DEBUG -pg 1 -y 1970 -defaultsOSRD
+preplace port iop2_intr_req -pg 1 -y 2180 -defaultsOSRD
+preplace port clk -pg 1 -y 1790 -defaultsOSRD
+preplace portBus sw2pmod_data_out -pg 1 -y 690 -defaultsOSRD
+preplace portBus peripheral_aresetn -pg 1 -y 2010 -defaultsOSRD
+preplace portBus aux_reset_in -pg 1 -y 1880 -defaultsOSRD
+preplace portBus sw2pmod_tri_out -pg 1 -y 710 -defaultsOSRD
+preplace portBus pmod2sw_data_in -pg 1 -y 620 -defaultsOSRD
+preplace portBus iop2_intr_ack -pg 1 -y 2210 -defaultsOSRD
+preplace portBus s_axi_aresetn -pg 1 -y 2150 -defaultsOSRD
+preplace portBus ext_reset_in -pg 1 -y 1860 -defaultsOSRD
+preplace inst mb2_timer -pg 1 -lvl 3 -y 1600 -defaultsOSRD
+preplace inst mb2_lmb -pg 1 -lvl 5 -y 1910 -defaultsOSRD
+preplace inst mb -pg 1 -lvl 4 -y 1910 -defaultsOSRD
+preplace inst microblaze_0_axi_periph -pg 1 -lvl 2 -y 1540 -defaultsOSRD
+preplace inst mb_bram_ctrl -pg 1 -lvl 4 -y 2080 -defaultsOSRD
+preplace inst logic_0 -pg 1 -lvl 2 -y 670 -defaultsOSRD
+preplace inst mb2_gpio -pg 1 -lvl 3 -y 110 -defaultsOSRD
+preplace inst logic_1 -pg 1 -lvl 5 -y 2120 -defaultsOSRD
+preplace inst mb2_spi -pg 1 -lvl 3 -y 1270 -defaultsOSRD
+preplace inst mb2_concat -pg 1 -lvl 2 -y 1880 -defaultsOSRD
+preplace inst mb2_intc -pg 1 -lvl 3 -y 1880 -defaultsOSRD
+preplace inst dff_en_reset_0 -pg 1 -lvl 6 -y 2180 -defaultsOSRD
+preplace inst rst_clk_wiz_1_100M -pg 1 -lvl 1 -y 1880 -defaultsOSRD
+preplace inst mb2_iic -pg 1 -lvl 3 -y 370 -defaultsOSRD
+preplace inst mb2_intr -pg 1 -lvl 3 -y 2130 -defaultsOSRD
+preplace inst mb2_pmod_io_switch -pg 1 -lvl 3 -y 770 -defaultsOSRD
+preplace netloc Conn1 1 2 5 NJ 1710 NJ 1710 NJ 1710 NJ 1710 NJ
+preplace netloc logic_0_dout 1 2 1 NJ
+preplace netloc Conn2 1 0 4 NJ 2060 NJ 2060 NJ 2060 NJ
+preplace netloc microblaze_0_axi_periph_M04_AXI 1 2 1 N
+preplace netloc pmod_io_switch_0_sw2pmod_data_out 1 3 4 NJ 690 NJ 690 NJ 690 NJ
+preplace netloc pmod_io_switch_0_spick_i_in 1 3 1 1420
+preplace netloc pmod_io_switch_0_mosi_i_in 1 3 1 1350
+preplace netloc mb2_timer_interrupt 1 1 3 400 1280 NJ 1700 1300
+preplace netloc mb2_gpio_gpio_io_o 1 2 2 880 10 1300
+preplace netloc s_axi_aresetn_1 1 0 4 NJ 2150 NJ 2150 850 2200 NJ
+preplace netloc mb2_pmod_io_switch_cap0_i_in 1 2 2 980 1480 1440
+preplace netloc mb2_iic_sda_t 1 2 2 920 510 1300
+preplace netloc pmod_io_switch_0_sw2pmod_tri_out 1 3 4 NJ 710 NJ 710 NJ 710 NJ
+preplace netloc mb2_spi_ss_o 1 2 2 960 1080 1370
+preplace netloc mb2_spi_io1_o 1 2 2 930 1050 1340
+preplace netloc mb2_spi_io0_t 1 2 2 980 1040 1310
+preplace netloc microblaze_0_axi_periph_M06_AXI 1 2 1 760
+preplace netloc microblaze_0_axi_periph_M03_AXI 1 2 1 710
+preplace netloc pmod_io_switch_0_sw2pl_data_in 1 3 1 1420
+preplace netloc mb_1_reset_Dout 1 0 1 NJ
+preplace netloc mb2_spi_ip2intc_irpt 1 1 3 390 1270 NJ 1470 1300
+preplace netloc mb2_iic_scl_o 1 2 2 860 230 1390
+preplace netloc microblaze_0_ilmb_1 1 4 1 N
+preplace netloc microblaze_0_axi_periph_M00_AXI 1 2 1 810
+preplace netloc microblaze_0_M_AXI_DP 1 1 4 410 1800 NJ 1800 NJ 1800 1900
+preplace netloc mb2_intc_interrupt 1 3 1 N
+preplace netloc pmod_io_switch_0_sda_i_in 1 3 1 1390
+preplace netloc mb2_timer_pwm0 1 2 2 830 1500 1300
+preplace netloc mb2_spi_sck_o 1 2 2 850 1090 1300
+preplace netloc microblaze_0_axi_periph_M05_AXI 1 2 1 780
+preplace netloc BRAM_PORTB_1 1 4 1 1910
+preplace netloc mb2_gpio_gpio_io_t 1 2 2 890 210 1400
+preplace netloc mb2_concat_dout 1 2 1 770
+preplace netloc logic_1_dout1 1 5 1 NJ
+preplace netloc rst_clk_wiz_1_100M_interconnect_aresetn 1 1 1 350
+preplace netloc rst_clk_wiz_1_100M_bus_struct_reset 1 1 4 340 2000 NJ 2000 NJ 2000 NJ
+preplace netloc pmod_io_switch_0_ss_i_in 1 3 1 1410
+preplace netloc mb2_timer_generateout0 1 2 2 840 1490 1310
+preplace netloc iop2_intr_ack_1 1 0 6 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ 2210 NJ
+preplace netloc microblaze_0_axi_periph_M01_AXI 1 2 1 720
+preplace netloc rst_clk_wiz_1_100M_peripheral_aresetn 1 1 6 370 1960 740 2010 NJ 2010 NJ 2010 NJ 2010 NJ
+preplace netloc rst_clk_wiz_1_100M_mb_reset 1 1 3 360 1950 NJ 1960 NJ
+preplace netloc mb2_spi_ss_t 1 2 2 950 1460 1310
+preplace netloc mb2_spi_io1_t 1 2 2 940 1060 1330
+preplace netloc mb2_iic_iic2intc_irpt 1 1 3 380 1260 NJ 1450 1430
+preplace netloc mb2_gpio_gpio2_io_o 1 2 2 900 220 1300
+preplace netloc logic_1_dout 1 0 1 NJ
+preplace netloc mb2_iic_scl_t 1 2 2 870 240 1300
+preplace netloc microblaze_0_dlmb_1 1 4 1 N
+preplace netloc microblaze_0_axi_periph_M02_AXI 1 2 1 800
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 20 1790 360 1810 790 2030 1430 1990 1930 2170 NJ
+preplace netloc mb2_spi_sck_t 1 2 2 900 1070 1360
+preplace netloc mb2_iic_sda_o 1 2 2 910 500 1350
+preplace netloc microblaze_0_debug 1 0 4 NJ 1970 NJ 1970 NJ 1970 NJ
+preplace netloc pmod2sw_data_in_1 1 0 3 NJ 620 NJ 620 NJ
+preplace netloc mdm_1_debug_sys_rst 1 0 1 NJ
+preplace netloc mb2_spi_io0_o 1 2 2 970 1030 1320
+preplace netloc dff_en_reset_0_q 1 6 1 NJ
+preplace netloc pmod_io_switch_0_scl_i_in 1 3 1 1400
+preplace netloc pmod_io_switch_0_miso_i_in 1 3 1 1380
+preplace netloc iop2_intr_gpio_io_o 1 3 3 1310 2190 NJ 2190 NJ
+levelinfo -pg 1 0 180 560 1140 1670 2030 2200 2290 -top 0 -bot 2260
+",
+}

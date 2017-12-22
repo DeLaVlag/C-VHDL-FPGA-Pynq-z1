@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="system_proc_sys_reset_fclk1_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_proc_sys_reset_fclk1_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_processing_system7_0_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_processing_system7_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_rst_processing_system7_0_fclk0_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_rst_processing_system7_0_fclk0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_system_interrupts_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_system_interrupts_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_vdma_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_axi_vdma_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axis_register_slice_0_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_axis_register_slice_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_color_convert_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_color_convert_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_gpio_hdmiin_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_axi_gpio_hdmiin_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_dvi2rgb_0_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_dvi2rgb_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_v_vid_in_axi4s_0_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_v_vid_in_axi4s_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_vtc_in_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_vtc_in_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_pixel_pack_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_pixel_pack_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axis_register_slice_0_1_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_axis_register_slice_0_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_color_convert_1_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_color_convert_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_axi_dynclk_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_axi_dynclk_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_hdmi_out_hpd_video_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_hdmi_out_hpd_video_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_proc_sys_reset_pixelclk_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_proc_sys_reset_pixelclk_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_rgb2dvi_0_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_rgb2dvi_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_v_axi4s_vid_out_0_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_v_axi4s_vid_out_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_vtc_out_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_vtc_out_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_pixel_unpack_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_pixel_unpack_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_xlconcat_0_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_xlconcat_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_stream_0_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_stream_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_xbar_2_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_xbar_2_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_xbar_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_xbar_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_xbar_1_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_xbar_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_pc_2_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_auto_pc_2_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_pc_3_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_auto_pc_3_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_pc_1_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_auto_pc_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_us_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_auto_us_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_cc_4_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_auto_cc_4_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_cc_3_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_auto_cc_3_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_cc_2_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_auto_cc_2_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_cc_1_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_auto_cc_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_cc_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_auto_cc_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_auto_pc_0_synth_1" LaunchDir="D:/Studie/RCD/PYNQ/PYNQ/Pynq-0_17-Z1/base/base/base.runs/system_auto_pc_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+</Runs>
+
