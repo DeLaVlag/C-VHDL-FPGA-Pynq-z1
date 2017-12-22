@@ -27,7 +27,7 @@ void stream(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t 
 	#pragma HLS INTERFACE 	s_axilite 		port=r
 	#pragma HLS 			PIPELINE 		II=1
 
-	pixel_data p_in;
+	pixel_data p_in, p_tmp;
 	src >> p_in; 					        // read 1 pixel
 	
 	static uint16_t x 		= 0;
@@ -43,13 +43,14 @@ void stream(pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t 
 	linebuf.insert_bottom(p_in,x);
 
 	if(y != 0){                             // Send data back 1 line later
-		p_in = linebuf.getval(1,x);
+		p_tmp = linebuf.getval(1,x);
+		p_in.data = p_tmp.data;  
 	}
 	else{
-		p_in.data = 0;                      // first-line black
+		p_in.data = 50;                      // first-line black
 	}
 
-	dst << 	p_in;
+	dst << p_in;
 
 	if (p_in.last){
 		x = 0;
