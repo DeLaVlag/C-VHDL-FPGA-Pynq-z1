@@ -24,7 +24,7 @@ int main ()
 		for (int cols=0; cols < WIDTH; cols++){
 			streamIn.data = sourceImg.at<int>(rows,cols);
 			streamIn.user = (rows==0 && cols==0) ? 1 : 0;
-			streamIn.last = (cols==WIDTH-1) ? 1 : 0;
+//			streamIn.last = (cols==WIDTH-1) ? 1 : 0;
 			inputStream << streamIn;
 		}
 	}
