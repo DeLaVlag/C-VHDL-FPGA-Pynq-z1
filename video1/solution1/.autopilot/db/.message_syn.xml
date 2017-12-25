@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Messages>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1312" content="Analyzing design file &apos;video1/main.cpp&apos; ... " tag=""/>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1465" content="Validating synthesis directives ..." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;second_order_float::sin_cos_K0&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sin_or_cos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;second_order_float::sin_K0&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sincos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;second_order_float::sin_cos_K1&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sin_or_cos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;second_order_float::cos_K0&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sincos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;first_order_fixed_16::sin_cos_K1&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sin_or_cos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;second_order_float::cos_K1&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sincos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;first_order_fixed_16::sin_cos_K0&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sin_or_cos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;second_order_float::sin_cos_K2&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sin_or_cos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;second_order_float::sin_K2&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sincos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;second_order_float::cos_K2&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sincos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-40]" severity="warn" keynum="HLS_40_1852" content="Directive &apos;RESOURCE&apos; for core &apos;ROM_1P_LUTRAM&apos; cannot be applied: Variable &apos;second_order_float::sin_K1&apos; can not be recognized(UNKNOWN VARIABLE) in &apos;sincos_approximation&apos;." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="info" keynum="473" content="Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:30 . Memory (MB): peak = 101.992 ; gain = 46.453" tag=""/>
+	<Message prefix="[HLS 200-111]" severity="info" keynum="473" content="Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:34 . Memory (MB): peak = 102.082 ; gain = 46.543" tag=""/>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1467" content="Starting code transformations ..." tag=""/>
+	<Message prefix="[XFORM 203-603]" severity="info" keynum="792" content="Inlining function &apos;hls::LineBuffer&lt;3, 1280, ap_axiu&lt;32, 1, 1, 1&gt;, 0&gt;::getval&apos; into &apos;stream&apos; (video1/main.cpp:49)." tag=""/>
+	<Message prefix="[XFORM 203-603]" severity="info" keynum="792" content="Inlining function &apos;hls::LineBuffer&lt;3, 1280, ap_axiu&lt;32, 1, 1, 1&gt;, 0&gt;::getval&apos; into &apos;stream&apos; (video1/main.cpp:39)." tag=""/>
+	<Message prefix="[XFORM 203-603]" severity="info" keynum="792" content="Inlining function &apos;hls::LineBuffer&lt;3, 1280, ap_axiu&lt;32, 1, 1, 1&gt;, 0&gt;::shift_pixels_down&apos; into &apos;hls::LineBuffer&lt;3, 1280, ap_axiu&lt;32, 1, 1, 1&gt;, 0&gt;::shift_down&apos; (C:/Xilinx/Vivado/2017.3/common/technology/autopilot/hls/hls_video_mem.h:853)." tag=""/>
+	<Message prefix="[XFORM 203-603]" severity="info" keynum="792" content="Inlining function &apos;hls::LineBuffer&lt;3, 1280, ap_axiu&lt;32, 1, 1, 1&gt;, 0&gt;::shift_down&apos; into &apos;stream&apos; (video1/main.cpp:45)." tag=""/>
+	<Message prefix="[XFORM 203-603]" severity="info" keynum="792" content="Inlining function &apos;hls::LineBuffer&lt;3, 1280, ap_axiu&lt;32, 1, 1, 1&gt;, 0&gt;::insert_top_row&apos; into &apos;hls::LineBuffer&lt;3, 1280, ap_axiu&lt;32, 1, 1, 1&gt;, 0&gt;::insert_bottom&apos; (C:/Xilinx/Vivado/2017.3/common/technology/autopilot/hls/hls_video_mem.h:873)." tag=""/>
+	<Message prefix="[XFORM 203-603]" severity="info" keynum="792" content="Inlining function &apos;hls::LineBuffer&lt;3, 1280, ap_axiu&lt;32, 1, 1, 1&gt;, 0&gt;::insert_bottom&apos; into &apos;stream&apos; (video1/main.cpp:46)." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="info" keynum="473" content="Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:36 . Memory (MB): peak = 121.211 ; gain = 65.672" tag=""/>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1472" content="Checking synthesizability ..." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="info" keynum="473" content="Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:37 . Memory (MB): peak = 133.207 ; gain = 77.668" tag=""/>
+	<Message prefix="[XFORM 203-501]" severity="info" keynum="891" content="Unrolling loop &apos;Loop-2&apos; (C:/Xilinx/Vivado/2017.3/common/technology/autopilot/hls/hls_video_mem.h:687) in function &apos;stream&apos; completely." tag=""/>
+	<Message prefix="[XFORM 203-101]" severity="info" keynum="692" content="Partitioning array &apos;linebuf.val.data.V&apos;  in dimension 1 completely." tag=""/>
+	<Message prefix="[XFORM 203-101]" severity="info" keynum="692" content="Partitioning array &apos;linebuf.val.keep.V&apos;  in dimension 1 completely." tag=""/>
+	<Message prefix="[XFORM 203-101]" severity="info" keynum="692" content="Partitioning array &apos;linebuf.val.strb.V&apos;  in dimension 1 completely." tag=""/>
+	<Message prefix="[XFORM 203-101]" severity="info" keynum="692" content="Partitioning array &apos;linebuf.val.user.V&apos;  in dimension 1 completely." tag=""/>
+	<Message prefix="[XFORM 203-101]" severity="info" keynum="692" content="Partitioning array &apos;linebuf.val.last.V&apos;  in dimension 1 completely." tag=""/>
+	<Message prefix="[XFORM 203-101]" severity="info" keynum="692" content="Partitioning array &apos;linebuf.val.id.V&apos;  in dimension 1 completely." tag=""/>
+	<Message prefix="[XFORM 203-101]" severity="info" keynum="692" content="Partitioning array &apos;linebuf.val.dest.V&apos;  in dimension 1 completely." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="info" keynum="473" content="Finished Pre-synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:38 . Memory (MB): peak = 167.488 ; gain = 111.949" tag=""/>
+	<Message prefix="[HLS 200-111]" severity="info" keynum="473" content="Finished Architecture Synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:39 . Memory (MB): peak = 169.629 ; gain = 114.090" tag=""/>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1317" content="Starting hardware synthesis ..." tag=""/>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1385" content="Synthesizing &apos;stream&apos; ..." tag=""/>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1477" content="----------------------------------------------------------------" tag=""/>
+	<Message prefix="[HLS 200-42]" severity="info" keynum="HLS_42_1438" content="-- Implementing module &apos;stream&apos; " tag=""/>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1478" content="----------------------------------------------------------------" tag=""/>
+	<Message prefix="[SCHED 204-11]" severity="info" keynum="139" content="Starting scheduling ..." tag=""/>
+	<Message prefix="[SCHED 204-11]" severity="info" keynum="138" content="Finished scheduling." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="info" keynum="474" content=" Elapsed time: 38.968 seconds; current allocated memory: 119.571 MB." tag=""/>
+	<Message prefix="[BIND 205-100]" severity="info" keynum="439" content="Starting micro-architecture generation ..." tag=""/>
+	<Message prefix="[BIND 205-101]" severity="info" keynum="211" content="Performing variable lifetime analysis." tag=""/>
+	<Message prefix="[BIND 205-101]" severity="info" keynum="210" content="Exploring resource sharing." tag=""/>
+	<Message prefix="[BIND 205-101]" severity="info" keynum="206" content="Binding ..." tag=""/>
+	<Message prefix="[BIND 205-100]" severity="info" keynum="438" content="Finished micro-architecture generation." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="info" keynum="474" content=" Elapsed time: 0.289 seconds; current allocated memory: 120.270 MB." tag=""/>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1483" content="----------------------------------------------------------------" tag=""/>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1484" content="-- Generating RTL for module &apos;stream&apos; " tag=""/>
+	<Message prefix="[HLS 200-10]" severity="info" keynum="HLS_10_1485" content="----------------------------------------------------------------" tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/src_V_data_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/src_V_keep_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/src_V_strb_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/src_V_user_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/src_V_last_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/src_V_id_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/src_V_dest_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/dst_V_data_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/dst_V_keep_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/dst_V_strb_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/dst_V_user_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/dst_V_last_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/dst_V_id_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/dst_V_dest_V&apos; to &apos;axis&apos; (register, both mode)." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/l&apos; to &apos;s_axilite &amp; ap_none&apos;." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/c&apos; to &apos;s_axilite &amp; ap_none&apos;." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on port &apos;stream/r&apos; to &apos;s_axilite &amp; ap_none&apos;." tag=""/>
+	<Message prefix="[RTGEN 206-500]" severity="info" keynum="73" content="Setting interface mode on function &apos;stream&apos; to &apos;ap_ctrl_none&apos;." tag=""/>
+	<Message prefix="[RTGEN 206-101]" severity="warn" keynum="374" content="Register &apos;y&apos; is power-on initialization." tag=""/>
+	<Message prefix="[RTGEN 206-101]" severity="warn" keynum="374" content="Register &apos;x&apos; is power-on initialization." tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_data_V_0&apos; to &apos;stream_linebuf_vabkb&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_data_V_1&apos; to &apos;stream_linebuf_vacud&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_data_V_2&apos; to &apos;stream_linebuf_vadEe&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_keep_V_0&apos; to &apos;stream_linebuf_vaeOg&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_keep_V_1&apos; to &apos;stream_linebuf_vafYi&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_keep_V_2&apos; to &apos;stream_linebuf_vag8j&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_strb_V_0&apos; to &apos;stream_linebuf_vahbi&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_strb_V_1&apos; to &apos;stream_linebuf_vaibs&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_strb_V_2&apos; to &apos;stream_linebuf_vajbC&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_user_V_0&apos; to &apos;stream_linebuf_vakbM&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_user_V_1&apos; to &apos;stream_linebuf_valbW&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_user_V_2&apos; to &apos;stream_linebuf_vamb6&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_last_V_0&apos; to &apos;stream_linebuf_vancg&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_last_V_1&apos; to &apos;stream_linebuf_vaocq&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_last_V_2&apos; to &apos;stream_linebuf_vapcA&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_id_V_0&apos; to &apos;stream_linebuf_vaqcK&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_id_V_1&apos; to &apos;stream_linebuf_varcU&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_id_V_2&apos; to &apos;stream_linebuf_vasc4&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_dest_V_0&apos; to &apos;stream_linebuf_vatde&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_dest_V_1&apos; to &apos;stream_linebuf_vaudo&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_linebuf_val_dest_V_2&apos; to &apos;stream_linebuf_vavdy&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[RTGEN 206-100]" severity="info" keynum="364" content="Bundling port &apos;l&apos;, &apos;c&apos; and &apos;r&apos; to AXI-Lite port AXILiteS." tag=""/>
+	<Message prefix="[SYN 201-210]" severity="info" keynum="402" content="Renamed object name &apos;stream_mux_32_32_1_1&apos; to &apos;stream_mux_32_32_wdI&apos; due to the length limit 20" tag=""/>
+	<Message prefix="[RTGEN 206-100]" severity="info" keynum="368" content="Generating core module &apos;stream_mux_32_1_1_1&apos;: 4 instance(s)." tag=""/>
+	<Message prefix="[RTGEN 206-100]" severity="info" keynum="368" content="Generating core module &apos;stream_mux_32_32_wdI&apos;: 1 instance(s)." tag=""/>
+	<Message prefix="[RTGEN 206-100]" severity="info" keynum="368" content="Generating core module &apos;stream_mux_32_4_1_1&apos;: 2 instance(s)." tag=""/>
+	<Message prefix="[RTGEN 206-100]" severity="info" keynum="369" content="Finished creating RTL model for &apos;stream&apos;." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="info" keynum="474" content=" Elapsed time: 0.939 seconds; current allocated memory: 122.416 MB." tag=""/>
+	<Message prefix="[RTMG 210-278]" severity="info" keynum="RTMG_278_1792" content="Implementing memory &apos;stream_linebuf_vabkb_ram (RAM)&apos; using block RAMs with power-on initialization." tag=""/>
+	<Message prefix="[RTMG 210-278]" severity="info" keynum="RTMG_278_1792" content="Implementing memory &apos;stream_linebuf_vaeOg_ram (RAM)&apos; using block RAMs with power-on initialization." tag=""/>
+	<Message prefix="[RTMG 210-278]" severity="info" keynum="RTMG_278_1792" content="Implementing memory &apos;stream_linebuf_vakbM_ram (RAM)&apos; using block RAMs with power-on initialization." tag=""/>
+	<Message prefix="[HLS 200-111]" severity="info" keynum="473" content="Finished generating all RTL models Time (s): cpu = 00:00:06 ; elapsed = 00:00:42 . Memory (MB): peak = 176.652 ; gain = 121.113" tag=""/>
+	<Message prefix="[SYSC 207-301]" severity="info" keynum="SYSC_301_1065" content="Generating SystemC RTL for stream." tag=""/>
+	<Message prefix="[VHDL 208-304]" severity="info" keynum="VHDL_304_1066" content="Generating VHDL RTL for stream." tag=""/>
+	<Message prefix="[VLOG 209-307]" severity="info" keynum="VLOG_307_1067" content="Generating Verilog RTL for stream." tag=""/>
+	<Message prefix="[HLS 200-112]" severity="info" keynum="472" content="Total elapsed time: 42.363 seconds; peak allocated memory: 122.416 MB." tag=""/>
+</Messages>

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.3 (64-bit)
+# SW Build 2018833 on Wed Oct  4 19:58:22 MDT 2017
+# IP Build 2016188 on Wed Oct  4 21:52:56 MDT 2017
+# Start of session at: Mon Dec 25 11:35:44 2017
+# Process ID: 6752
+# Current directory: C:/Users/yoflippo/Documents/PYNQ_lab6/PYNQ/PYNQ/hls/video1/solution1/impl/ip
+# Command line: vivado.exe -notrace -mode batch -source run_ippack.tcl
+# Log file: C:/Users/yoflippo/Documents/PYNQ_lab6/PYNQ/PYNQ/hls/video1/solution1/impl/ip/vivado.log
+# Journal file: C:/Users/yoflippo/Documents/PYNQ_lab6/PYNQ/PYNQ/hls/video1/solution1/impl/ip\vivado.jou
+#-----------------------------------------------------------
+source run_ippack.tcl -notrace
