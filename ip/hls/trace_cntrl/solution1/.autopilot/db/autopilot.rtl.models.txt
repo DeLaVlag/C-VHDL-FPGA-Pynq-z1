@@ -1,0 +1,2 @@
+trace_cntrl_trace_cntrl_s_axi
+trace_cntrl

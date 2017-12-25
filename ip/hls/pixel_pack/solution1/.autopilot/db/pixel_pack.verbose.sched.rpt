@@ -1,0 +1,817 @@
+
+
+================================================================
+== Vivado HLS Report for 'pixel_pack'
+================================================================
+* Date:           Sun Oct 15 10:21:25 2017
+
+* Version:        2016.1 (Build 1538259 on Fri Apr 08 16:12:49 MDT 2016)
+* Project:        pixel_pack
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   7.00|      2.94|        0.88|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |    ?|    ?|         6|          4|          4|     ?|    yes   |
+        |- Loop 2  |    ?|    ?|         1|          1|          1|     ?|    yes   |
+        |- Loop 3  |    ?|    ?|         4|          4|          4|     ?|    yes   |
+        |- Loop 4  |    ?|    ?|         2|          2|          2|     ?|    yes   |
+        |- Loop 5  |    ?|    ?|         2|          2|          2|     ?|    yes   |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 2, depth = 2
+  * Pipeline-1: initiation interval (II) = 2, depth = 2
+  * Pipeline-2: initiation interval (II) = 4, depth = 4
+  * Pipeline-3: initiation interval (II) = 1, depth = 1
+  * Pipeline-4: initiation interval (II) = 4, depth = 6
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states: 18
+* Pipeline: 5
+  Pipeline-0: II = 2, D = 2, States = { 3 4 }
+  Pipeline-1: II = 2, D = 2, States = { 5 6 }
+  Pipeline-2: II = 4, D = 4, States = { 7 8 9 10 }
+  Pipeline-3: II = 1, D = 1, States = { 11 }
+  Pipeline-4: II = 4, D = 6, States = { 12 13 14 15 16 17 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+	2  / true
+2 --> 
+	3  / (mode_read == 4)
+	5  / (mode_read == 3)
+	11  / (mode_read == 1)
+	18  / (mode_read != 0 & mode_read != 1 & mode_read != 2 & mode_read != 3 & mode_read != 4)
+	7  / (mode_read == 2)
+	12  / (mode_read == 0)
+3 --> 
+	4  / true
+4 --> 
+	18  / (in_stream_last_V_val3)
+	3  / (!in_stream_last_V_val3)
+5 --> 
+	6  / true
+6 --> 
+	18  / (in_stream_last_V_val2)
+	5  / (!in_stream_last_V_val2)
+7 --> 
+	8  / true
+8 --> 
+	9  / true
+9 --> 
+	10  / true
+10 --> 
+	18  / (last_6_3)
+	7  / (!last_6_3)
+11 --> 
+	18  / (in_stream_last_V_val1)
+	11  / (!in_stream_last_V_val1)
+12 --> 
+	13  / true
+13 --> 
+	14  / true
+14 --> 
+	15  / true
+15 --> 
+	16  / true
+16 --> 
+	17  / true
+17 --> 
+	18  / (last_2_3)
+	12  / (!last_2_3)
+18 --> 
+* FSM state operations: 
+
+ <State 1>: 1.00ns
+ST_1: alpha_V_read [2/2] 1.00ns
+:0  %alpha_V_read = call i8 @_ssdm_op_Read.s_axilite.i8(i8 %alpha_V)
+
+ST_1: mode_read [2/2] 1.00ns
+:1  %mode_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %mode)
+
+
+ <State 2>: 2.88ns
+ST_2: alpha_V_read [1/2] 1.00ns
+:0  %alpha_V_read = call i8 @_ssdm_op_Read.s_axilite.i8(i8 %alpha_V)
+
+ST_2: mode_read [1/2] 1.00ns
+:1  %mode_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %mode)
+
+ST_2: stg_23 [1/1] 0.00ns
+:2  call void (...)* @_ssdm_op_SpecBitsMap(i24* %in_stream_data_V), !map !94
+
+ST_2: stg_24 [1/1] 0.00ns
+:3  call void (...)* @_ssdm_op_SpecBitsMap(i1* %in_stream_user_V), !map !100
+
+ST_2: stg_25 [1/1] 0.00ns
+:4  call void (...)* @_ssdm_op_SpecBitsMap(i1* %in_stream_last_V), !map !104
+
+ST_2: stg_26 [1/1] 0.00ns
+:5  call void (...)* @_ssdm_op_SpecBitsMap(i32* %out_stream_data_V), !map !108
+
+ST_2: stg_27 [1/1] 0.00ns
+:6  call void (...)* @_ssdm_op_SpecBitsMap(i1* %out_stream_user_V), !map !112
+
+ST_2: stg_28 [1/1] 0.00ns
+:7  call void (...)* @_ssdm_op_SpecBitsMap(i1* %out_stream_last_V), !map !116
+
+ST_2: stg_29 [1/1] 0.00ns
+:8  call void (...)* @_ssdm_op_SpecBitsMap(i32 %mode), !map !120
+
+ST_2: stg_30 [1/1] 0.00ns
+:9  call void (...)* @_ssdm_op_SpecBitsMap(i8 %alpha_V), !map !126
+
+ST_2: stg_31 [1/1] 0.00ns
+:10  call void (...)* @_ssdm_op_SpecTopModule([11 x i8]* @pixel_pack_str) nounwind
+
+ST_2: stg_32 [1/1] 0.00ns
+:11  call void (...)* @_ssdm_op_SpecInterface(i32 0, [13 x i8]* @p_str, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_2: stg_33 [1/1] 0.00ns
+:12  call void (...)* @_ssdm_op_SpecClockDomain([8 x i8]* @p_str2, [1 x i8]* @p_str1) nounwind
+
+ST_2: stg_34 [1/1] 0.00ns
+:13  call void (...)* @_ssdm_op_SpecInterface(i32 %mode, [10 x i8]* @p_str3, i32 1, i32 1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [8 x i8]* @p_str4, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_2: stg_35 [1/1] 0.00ns
+:14  call void (...)* @_ssdm_op_SpecInterface(i8 %alpha_V, [10 x i8]* @p_str3, i32 1, i32 1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [8 x i8]* @p_str4, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_2: stg_36 [1/1] 0.00ns
+:15  call void (...)* @_ssdm_op_SpecInterface(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V, [5 x i8]* @p_str5, i32 0, i32 0, i32 0, i32 24, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_2: stg_37 [1/1] 0.00ns
+:16  call void (...)* @_ssdm_op_SpecInterface(i32* %out_stream_data_V, i1* %out_stream_user_V, i1* %out_stream_last_V, [5 x i8]* @p_str5, i32 0, i32 0, i32 0, i32 24, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_2: stg_38 [1/1] 1.88ns
+:17  switch i32 %mode_read, label %.loopexit [
+    i32 0, label %.preheader818.preheader
+    i32 1, label %.preheader813
+    i32 2, label %.preheader811.preheader
+    i32 3, label %.preheader809
+    i32 4, label %.preheader
+  ]
+
+ST_2: p_0464_s [1/1] 0.00ns
+.preheader811.preheader:0  %p_0464_s = alloca i32
+
+ST_2: stg_40 [1/1] 0.00ns
+.preheader811.preheader:1  br label %._crit_edge842.0
+
+ST_2: p_084_s [1/1] 0.00ns
+.preheader818.preheader:0  %p_084_s = alloca i96
+
+ST_2: p_067_s [1/1] 0.00ns
+.preheader818.preheader:1  %p_067_s = alloca i4
+
+ST_2: p_071_s [1/1] 0.00ns
+.preheader818.preheader:2  %p_071_s = alloca i4
+
+ST_2: stg_44 [1/1] 0.00ns
+.preheader818.preheader:3  br label %._crit_edge.0
+
+
+ <State 3>: 0.00ns
+ST_3: empty_28 [1/1] 0.00ns
+.preheader:2  %empty_28 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_3: in_stream_data_V_val4 [1/1] 0.00ns
+.preheader:3  %in_stream_data_V_val4 = extractvalue { i24, i1, i1 } %empty_28, 0
+
+ST_3: p_Result_s_30 [1/1] 0.00ns
+.preheader:10  %p_Result_s_30 = call i8 @_ssdm_op_PartSelect.i8.i24.i32.i32(i24 %in_stream_data_V_val4, i32 8, i32 15)
+
+ST_3: p_Result_3 [1/1] 0.00ns
+.preheader:15  %p_Result_3 = call i8 @_ssdm_op_PartSelect.i8.i24.i32.i32(i24 %in_stream_data_V_val4, i32 16, i32 23)
+
+ST_3: tmp_11 [1/1] 0.00ns
+.preheader:20  %tmp_11 = trunc i24 %in_stream_data_V_val4 to i8
+
+
+ <State 4>: 1.72ns
+ST_4: tmp_9 [1/1] 0.00ns
+.preheader:0  %tmp_9 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str10)
+
+ST_4: stg_51 [1/1] 0.00ns
+.preheader:1  call void (...)* @_ssdm_op_SpecPipeline(i32 2, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_4: in_stream_user_V_val4 [1/1] 0.00ns (grouped into LUT with out node user_2_1)
+.preheader:4  %in_stream_user_V_val4 = extractvalue { i24, i1, i1 } %empty_28, 1
+
+ST_4: empty_29 [1/1] 0.00ns
+.preheader:5  %empty_29 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_4: in_stream_data_V_val5 [1/1] 0.00ns
+.preheader:6  %in_stream_data_V_val5 = extractvalue { i24, i1, i1 } %empty_29, 0
+
+ST_4: in_stream_user_V_val5 [1/1] 0.00ns (grouped into LUT with out node user_2_1)
+.preheader:7  %in_stream_user_V_val5 = extractvalue { i24, i1, i1 } %empty_29, 1
+
+ST_4: in_stream_last_V_val3 [1/1] 0.00ns
+.preheader:8  %in_stream_last_V_val3 = extractvalue { i24, i1, i1 } %empty_29, 2
+
+ST_4: user_2_1 [1/1] 1.37ns (out node of the LUT)
+.preheader:9  %user_2_1 = or i1 %in_stream_user_V_val4, %in_stream_user_V_val5
+
+ST_4: tmp [1/1] 0.00ns
+.preheader:11  %tmp = zext i8 %p_Result_s_30 to i9
+
+ST_4: p_Result_1 [1/1] 0.00ns
+.preheader:12  %p_Result_1 = call i8 @_ssdm_op_PartSelect.i8.i24.i32.i32(i24 %in_stream_data_V_val5, i32 8, i32 15)
+
+ST_4: tmp_1 [1/1] 0.00ns
+.preheader:13  %tmp_1 = zext i8 %p_Result_1 to i9
+
+ST_4: out_c1_V [1/1] 1.72ns
+.preheader:14  %out_c1_V = add i9 %tmp, %tmp_1
+
+ST_4: tmp_3 [1/1] 0.00ns
+.preheader:16  %tmp_3 = zext i8 %p_Result_3 to i9
+
+ST_4: p_Result_4 [1/1] 0.00ns
+.preheader:17  %p_Result_4 = call i8 @_ssdm_op_PartSelect.i8.i24.i32.i32(i24 %in_stream_data_V_val5, i32 16, i32 23)
+
+ST_4: tmp_4 [1/1] 0.00ns
+.preheader:18  %tmp_4 = zext i8 %p_Result_4 to i9
+
+ST_4: out_c2_V [1/1] 1.72ns
+.preheader:19  %out_c2_V = add i9 %tmp_3, %tmp_4
+
+ST_4: p_Result_6 [1/1] 0.00ns
+.preheader:21  %p_Result_6 = call i8 @_ssdm_op_PartSelect.i8.i9.i32.i32(i9 %out_c1_V, i32 1, i32 8)
+
+ST_4: tmp_12 [1/1] 0.00ns
+.preheader:22  %tmp_12 = trunc i24 %in_stream_data_V_val5 to i8
+
+ST_4: p_Result_8 [1/1] 0.00ns
+.preheader:23  %p_Result_8 = call i8 @_ssdm_op_PartSelect.i8.i9.i32.i32(i9 %out_c2_V, i32 1, i32 8)
+
+ST_4: p_Result_2 [1/1] 0.00ns
+.preheader:24  %p_Result_2 = call i32 @_ssdm_op_BitConcatenate.i32.i8.i8.i8.i8(i8 %p_Result_8, i8 %tmp_12, i8 %p_Result_6, i8 %tmp_11)
+
+ST_4: stg_70 [1/1] 0.00ns
+.preheader:25  call void @_ssdm_op_Write.axis.volatile.i32P.i1P.i1P(i32* %out_stream_data_V, i1* %out_stream_user_V, i1* %out_stream_last_V, i32 %p_Result_2, i1 %user_2_1, i1 %in_stream_last_V_val3)
+
+ST_4: empty_31 [1/1] 0.00ns
+.preheader:26  %empty_31 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str10, i32 %tmp_9)
+
+ST_4: stg_72 [1/1] 0.00ns
+.preheader:27  br i1 %in_stream_last_V_val3, label %.loopexit, label %.preheader
+
+
+ <State 5>: 0.00ns
+ST_5: empty_25 [1/1] 0.00ns
+.preheader809:2  %empty_25 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_5: in_stream_data_V_val2 [1/1] 0.00ns
+.preheader809:3  %in_stream_data_V_val2 = extractvalue { i24, i1, i1 } %empty_25, 0
+
+ST_5: tmp_8 [1/1] 0.00ns
+.preheader809:5  %tmp_8 = trunc i24 %in_stream_data_V_val2 to i16
+
+
+ <State 6>: 1.37ns
+ST_6: tmp_7 [1/1] 0.00ns
+.preheader809:0  %tmp_7 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str9)
+
+ST_6: stg_77 [1/1] 0.00ns
+.preheader809:1  call void (...)* @_ssdm_op_SpecPipeline(i32 2, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_6: in_stream_user_V_val2 [1/1] 0.00ns (grouped into LUT with out node user_1)
+.preheader809:4  %in_stream_user_V_val2 = extractvalue { i24, i1, i1 } %empty_25, 1
+
+ST_6: empty_26 [1/1] 0.00ns
+.preheader809:6  %empty_26 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_6: in_stream_data_V_val3 [1/1] 0.00ns
+.preheader809:7  %in_stream_data_V_val3 = extractvalue { i24, i1, i1 } %empty_26, 0
+
+ST_6: in_stream_user_V_val3 [1/1] 0.00ns (grouped into LUT with out node user_1)
+.preheader809:8  %in_stream_user_V_val3 = extractvalue { i24, i1, i1 } %empty_26, 1
+
+ST_6: in_stream_last_V_val2 [1/1] 0.00ns
+.preheader809:9  %in_stream_last_V_val2 = extractvalue { i24, i1, i1 } %empty_26, 2
+
+ST_6: user_1 [1/1] 1.37ns (out node of the LUT)
+.preheader809:10  %user_1 = or i1 %in_stream_user_V_val2, %in_stream_user_V_val3
+
+ST_6: tmp_10 [1/1] 0.00ns
+.preheader809:11  %tmp_10 = trunc i24 %in_stream_data_V_val3 to i16
+
+ST_6: p_Result_35_1 [1/1] 0.00ns
+.preheader809:12  %p_Result_35_1 = call i32 @_ssdm_op_BitConcatenate.i32.i16.i16(i16 %tmp_10, i16 %tmp_8)
+
+ST_6: stg_86 [1/1] 0.00ns
+.preheader809:13  call void @_ssdm_op_Write.axis.volatile.i32P.i1P.i1P(i32* %out_stream_data_V, i1* %out_stream_user_V, i1* %out_stream_last_V, i32 %p_Result_35_1, i1 %user_1, i1 %in_stream_last_V_val2)
+
+ST_6: empty_27 [1/1] 0.00ns
+.preheader809:14  %empty_27 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str9, i32 %tmp_7)
+
+ST_6: stg_88 [1/1] 0.00ns
+.preheader809:15  br i1 %in_stream_last_V_val2, label %.loopexit, label %.preheader809
+
+
+ <State 7>: 1.57ns
+ST_7: p_0464_load [1/1] 0.00ns
+._crit_edge842.0:0  %p_0464_load = load i32* %p_0464_s
+
+ST_7: tmp_6 [1/1] 0.00ns
+._crit_edge842.0:1  %tmp_6 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str8)
+
+ST_7: stg_91 [1/1] 0.00ns
+._crit_edge842.0:2  call void (...)* @_ssdm_op_SpecPipeline(i32 4, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_7: empty_20 [1/1] 0.00ns
+._crit_edge842.0:3  %empty_20 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_7: in_stream_data_V_val6 [1/1] 0.00ns
+._crit_edge842.0:4  %in_stream_data_V_val6 = extractvalue { i24, i1, i1 } %empty_20, 0
+
+ST_7: in_stream_user_V_val6 [1/1] 0.00ns
+._crit_edge842.0:5  %in_stream_user_V_val6 = extractvalue { i24, i1, i1 } %empty_20, 1
+
+ST_7: in_stream_last_V_val4 [1/1] 0.00ns
+._crit_edge842.0:6  %in_stream_last_V_val4 = extractvalue { i24, i1, i1 } %empty_20, 2
+
+ST_7: tmp_15 [1/1] 0.00ns
+._crit_edge842.0:7  %tmp_15 = trunc i24 %in_stream_data_V_val6 to i8
+
+ST_7: p_Result_9 [1/1] 0.00ns
+._crit_edge842.0:8  %p_Result_9 = call i32 @llvm.part.set.i32.i8(i32 %p_0464_load, i8 %tmp_15, i32 0, i32 7)
+
+ST_7: stg_98 [1/1] 1.57ns
+._crit_edge842.0:9  br i1 %in_stream_last_V_val4, label %._crit_edge842.1, label %4
+
+
+ <State 8>: 2.94ns
+ST_8: empty_21 [1/1] 0.00ns
+:0  %empty_21 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_8: in_stream_data_V_val8 [1/1] 0.00ns
+:1  %in_stream_data_V_val8 = extractvalue { i24, i1, i1 } %empty_21, 0
+
+ST_8: in_stream_user_V_val8 [1/1] 0.00ns (grouped into LUT with out node user_3_1)
+:2  %in_stream_user_V_val8 = extractvalue { i24, i1, i1 } %empty_21, 1
+
+ST_8: in_stream_last_V_val6 [1/1] 0.00ns
+:3  %in_stream_last_V_val6 = extractvalue { i24, i1, i1 } %empty_21, 2
+
+ST_8: user_3_1 [1/1] 1.37ns (out node of the LUT)
+:4  %user_3_1 = or i1 %in_stream_user_V_val6, %in_stream_user_V_val8
+
+ST_8: tmp_18 [1/1] 0.00ns
+:5  %tmp_18 = trunc i24 %in_stream_data_V_val8 to i8
+
+ST_8: p_Result_33_1 [1/1] 0.00ns
+:6  %p_Result_33_1 = call i32 @llvm.part.set.i32.i8(i32 %p_Result_9, i8 %tmp_18, i32 8, i32 15)
+
+ST_8: stg_106 [1/1] 1.57ns
+:7  br label %._crit_edge842.1
+
+ST_8: last_6_1 [1/1] 0.00ns
+._crit_edge842.1:1  %last_6_1 = phi i1 [ %in_stream_last_V_val6, %4 ], [ %in_stream_last_V_val4, %._crit_edge842.0 ]
+
+
+ <State 9>: 2.94ns
+ST_9: p_0464_2_1 [1/1] 0.00ns
+._crit_edge842.1:0  %p_0464_2_1 = phi i32 [ %p_Result_33_1, %4 ], [ %p_Result_9, %._crit_edge842.0 ]
+
+ST_9: user_1_1 [1/1] 0.00ns
+._crit_edge842.1:2  %user_1_1 = phi i1 [ %user_3_1, %4 ], [ %in_stream_user_V_val6, %._crit_edge842.0 ]
+
+ST_9: stg_110 [1/1] 1.57ns
+._crit_edge842.1:3  br i1 %last_6_1, label %._crit_edge842.2, label %5
+
+ST_9: empty_22 [1/1] 0.00ns
+:0  %empty_22 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_9: in_stream_data_V_val10 [1/1] 0.00ns
+:1  %in_stream_data_V_val10 = extractvalue { i24, i1, i1 } %empty_22, 0
+
+ST_9: in_stream_user_V_val10 [1/1] 0.00ns (grouped into LUT with out node user_3_2)
+:2  %in_stream_user_V_val10 = extractvalue { i24, i1, i1 } %empty_22, 1
+
+ST_9: in_stream_last_V_val8 [1/1] 0.00ns
+:3  %in_stream_last_V_val8 = extractvalue { i24, i1, i1 } %empty_22, 2
+
+ST_9: user_3_2 [1/1] 1.37ns (out node of the LUT)
+:4  %user_3_2 = or i1 %in_stream_user_V_val10, %user_1_1
+
+ST_9: tmp_21 [1/1] 0.00ns
+:5  %tmp_21 = trunc i24 %in_stream_data_V_val10 to i8
+
+ST_9: p_Result_33_2 [1/1] 0.00ns
+:6  %p_Result_33_2 = call i32 @llvm.part.set.i32.i8(i32 %p_0464_2_1, i8 %tmp_21, i32 16, i32 23)
+
+ST_9: stg_118 [1/1] 1.57ns
+:7  br label %._crit_edge842.2
+
+ST_9: last_6_2 [1/1] 0.00ns
+._crit_edge842.2:1  %last_6_2 = phi i1 [ %in_stream_last_V_val8, %5 ], [ %last_6_1, %._crit_edge842.1 ]
+
+
+ <State 10>: 2.94ns
+ST_10: p_0464_2_2 [1/1] 0.00ns
+._crit_edge842.2:0  %p_0464_2_2 = phi i32 [ %p_Result_33_2, %5 ], [ %p_0464_2_1, %._crit_edge842.1 ]
+
+ST_10: user_1_2 [1/1] 0.00ns
+._crit_edge842.2:2  %user_1_2 = phi i1 [ %user_3_2, %5 ], [ %user_1_1, %._crit_edge842.1 ]
+
+ST_10: stg_122 [1/1] 1.57ns
+._crit_edge842.2:3  br i1 %last_6_2, label %._crit_edge842.3, label %6
+
+ST_10: empty_23 [1/1] 0.00ns
+:0  %empty_23 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_10: in_stream_data_V_val12 [1/1] 0.00ns
+:1  %in_stream_data_V_val12 = extractvalue { i24, i1, i1 } %empty_23, 0
+
+ST_10: in_stream_user_V_val12 [1/1] 0.00ns (grouped into LUT with out node user_3_3)
+:2  %in_stream_user_V_val12 = extractvalue { i24, i1, i1 } %empty_23, 1
+
+ST_10: in_stream_last_V_val10 [1/1] 0.00ns
+:3  %in_stream_last_V_val10 = extractvalue { i24, i1, i1 } %empty_23, 2
+
+ST_10: user_3_3 [1/1] 1.37ns (out node of the LUT)
+:4  %user_3_3 = or i1 %in_stream_user_V_val12, %user_1_2
+
+ST_10: tmp_24 [1/1] 0.00ns
+:5  %tmp_24 = trunc i24 %in_stream_data_V_val12 to i8
+
+ST_10: p_Result_33_3 [1/1] 0.00ns
+:6  %p_Result_33_3 = call i32 @llvm.part.set.i32.i8(i32 %p_0464_2_2, i8 %tmp_24, i32 24, i32 31)
+
+ST_10: stg_130 [1/1] 1.57ns
+:7  br label %._crit_edge842.3
+
+ST_10: p_0464_2_3 [1/1] 0.00ns
+._crit_edge842.3:0  %p_0464_2_3 = phi i32 [ %p_Result_33_3, %6 ], [ %p_0464_2_2, %._crit_edge842.2 ]
+
+ST_10: last_6_3 [1/1] 0.00ns
+._crit_edge842.3:1  %last_6_3 = phi i1 [ %in_stream_last_V_val10, %6 ], [ %last_6_2, %._crit_edge842.2 ]
+
+ST_10: user_1_3 [1/1] 0.00ns
+._crit_edge842.3:2  %user_1_3 = phi i1 [ %user_3_3, %6 ], [ %user_1_2, %._crit_edge842.2 ]
+
+ST_10: stg_134 [1/1] 0.00ns
+._crit_edge842.3:3  call void @_ssdm_op_Write.axis.volatile.i32P.i1P.i1P(i32* %out_stream_data_V, i1* %out_stream_user_V, i1* %out_stream_last_V, i32 %p_0464_2_3, i1 %user_1_3, i1 %last_6_3)
+
+ST_10: empty_24 [1/1] 0.00ns
+._crit_edge842.3:4  %empty_24 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str8, i32 %tmp_6)
+
+ST_10: stg_136 [1/1] 0.00ns
+._crit_edge842.3:5  store i32 %p_0464_2_3, i32* %p_0464_s
+
+ST_10: stg_137 [1/1] 0.00ns
+._crit_edge842.3:6  br i1 %last_6_3, label %.loopexit, label %._crit_edge842.0
+
+
+ <State 11>: 0.00ns
+ST_11: tmp_5 [1/1] 0.00ns
+.preheader813:0  %tmp_5 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str7)
+
+ST_11: stg_139 [1/1] 0.00ns
+.preheader813:1  call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_11: empty_18 [1/1] 0.00ns
+.preheader813:2  %empty_18 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_11: in_stream_data_V_val1 [1/1] 0.00ns
+.preheader813:3  %in_stream_data_V_val1 = extractvalue { i24, i1, i1 } %empty_18, 0
+
+ST_11: in_stream_user_V_val1 [1/1] 0.00ns
+.preheader813:4  %in_stream_user_V_val1 = extractvalue { i24, i1, i1 } %empty_18, 1
+
+ST_11: in_stream_last_V_val1 [1/1] 0.00ns
+.preheader813:5  %in_stream_last_V_val1 = extractvalue { i24, i1, i1 } %empty_18, 2
+
+ST_11: p_Result_s [1/1] 0.00ns
+.preheader813:6  %p_Result_s = call i32 @_ssdm_op_BitConcatenate.i32.i8.i24(i8 %alpha_V_read, i24 %in_stream_data_V_val1)
+
+ST_11: stg_145 [1/1] 0.00ns
+.preheader813:7  call void @_ssdm_op_Write.axis.volatile.i32P.i1P.i1P(i32* %out_stream_data_V, i1* %out_stream_user_V, i1* %out_stream_last_V, i32 %p_Result_s, i1 %in_stream_user_V_val1, i1 %in_stream_last_V_val1)
+
+ST_11: empty_19 [1/1] 0.00ns
+.preheader813:8  %empty_19 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str7, i32 %tmp_5)
+
+ST_11: stg_147 [1/1] 0.00ns
+.preheader813:9  br i1 %in_stream_last_V_val1, label %.loopexit, label %.preheader813
+
+
+ <State 12>: 1.57ns
+ST_12: p_084_load [1/1] 0.00ns
+._crit_edge.0:0  %p_084_load = load i96* %p_084_s
+
+ST_12: p_067_load [1/1] 0.00ns
+._crit_edge.0:1  %p_067_load = load i4* %p_067_s
+
+ST_12: p_071_load [1/1] 0.00ns
+._crit_edge.0:2  %p_071_load = load i4* %p_071_s
+
+ST_12: tmp_2 [1/1] 0.00ns
+._crit_edge.0:3  %tmp_2 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str6)
+
+ST_12: stg_152 [1/1] 0.00ns
+._crit_edge.0:4  call void (...)* @_ssdm_op_SpecPipeline(i32 4, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind
+
+ST_12: empty [1/1] 0.00ns
+._crit_edge.0:5  %empty = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_12: in_stream_data_V_val [1/1] 0.00ns
+._crit_edge.0:6  %in_stream_data_V_val = extractvalue { i24, i1, i1 } %empty, 0
+
+ST_12: in_stream_user_V_val [1/1] 0.00ns
+._crit_edge.0:7  %in_stream_user_V_val = extractvalue { i24, i1, i1 } %empty, 1
+
+ST_12: in_stream_last_V_val [1/1] 0.00ns
+._crit_edge.0:8  %in_stream_last_V_val = extractvalue { i24, i1, i1 } %empty, 2
+
+ST_12: p_Result_7 [1/1] 0.00ns
+._crit_edge.0:9  %p_Result_7 = call i96 @llvm.part.set.i96.i24(i96 %p_084_load, i24 %in_stream_data_V_val, i32 0, i32 23)
+
+ST_12: tmp_13 [1/1] 0.00ns
+._crit_edge.0:10  %tmp_13 = call i4 @_ssdm_op_BitSet.i4.i4.i32.i1(i4 %p_071_load, i32 0, i1 %in_stream_user_V_val)
+
+ST_12: tmp_14 [1/1] 0.00ns
+._crit_edge.0:11  %tmp_14 = call i4 @_ssdm_op_BitSet.i4.i4.i32.i1(i4 %p_067_load, i32 0, i1 %in_stream_last_V_val)
+
+ST_12: stg_160 [1/1] 1.57ns
+._crit_edge.0:12  br i1 %in_stream_last_V_val, label %._crit_edge.1, label %1
+
+
+ <State 13>: 1.57ns
+ST_13: empty_14 [1/1] 0.00ns
+:0  %empty_14 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_13: in_stream_data_V_val7 [1/1] 0.00ns
+:1  %in_stream_data_V_val7 = extractvalue { i24, i1, i1 } %empty_14, 0
+
+ST_13: in_stream_user_V_val7 [1/1] 0.00ns
+:2  %in_stream_user_V_val7 = extractvalue { i24, i1, i1 } %empty_14, 1
+
+ST_13: in_stream_last_V_val5 [1/1] 0.00ns
+:3  %in_stream_last_V_val5 = extractvalue { i24, i1, i1 } %empty_14, 2
+
+ST_13: p_Result_26_1 [1/1] 0.00ns
+:4  %p_Result_26_1 = call i96 @llvm.part.set.i96.i24(i96 %p_Result_7, i24 %in_stream_data_V_val7, i32 24, i32 47)
+
+ST_13: tmp_16 [1/1] 0.00ns
+:5  %tmp_16 = call i4 @_ssdm_op_BitSet.i4.i4.i32.i1(i4 %tmp_13, i32 1, i1 %in_stream_user_V_val7)
+
+ST_13: tmp_17 [1/1] 0.00ns
+:6  %tmp_17 = call i4 @_ssdm_op_BitSet.i4.i4.i32.i1(i4 %tmp_14, i32 1, i1 %in_stream_last_V_val5)
+
+ST_13: stg_168 [1/1] 1.57ns
+:7  br label %._crit_edge.1
+
+ST_13: last_2_1 [1/1] 0.00ns
+._crit_edge.1:3  %last_2_1 = phi i1 [ %in_stream_last_V_val5, %1 ], [ %in_stream_last_V_val, %._crit_edge.0 ]
+
+
+ <State 14>: 1.57ns
+ST_14: p_071_2_1 [1/1] 0.00ns
+._crit_edge.1:0  %p_071_2_1 = phi i4 [ %tmp_16, %1 ], [ %tmp_13, %._crit_edge.0 ]
+
+ST_14: p_067_2_1 [1/1] 0.00ns
+._crit_edge.1:1  %p_067_2_1 = phi i4 [ %tmp_17, %1 ], [ %tmp_14, %._crit_edge.0 ]
+
+ST_14: p_084_2_1 [1/1] 0.00ns
+._crit_edge.1:2  %p_084_2_1 = phi i96 [ %p_Result_26_1, %1 ], [ %p_Result_7, %._crit_edge.0 ]
+
+ST_14: stg_173 [1/1] 1.57ns
+._crit_edge.1:4  br i1 %last_2_1, label %._crit_edge.2, label %2
+
+ST_14: empty_15 [1/1] 0.00ns
+:0  %empty_15 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_14: in_stream_data_V_val9 [1/1] 0.00ns
+:1  %in_stream_data_V_val9 = extractvalue { i24, i1, i1 } %empty_15, 0
+
+ST_14: in_stream_user_V_val9 [1/1] 0.00ns
+:2  %in_stream_user_V_val9 = extractvalue { i24, i1, i1 } %empty_15, 1
+
+ST_14: in_stream_last_V_val7 [1/1] 0.00ns
+:3  %in_stream_last_V_val7 = extractvalue { i24, i1, i1 } %empty_15, 2
+
+ST_14: p_Result_26_2 [1/1] 0.00ns
+:4  %p_Result_26_2 = call i96 @llvm.part.set.i96.i24(i96 %p_084_2_1, i24 %in_stream_data_V_val9, i32 48, i32 71)
+
+ST_14: tmp_19 [1/1] 0.00ns
+:5  %tmp_19 = call i4 @_ssdm_op_BitSet.i4.i4.i32.i1(i4 %p_071_2_1, i32 2, i1 %in_stream_user_V_val9)
+
+ST_14: tmp_20 [1/1] 0.00ns
+:6  %tmp_20 = call i4 @_ssdm_op_BitSet.i4.i4.i32.i1(i4 %p_067_2_1, i32 2, i1 %in_stream_last_V_val7)
+
+ST_14: stg_181 [1/1] 1.57ns
+:7  br label %._crit_edge.2
+
+ST_14: last_2_2 [1/1] 0.00ns
+._crit_edge.2:3  %last_2_2 = phi i1 [ %in_stream_last_V_val7, %2 ], [ %last_2_1, %._crit_edge.1 ]
+
+
+ <State 15>: 1.57ns
+ST_15: p_071_2_2 [1/1] 0.00ns
+._crit_edge.2:0  %p_071_2_2 = phi i4 [ %tmp_19, %2 ], [ %p_071_2_1, %._crit_edge.1 ]
+
+ST_15: p_067_2_2 [1/1] 0.00ns
+._crit_edge.2:1  %p_067_2_2 = phi i4 [ %tmp_20, %2 ], [ %p_067_2_1, %._crit_edge.1 ]
+
+ST_15: p_084_2_2 [1/1] 0.00ns
+._crit_edge.2:2  %p_084_2_2 = phi i96 [ %p_Result_26_2, %2 ], [ %p_084_2_1, %._crit_edge.1 ]
+
+ST_15: stg_186 [1/1] 1.57ns
+._crit_edge.2:4  br i1 %last_2_2, label %.preheader815.preheader, label %3
+
+ST_15: empty_16 [1/1] 0.00ns
+:0  %empty_16 = call { i24, i1, i1 } @_ssdm_op_Read.axis.volatile.i24P.i1P.i1P(i24* %in_stream_data_V, i1* %in_stream_user_V, i1* %in_stream_last_V)
+
+ST_15: in_stream_data_V_val11 [1/1] 0.00ns
+:1  %in_stream_data_V_val11 = extractvalue { i24, i1, i1 } %empty_16, 0
+
+ST_15: in_stream_user_V_val11 [1/1] 0.00ns
+:2  %in_stream_user_V_val11 = extractvalue { i24, i1, i1 } %empty_16, 1
+
+ST_15: in_stream_last_V_val9 [1/1] 0.00ns
+:3  %in_stream_last_V_val9 = extractvalue { i24, i1, i1 } %empty_16, 2
+
+ST_15: p_Result_26_3 [1/1] 0.00ns
+:4  %p_Result_26_3 = call i96 @llvm.part.set.i96.i24(i96 %p_084_2_2, i24 %in_stream_data_V_val11, i32 72, i32 95)
+
+ST_15: tmp_22 [1/1] 0.00ns
+:5  %tmp_22 = call i4 @_ssdm_op_BitSet.i4.i4.i32.i1(i4 %p_071_2_2, i32 3, i1 %in_stream_user_V_val11)
+
+ST_15: tmp_23 [1/1] 0.00ns
+:6  %tmp_23 = call i4 @_ssdm_op_BitSet.i4.i4.i32.i1(i4 %p_067_2_2, i32 3, i1 %in_stream_last_V_val9)
+
+ST_15: stg_194 [1/1] 1.57ns
+:7  br label %.preheader815.preheader
+
+ST_15: p_071_2_3 [1/1] 0.00ns
+.preheader815.preheader:0  %p_071_2_3 = phi i4 [ %tmp_22, %3 ], [ %p_071_2_2, %._crit_edge.2 ]
+
+ST_15: p_067_2_3 [1/1] 0.00ns
+.preheader815.preheader:1  %p_067_2_3 = phi i4 [ %tmp_23, %3 ], [ %p_067_2_2, %._crit_edge.2 ]
+
+ST_15: p_084_2_3 [1/1] 0.00ns
+.preheader815.preheader:2  %p_084_2_3 = phi i96 [ %p_Result_26_3, %3 ], [ %p_084_2_2, %._crit_edge.2 ]
+
+ST_15: last_2_3 [1/1] 0.00ns
+.preheader815.preheader:3  %last_2_3 = phi i1 [ %in_stream_last_V_val9, %3 ], [ %last_2_2, %._crit_edge.2 ]
+
+ST_15: tmp_25 [1/1] 0.00ns
+.preheader815.preheader:4  %tmp_25 = trunc i96 %p_084_2_3 to i32
+
+ST_15: tmp_26 [1/1] 0.00ns
+.preheader815.preheader:5  %tmp_26 = trunc i4 %p_071_2_3 to i1
+
+ST_15: tmp_27 [1/1] 0.00ns
+.preheader815.preheader:6  %tmp_27 = call i1 @_ssdm_op_BitSelect.i1.i4.i32(i4 %p_067_2_3, i32 1)
+
+ST_15: stg_202 [1/1] 0.00ns
+.preheader815.preheader:7  call void @_ssdm_op_Write.axis.volatile.i32P.i1P.i1P(i32* %out_stream_data_V, i1* %out_stream_user_V, i1* %out_stream_last_V, i32 %tmp_25, i1 %tmp_26, i1 %tmp_27)
+
+ST_15: p_Result_29_1 [1/1] 0.00ns
+.preheader815.preheader:8  %p_Result_29_1 = call i32 @_ssdm_op_PartSelect.i32.i96.i32.i32(i96 %p_084_2_3, i32 32, i32 63)
+
+ST_15: tmp_28 [1/1] 0.00ns
+.preheader815.preheader:9  %tmp_28 = call i1 @_ssdm_op_BitSelect.i1.i4.i32(i4 %p_071_2_3, i32 1)
+
+ST_15: tmp_29 [1/1] 0.00ns
+.preheader815.preheader:10  %tmp_29 = call i1 @_ssdm_op_BitSelect.i1.i4.i32(i4 %p_067_2_3, i32 2)
+
+ST_15: p_Result_29_2 [1/1] 0.00ns
+.preheader815.preheader:12  %p_Result_29_2 = call i32 @_ssdm_op_PartSelect.i32.i96.i32.i32(i96 %p_084_2_3, i32 64, i32 95)
+
+ST_15: tmp_30 [1/1] 0.00ns
+.preheader815.preheader:13  %tmp_30 = call i1 @_ssdm_op_BitSelect.i1.i4.i32(i4 %p_071_2_3, i32 2)
+
+ST_15: tmp_31 [1/1] 0.00ns
+.preheader815.preheader:14  %tmp_31 = call i1 @_ssdm_op_BitSelect.i1.i4.i32(i4 %p_067_2_3, i32 3)
+
+ST_15: stg_209 [1/1] 0.00ns
+.preheader815.preheader:17  store i4 %p_071_2_3, i4* %p_071_s
+
+ST_15: stg_210 [1/1] 0.00ns
+.preheader815.preheader:18  store i4 %p_067_2_3, i4* %p_067_s
+
+ST_15: stg_211 [1/1] 0.00ns
+.preheader815.preheader:19  store i96 %p_084_2_3, i96* %p_084_s
+
+ST_15: stg_212 [1/1] 0.00ns
+.preheader815.preheader:20  br i1 %last_2_3, label %.loopexit, label %._crit_edge.0
+
+
+ <State 16>: 0.00ns
+ST_16: stg_213 [1/1] 0.00ns
+.preheader815.preheader:11  call void @_ssdm_op_Write.axis.volatile.i32P.i1P.i1P(i32* %out_stream_data_V, i1* %out_stream_user_V, i1* %out_stream_last_V, i32 %p_Result_29_1, i1 %tmp_28, i1 %tmp_29)
+
+
+ <State 17>: 0.00ns
+ST_17: stg_214 [1/1] 0.00ns
+.preheader815.preheader:15  call void @_ssdm_op_Write.axis.volatile.i32P.i1P.i1P(i32* %out_stream_data_V, i1* %out_stream_user_V, i1* %out_stream_last_V, i32 %p_Result_29_2, i1 %tmp_30, i1 %tmp_31)
+
+ST_17: empty_17 [1/1] 0.00ns
+.preheader815.preheader:16  %empty_17 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str6, i32 %tmp_2)
+
+
+ <State 18>: 0.00ns
+ST_18: stg_216 [1/1] 0.00ns
+.loopexit:0  ret void
+
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 7ns, clock uncertainty: 0.875ns.
+
+ No timing violations. 
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

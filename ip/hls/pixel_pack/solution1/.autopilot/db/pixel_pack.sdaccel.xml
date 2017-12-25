@@ -1,0 +1,239 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'pixel_pack'" level="0">
+<item name = "Date">Sun Oct 15 10:21:26 2017
+</item>
+<item name = "Version">2016.1 (Build 1538259 on Fri Apr 08 16:12:49 MDT 2016)</item>
+<item name = "Project">pixel_pack</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020clg400-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Target clock period (ns)">7.00</item>
+<item name = "Clock uncertainty (ns)">0.88</item>
+<item name = "Estimated clock period (ns)">2.94</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">?, ?, ?, ?, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Loop 1">?, ?, 6, 4, 4, ?, yes</column>
+<column name="- Loop 2">?, ?, 1, 1, 1, ?, yes</column>
+<column name="- Loop 3">?, ?, 4, 4, 4, ?, yes</column>
+<column name="- Loop 4">?, ?, 2, 2, 2, ?, yes</column>
+<column name="- Loop 5">?, ?, 2, 2, 2, ?, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="DSP">-, -, -, -</column>
+<column name="Expression">-, -, 0, 34</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">0, -, 82, 120</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 501</column>
+<column name="Register">-, -, 730, -</column>
+<specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, 1</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="pixel_pack_AXILiteS_s_axi_U">pixel_pack_AXILiteS_s_axi, 0, 0, 82, 120</column>
+</table>
+</item>
+<item name = "DSP48"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="out_c1_V_fu_455_p2">+, 0, 0, 9, 9, 9</column>
+<column name="out_c2_V_fu_468_p2">+, 0, 0, 9, 9, 9</column>
+<column name="ap_sig_129">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_323">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_332">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_335">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_357">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_363">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_370">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_382">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_425">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_440">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_445">and, 0, 0, 1, 1, 1</column>
+<column name="ap_sig_892">and, 0, 0, 1, 1, 1</column>
+<column name="grp_fu_437_p2">or, 0, 0, 1, 1, 1</column>
+<column name="user_3_1_fu_545_p2">or, 0, 0, 1, 1, 1</column>
+<column name="user_3_2_fu_565_p2">or, 0, 0, 1, 1, 1</column>
+<column name="user_3_3_fu_587_p2">or, 0, 0, 1, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">15, 17, 1, 17</column>
+<column name="ap_reg_phiprechg_p_067_2_1_reg_287pp4_it0">4, 2, 4, 8</column>
+<column name="ap_reg_phiprechg_p_067_2_2_reg_328pp4_it0">4, 2, 4, 8</column>
+<column name="ap_reg_phiprechg_p_071_2_1_reg_277pp4_it0">4, 2, 4, 8</column>
+<column name="ap_reg_phiprechg_p_071_2_2_reg_318pp4_it0">4, 2, 4, 8</column>
+<column name="ap_reg_phiprechg_p_084_2_1_reg_297pp4_it0">96, 2, 96, 192</column>
+<column name="ap_reg_phiprechg_p_084_2_2_reg_338pp4_it0">96, 2, 96, 192</column>
+<column name="ap_reg_ppiten_pp4_it1">1, 2, 1, 2</column>
+<column name="ap_sig_ioackin_out_stream_TREADY">1, 2, 1, 2</column>
+<column name="in_stream_TDATA_blk_n">1, 2, 1, 2</column>
+<column name="last_2_1_reg_267">1, 2, 1, 2</column>
+<column name="last_2_2_reg_307">1, 3, 1, 3</column>
+<column name="last_2_3_phi_fu_381_p4">1, 3, 1, 3</column>
+<column name="last_6_2_reg_203">1, 2, 1, 2</column>
+<column name="last_6_3_phi_fu_248_p4">1, 3, 1, 3</column>
+<column name="out_stream_TDATA">64, 8, 32, 256</column>
+<column name="out_stream_TDATA_blk_n">1, 2, 1, 2</column>
+<column name="out_stream_TLAST">1, 6, 1, 6</column>
+<column name="out_stream_TUSER">1, 7, 1, 7</column>
+<column name="p_0464_2_1_reg_183">32, 2, 32, 64</column>
+<column name="p_0464_2_2_reg_214">32, 2, 32, 64</column>
+<column name="p_0464_2_3_phi_fu_237_p4">32, 3, 32, 96</column>
+<column name="p_067_2_3_phi_fu_361_p4">4, 3, 4, 12</column>
+<column name="p_071_2_3_phi_fu_351_p4">4, 3, 4, 12</column>
+<column name="p_084_2_3_phi_fu_371_p4">96, 3, 96, 288</column>
+<column name="user_1_1_reg_193">1, 2, 1, 2</column>
+<column name="user_1_2_reg_224">1, 2, 1, 2</column>
+<column name="user_1_3_phi_fu_259_p4">1, 3, 1, 3</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="alpha_V_0_data_reg">8, 0, 8, 0</column>
+<column name="alpha_V_0_vld_reg">0, 0, 1, 1</column>
+<column name="alpha_V_read_reg_847">8, 0, 8, 0</column>
+<column name="ap_CS_fsm">16, 0, 16, 0</column>
+<column name="ap_reg_ioackin_out_stream_TREADY">1, 0, 1, 0</column>
+<column name="ap_reg_phiprechg_last_2_1_reg_267pp4_it0">1, 0, 1, 0</column>
+<column name="ap_reg_phiprechg_p_067_2_1_reg_287pp4_it0">4, 0, 4, 0</column>
+<column name="ap_reg_phiprechg_p_067_2_2_reg_328pp4_it0">4, 0, 4, 0</column>
+<column name="ap_reg_phiprechg_p_071_2_1_reg_277pp4_it0">4, 0, 4, 0</column>
+<column name="ap_reg_phiprechg_p_071_2_2_reg_318pp4_it0">4, 0, 4, 0</column>
+<column name="ap_reg_phiprechg_p_084_2_1_reg_297pp4_it0">96, 0, 96, 0</column>
+<column name="ap_reg_phiprechg_p_084_2_2_reg_338pp4_it0">96, 0, 96, 0</column>
+<column name="ap_reg_ppiten_pp4_it0">1, 0, 1, 0</column>
+<column name="ap_reg_ppiten_pp4_it1">1, 0, 1, 0</column>
+<column name="in_stream_last_V_val4_reg_911">1, 0, 1, 0</column>
+<column name="in_stream_last_V_val_reg_945">1, 0, 1, 0</column>
+<column name="in_stream_user_V_val6_reg_905">1, 0, 1, 0</column>
+<column name="last_2_1_reg_267">1, 0, 1, 0</column>
+<column name="last_2_2_reg_307">1, 0, 1, 0</column>
+<column name="last_6_1_reg_173">1, 0, 1, 0</column>
+<column name="last_6_2_reg_203">1, 0, 1, 0</column>
+<column name="mode_0_data_reg">32, 0, 32, 0</column>
+<column name="mode_0_vld_reg">0, 0, 1, 1</column>
+<column name="p_0464_2_1_reg_183">32, 0, 32, 0</column>
+<column name="p_0464_2_2_reg_214">32, 0, 32, 0</column>
+<column name="p_0464_s_fu_122">32, 0, 32, 0</column>
+<column name="p_067_s_fu_130">4, 0, 4, 0</column>
+<column name="p_071_s_fu_134">4, 0, 4, 0</column>
+<column name="p_084_s_fu_126">96, 0, 96, 0</column>
+<column name="p_Result_29_1_reg_998">32, 0, 32, 0</column>
+<column name="p_Result_29_2_reg_1013">32, 0, 32, 0</column>
+<column name="p_Result_3_reg_884">8, 0, 8, 0</column>
+<column name="p_Result_7_reg_950">96, 0, 96, 0</column>
+<column name="p_Result_9_reg_916">32, 0, 32, 0</column>
+<column name="p_Result_s_30_reg_879">8, 0, 8, 0</column>
+<column name="reg_429_1">1, 0, 1, 0</column>
+<column name="tmp_11_reg_889">8, 0, 8, 0</column>
+<column name="tmp_13_reg_956">4, 0, 4, 0</column>
+<column name="tmp_14_reg_962">4, 0, 4, 0</column>
+<column name="tmp_28_reg_1003">1, 0, 1, 0</column>
+<column name="tmp_29_reg_1008">1, 0, 1, 0</column>
+<column name="tmp_30_reg_1018">1, 0, 1, 0</column>
+<column name="tmp_31_reg_1023">1, 0, 1, 0</column>
+<column name="tmp_8_reg_897">16, 0, 16, 0</column>
+<column name="user_1_1_reg_193">1, 0, 1, 0</column>
+<column name="user_1_2_reg_224">1, 0, 1, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="s_axi_AXILiteS_AWVALID">in, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_AWREADY">out, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_AWADDR">in, 5, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_WVALID">in, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_WREADY">out, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_WDATA">in, 32, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_WSTRB">in, 4, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_ARVALID">in, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_ARREADY">out, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_ARADDR">in, 5, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_RVALID">out, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_RREADY">in, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_RDATA">out, 32, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_RRESP">out, 2, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_BVALID">out, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_BREADY">in, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_BRESP">out, 2, s_axi, AXILiteS, scalar</column>
+<column name="ap_clk">in, 1, ap_ctrl_none, pixel_pack, return value</column>
+<column name="ap_rst_n">in, 1, ap_ctrl_none, pixel_pack, return value</column>
+<column name="control">in, 1, ap_ctrl_none, pixel_pack, return value</column>
+<column name="ap_rst_n_control">in, 1, ap_ctrl_none, pixel_pack, return value</column>
+<column name="in_stream_TDATA">in, 24, axis, in_stream_data_V, pointer</column>
+<column name="in_stream_TVALID">in, 1, axis, in_stream_data_V, pointer</column>
+<column name="in_stream_TREADY">out, 1, axis, in_stream_last_V, pointer</column>
+<column name="in_stream_TLAST">in, 1, axis, in_stream_last_V, pointer</column>
+<column name="in_stream_TUSER">in, 1, axis, in_stream_user_V, pointer</column>
+<column name="out_stream_TDATA">out, 32, axis, out_stream_data_V, pointer</column>
+<column name="out_stream_TVALID">out, 1, axis, out_stream_last_V, pointer</column>
+<column name="out_stream_TREADY">in, 1, axis, out_stream_last_V, pointer</column>
+<column name="out_stream_TLAST">out, 1, axis, out_stream_last_V, pointer</column>
+<column name="out_stream_TUSER">out, 1, axis, out_stream_user_V, pointer</column>
+</table>
+</item>
+</section>
+
+<section name = "Critical Path" level="0">
+<item name = "Max Delay">2.94</item>
+<item name = "Critical Path Table"><table name="Critical Path Table" hasTotal="0">
+<keys size="15">Name, Operator, Delay, Accumulated Delay, Store Source, Resource, Core, Interface, Type, Port, Array, Scope, Pointer, Callee, Phi Node</keys>
+<column name="'empty_21'">read, 0.00, 0.00, -, -, -, axis, read, &apos;in_stream_data_V&apos;, -, -, -, -, -</column>
+<column name="'in_stream_user_V_val8'">extractvalue, 0.00, 0.00, -, -, -, -, -, -, -, -, -, -, -</column>
+<column name="'user_3_1', pixel_pack/pixel_pack.cpp:84">or, 1.37, 1.37, -, -, -, -, -, -, -, -, -, -, -</column>
+<column name="'p_0464_2_1', pixel_pack/pixel_pack.cpp:86">phi, 1.57, 2.94, -, -, -, -, -, -, -, -, -, -, &apos;p_Result_9&apos;, pixel_pack/pixel_pack.cpp:86, &apos;p_Result_33_1&apos;, pixel_pack/pixel_pack.cpp:86</column>
+</table>
+</item>
+</section>
+</profile>
