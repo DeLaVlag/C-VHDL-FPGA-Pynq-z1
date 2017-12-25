@@ -1,8 +1,5 @@
-#include <stdint.h>
 #include <hls_stream.h>
 #include <hls_video.h>
-#include <hls_opencv.h>
-#include <ap_axi_sdata.h>
 
 #define WIDTH 1280
 #define HEIGHT 720
@@ -25,6 +22,6 @@ typedef hls::LineBuffer<3, WIDTH, int> linebuffer;
 typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> window;
 
 void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t r);
-//short sumWindow(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *window);
+short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *window);
 
 
