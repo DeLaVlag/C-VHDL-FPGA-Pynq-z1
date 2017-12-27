@@ -2,8 +2,8 @@
 #include <hls_video.h>
 #include <ap_int.h>
 
-#define WIDTH 1280
-#define HEIGHT 720
+#define WIDTH 240
+#define HEIGHT 320
 
 #define KERNEL_SIZE 3
 
@@ -17,13 +17,18 @@
 #define SG(v) (((v)&0xFF)<<8)
 #define SB(v) (((v)&0xFF)<<16)
 
+//user for full color functinolity:
 typedef ap_uint<24> uint24;
-typedef ap_axiu<32,1,1,1> pixel_data;
+//for full color:
+//typedef ap_axiu<24,1,1,1> pixel_data;
+//for grayscale:
+typedef ap_axiu<16,1,1,1> pixel_data;
+
 typedef hls::stream<pixel_data> pixel_stream;
-typedef hls::LineBuffer<3, WIDTH, int> linebuffer;
-typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,uint24> window;
+typedef hls::LineBuffer<3, WIDTH, short> linebuffer;
+typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> window;
 
 void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t r);
-uint24 pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,uint24> *window);
+short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *window);
 
 
