@@ -9,7 +9,7 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 #pragma HLS INTERFACE s_axilite port=c
 #pragma HLS INTERFACE s_axilite port=r
 //Force only 1 clockcycle between start times of consecutive loop iterations
-#pragma HLS PIPELINE II=1
+//#pragma HLS PIPELINE II=1
 //Full unroll if factor = WIDTH*HEIGHT
 //#pragma HLS unroll factor=16
 
@@ -21,7 +21,7 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 	};
 
 	// Impulse
-/*	short kernel[KERNEL_SIZE*KERNEL_SIZE] = {
+/*	char kernel[KERNEL_SIZE*KERNEL_SIZE] = {
 			0, 0, 0,
 			0, 1, 0,
 			0, 0, 0,
@@ -38,10 +38,11 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 //	static uint32_t dc = 0;
 //	uint32_t dr = 0;
 	uint32_t slidefactor=0;
-	uint32_t rows=0, cols=0;
+	static uint32_t rows=0, cols=0;
 
 
-	for (int pixels=0; pixels<HEIGHT*WIDTH;pixels++){
+	for (int pixels=0;pixels<HEIGHT*WIDTH;pixels++){
+#pragma HLS PIPELINE II=1
 //		dst.write(src.read());
 
 		streamIn = src.read();
@@ -75,27 +76,27 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 		{
 			// Convolution
 			currentPixelValue = pixelSummer(&win);
-			//normalizing for when kernel is great
-			currentPixelValue = currentPixelValue / 8;
+			//normalizing for when kernel value is too big for datatype
+			//for edge kernel = 8 * 255 = 2040 < 2^16
+			//adjust the sensitivty of the edge detection
+			//currentPixelValue = currentPixelValue / 4;
 			// Stay positive
 			if (currentPixelValue < 0)
 				currentPixelValue = 0;
 
-
+			//increasing the iterator for sliding window over the linebuffers for kernelmult
 			slidefactor++;
 		}
 
 		// Administration
-		if (cols < WIDTH-1)
-		{
-			cols++;
-		}
-		else
-		{
-			cols = 0;
-			rows++;
-			slidefactor = 0;
-		}
+		if (streamIn.last)
+			{
+				cols = 0;
+				rows++;
+				slidefactor = 0;
+			}
+			else
+				cols++;
 
 		streamOut.data = currentPixelValue;
 		//streamOut.data = val;

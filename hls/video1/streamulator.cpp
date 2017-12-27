@@ -37,7 +37,7 @@ int main ()
 		}
 
 	// Call stream processing function
-	//while (!inputStream.empty())
+	while (!inputStream.empty())
 		stream(inputStream, outputStream, l, c, r);
 
 
