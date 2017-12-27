@@ -14,18 +14,18 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 //#pragma HLS unroll factor=16
 
 	// Edge detection kernel
-	uint24 kernel[KERNEL_SIZE*KERNEL_SIZE] = {
+	/*uint24 kernel[KERNEL_SIZE*KERNEL_SIZE] = {
 			-1, -1, -1,
 			-1, 8, -1,
 			-1, -1, -1,
-	};
+	};*/
 
 	// Impulse
-	/*uint24 kernel[KERNEL_SIZE*KERNEL_SIZE] = {
+	uint24 kernel[KERNEL_SIZE*KERNEL_SIZE] = {
 			0, 0, 0,
 			0, 1, 0,
 			0, 0, 0,
-	};*/
+	};
 
 	pixel_data streamIn;
 	pixel_data streamOut;
@@ -42,6 +42,8 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 
 
 	for (int pixels=0; pixels<HEIGHT*WIDTH;pixels++){
+		dst.write(src.read());
+/*
 		streamIn = src.read();
 //		src >> streamIn;
 
@@ -105,7 +107,7 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 		streamOut.dest = streamIn.dest;
 		// Send to the stream (Block if the FIFO receiver is full)
 		dst.write(streamOut);
-
+*/
 	}
 
 }
@@ -122,4 +124,5 @@ uint24 pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,uint24> *resultfromlinesl
 		}
 	}
 	return sum;
+
 }

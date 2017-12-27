@@ -1,6 +1,10 @@
 #include "streamulator.h"
 
-ap_uint<32> pixeldata[HEIGHT][WIDTH];
+//for full color image streamulator
+//ap_uint<32> pixeldata[HEIGHT][WIDTH];
+//for grayscaled image streamulator
+char pixeldata[HEIGHT][WIDTH];
+
 
 int main ()
 {
@@ -16,14 +20,16 @@ int main ()
 	cv::Mat sourceImg = cv::imread(INPUT_IMG);
 
 	// A necessary conversion to obtain the right format...
-	cv::cvtColor(sourceImg, sourceImg, CV_BGR2BGRA);
-
+	cv::cvtColor(sourceImg, sourceImg, CV_BGRA2GRAY);
+	//cv::cvtColor(sourceImg, sourceImg, 139);
+	//cv::imwrite(OUTPUT_IMG, sourceImg);
 
 	// Write input data
 	for (int rows=0; rows < HEIGHT; rows++)
 		for (int cols=0; cols < WIDTH; cols++)
 		{
-			streamIn.data = sourceImg.at<int>(rows,cols);
+			//use 'at char' for grayscaled and 'at int' for full color streaming
+			streamIn.data = sourceImg.at<char>(rows,cols);
 			streamIn.user = (rows==0 && cols==0) ? 1 : 0;
 			streamIn.last = (cols==WIDTH-1) ? 1 : 0;
 
@@ -31,7 +37,7 @@ int main ()
 		}
 
 	// Call stream processing function
-	while (!inputStream.empty())
+	//while (!inputStream.empty())
 		stream(inputStream, outputStream, l, c, r);
 
 
@@ -46,7 +52,8 @@ int main ()
 
 	// Save image by converting data array to matrix
 	// Depth or precision: CV_8UC4: 8 bit unsigned chars x 4 channels = 32 bit per pixel;
-	cv::Mat imgCvOut(cv::Size(WIDTH, HEIGHT), CV_8UC4, pixeldata);
+	// Depth for grayscale: CV_8UC1: since grayscaling only uses 1 char channel
+	cv::Mat imgCvOut(cv::Size(WIDTH, HEIGHT), CV_8UC1, pixeldata);
 	cv::imwrite(OUTPUT_IMG, imgCvOut);
 
 

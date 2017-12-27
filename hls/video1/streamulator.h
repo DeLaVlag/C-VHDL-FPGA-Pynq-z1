@@ -10,6 +10,7 @@
 #define INPUT_IMG       "D:\\Studie\\RCD\\PYNQ\\PYNQ\\hls\\video1\\download.bmp"
 #define OUTPUT_IMG 		"D:\\Studie\\RCD\\PYNQ\\PYNQ\\hls\\video1\\lbresult.bmp"
 
+typedef ap_uint<24> uint24;
 typedef ap_axiu<32,1,1,1> pixel_data;
 typedef hls::stream<pixel_data> pixel_stream;
 
