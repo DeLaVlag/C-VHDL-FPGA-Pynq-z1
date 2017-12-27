@@ -28,8 +28,8 @@ int main ()
 	for (int rows=0; rows < HEIGHT; rows++)
 		for (int cols=0; cols < WIDTH; cols++)
 		{
-			//use 'at char' for grayscaled and 'at int' for full color streaming
-			streamIn.data = sourceImg.at<char>(rows,cols);
+			//use 'at ùnsigned char' for grayscaled and 'at int' for full color streaming
+			streamIn.data = sourceImg.at<unsigned char>(rows,cols);
 			streamIn.user = (rows==0 && cols==0) ? 1 : 0;
 			streamIn.last = (cols==WIDTH-1) ? 1 : 0;
 
