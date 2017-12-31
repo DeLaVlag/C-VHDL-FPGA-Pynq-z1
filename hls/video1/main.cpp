@@ -35,8 +35,8 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 	uint32_t slidefactor=0;
 	static uint32_t rows=0, cols=0;
 
-	int waitTicks = (WIDTH*(KERNEL_SIZE-1)+KERNEL_SIZE)/2;// 241;
-	int countWait = 0;
+//	int waitTicks = (WIDTH*(KERNEL_SIZE-1)+KERNEL_SIZE)/2;// 241;
+//	int countWait = 0;
 
 //	while (!src.empty()){
 	for (int pixels=0;pixels<HEIGHT*WIDTH;pixels++){
@@ -83,9 +83,9 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 			//increasing the iterator for sliding window over the linebuffers for kernelmult
 			slidefactor++;
 		}
-		countWait++;
-		if (countWait > waitTicks)
-		{
+//		countWait++;
+//		if (countWait > waitTicks)
+//		{
 			streamOut.data = currentPixelValue;
 			//streamOut.data = val;
 			streamOut.keep = streamIn.keep;
@@ -96,7 +96,7 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 			streamOut.dest = streamIn.dest;
 			// Send to the stream (Block if the FIFO receiver is full)
 			dst.write(streamOut);
-		}
+//		}
 
 		// Administration
 				if (cols >= (WIDTH-1))
@@ -110,22 +110,22 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 
 	}
 
-		for (countWait = 0; countWait < waitTicks; countWait++)
-		{
-			streamOut.data = 0;
-			streamOut.keep = streamIn.keep;
-			streamOut.strb = streamIn.strb;
-			streamOut.user = streamIn.user;
-			// Send last on the last item
-			if (countWait < waitTicks - 1)
-				streamOut.last = 0;
-			else
-				streamOut.last = 1;
-			streamOut.id = streamIn.id;
-			streamOut.dest = streamIn.dest;
-			// Send to the stream (Block if the FIFO receiver is full)
-			dst.write(streamOut);
-		}
+//		for (countWait = 0; countWait < waitTicks; countWait++)
+//		{
+//			streamOut.data = 0;
+//			streamOut.keep = streamIn.keep;
+//			streamOut.strb = streamIn.strb;
+//			streamOut.user = streamIn.user;
+//			// Send last on the last item
+//			if (countWait < waitTicks - 1)
+//				streamOut.last = 0;
+//			else
+//				streamOut.last = 1;
+//			streamOut.id = streamIn.id;
+//			streamOut.dest = streamIn.dest;
+//			// Send to the stream (Block if the FIFO receiver is full)
+//			dst.write(streamOut);
+//		}
 
 }
 // Convolution by adding all the values in the windows buffer

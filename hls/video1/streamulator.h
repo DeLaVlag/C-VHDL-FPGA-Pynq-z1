@@ -4,8 +4,8 @@
 #include <hls_opencv.h>
 #include <ap_axi_sdata.h>
 
-#define WIDTH 240
-#define HEIGHT 320
+#define WIDTH 1280
+#define HEIGHT 720
 
 #define INPUT_IMG       "D:\\Studie\\RCD\\PYNQ\\PYNQ\\hls\\video1\\imgBig_Lena.bmp"
 #define OUTPUT_IMG 		"D:\\Studie\\RCD\\PYNQ\\PYNQ\\hls\\video1\\lbresult.bmp"
@@ -15,7 +15,7 @@ typedef ap_uint<24> uint24;
 //for full color
 //typedef ap_axiu<24,1,1,1> pixel_data;
 //for grayscale
-typedef ap_axiu<16,1,1,1> pixel_data;
+typedef ap_axiu<32,1,1,1> pixel_data;
 
 typedef hls::stream<pixel_data> pixel_stream;
 
