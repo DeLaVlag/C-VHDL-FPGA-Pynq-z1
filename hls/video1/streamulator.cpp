@@ -37,7 +37,8 @@ int main ()
 		}
 
 	// Call stream processing function
-	while (!inputStream.empty())
+//	while (!inputStream.empty())
+//	for (int pixels=0;pixels<HEIGHT*WIDTH;pixels++)
 		stream(inputStream, outputStream, l, c, r);
 
 

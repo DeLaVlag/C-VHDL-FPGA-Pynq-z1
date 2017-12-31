@@ -31,16 +31,14 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 	pixel_data streamOut;
 	linebuffer lb;
 	window win;
-//	static uint16_t x = 0;
-//	static uint16_t y = 0;
-//
-//	static uint32_t dl = 0;
-//	static uint32_t dc = 0;
-//	uint32_t dr = 0;
+
 	uint32_t slidefactor=0;
 	static uint32_t rows=0, cols=0;
 
+	int waitTicks = (WIDTH*(KERNEL_SIZE-1)+KERNEL_SIZE)/2;// 241;
+	int countWait = 0;
 
+//	while (!src.empty()){
 	for (int pixels=0;pixels<HEIGHT*WIDTH;pixels++){
 #pragma HLS PIPELINE II=1
 //		dst.write(src.read());
@@ -51,14 +49,13 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 		//filling the buffers
 		//LineBuffer shift down, while contents shift up (?!).
 		//Xilinx documentatie beweert het tegenovergestelde!
-		lb.shift_up(cols);
-		lb.insert_top(streamIn.data,cols);
+		lb.shift_pixels_down(cols);
+		lb.insert_top_row(streamIn.data,cols);
 
 		// linebuffer values get multiplied by kernel and put in windowbuffer
 		//short val = 0;
-		for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
-		{
-			for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
+		FOR_X:for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
+			FOR_Y:for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
 			{
 				// wCols + slidefactor, for sliding over buffer
 				short val = (short)lb.getval(wRows,wCols+slidefactor);
@@ -68,7 +65,6 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 				//if(val<0)val=0;
 				win.insert(val,wRows,wCols);
 			}
-		}
 
 		// Stay within image boundaries and sum all pixel values in the window
 		short currentPixelValue = 0;
@@ -87,29 +83,49 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 			//increasing the iterator for sliding window over the linebuffers for kernelmult
 			slidefactor++;
 		}
+		countWait++;
+		if (countWait > waitTicks)
+		{
+			streamOut.data = currentPixelValue;
+			//streamOut.data = val;
+			streamOut.keep = streamIn.keep;
+			streamOut.strb = streamIn.strb;
+			streamOut.user = streamIn.user;
+			streamOut.last = streamIn.last;
+			streamOut.id = streamIn.id;
+			streamOut.dest = streamIn.dest;
+			// Send to the stream (Block if the FIFO receiver is full)
+			dst.write(streamOut);
+		}
 
 		// Administration
-		if (streamIn.last)
-			{
-				cols = 0;
-				rows++;
-				slidefactor = 0;
-			}
-			else
-				cols++;
-
-		streamOut.data = currentPixelValue;
-		//streamOut.data = val;
-		streamOut.keep = streamIn.keep;
-		streamOut.strb = streamIn.strb;
-		streamOut.user = streamIn.user;
-		streamOut.last = streamIn.last;
-		streamOut.id = streamIn.id;
-		streamOut.dest = streamIn.dest;
-		// Send to the stream (Block if the FIFO receiver is full)
-		dst.write(streamOut);
+				if (cols >= (WIDTH-1))
+					{
+						cols = 0;
+						rows++;
+						slidefactor = 0;
+					}
+					else
+						cols++;
 
 	}
+
+		for (countWait = 0; countWait < waitTicks; countWait++)
+		{
+			streamOut.data = 0;
+			streamOut.keep = streamIn.keep;
+			streamOut.strb = streamIn.strb;
+			streamOut.user = streamIn.user;
+			// Send last on the last item
+			if (countWait < waitTicks - 1)
+				streamOut.last = 0;
+			else
+				streamOut.last = 1;
+			streamOut.id = streamIn.id;
+			streamOut.dest = streamIn.dest;
+			// Send to the stream (Block if the FIFO receiver is full)
+			dst.write(streamOut);
+		}
 
 }
 // Convolution by adding all the values in the windows buffer
@@ -118,12 +134,10 @@ short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *resultfromlineslid
 	short sum = 0;
 
 	for (int rows = 0; rows < KERNEL_SIZE; rows++)
-	{
 		for (int cols = 0; cols < KERNEL_SIZE; cols++)
 		{
 			sum = sum + (short)resultfromlinesliding->getval(rows,cols);
 		}
-	}
 	return sum;
 
 }
