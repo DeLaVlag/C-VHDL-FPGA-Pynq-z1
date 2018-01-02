@@ -9,10 +9,10 @@ char pixeldata[HEIGHT][WIDTH];
 int main ()
 {
 	// Streams and data
-	hls::stream<pixel_data> inputStream;
-	hls::stream<pixel_data> outputStream;
-	pixel_data streamIn;
-	pixel_data streamOut;
+	pixel_stream_in inputStream;	//32
+	pixel_stream_out outputStream;	//8
+	pixel_data_in streamIn;			//32
+	pixel_data_out streamOut;		//8
 	uint8_t l=0,c=255,r=0;
 
 
@@ -29,25 +29,25 @@ int main ()
 		for (int cols=0; cols < WIDTH; cols++)
 		{
 			//use 'at ùnsigned char' for grayscaled and 'at int' for full color streaming
-			streamIn.data = sourceImg.at<unsigned char>(rows,cols);
-			streamIn.user = (rows==0 && cols==0) ? 1 : 0;
-			streamIn.last = (cols==WIDTH-1) ? 1 : 0;
+			streamOut.data = sourceImg.at<unsigned char>(rows,cols);
+			streamOut.user = (rows==0 && cols==0) ? 1 : 0;
+			streamOut.last = (cols==WIDTH-1) ? 1 : 0;
 
-			inputStream << streamIn;
+			outputStream << streamOut;
 		}
 
 	// Call stream processing function
 //	while (!inputStream.empty())
 //	for (int pixels=0;pixels<HEIGHT*WIDTH;pixels++)
-		stream(inputStream, outputStream, l, c, r);
+		stream(outputStream, inputStream, l, c, r);
 
 
 	// Read output data
 	for (int rows=0; rows < HEIGHT; rows++)
 		for (int cols=0; cols < WIDTH; cols++)
 		{
-			outputStream.read(streamOut);
-			pixeldata[rows][cols] = streamOut.data;
+			inputStream.read(streamIn);
+			pixeldata[rows][cols] = streamIn.data;
 		}
 
 

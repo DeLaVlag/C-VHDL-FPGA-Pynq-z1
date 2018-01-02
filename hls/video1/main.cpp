@@ -1,6 +1,6 @@
 #include "main.h"
 
-void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t r)
+void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t l, uint8_t c, uint8_t r)
 {
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=&src
@@ -21,14 +21,14 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 	};
 
 	// Impulse
-/*	char kernel[KERNEL_SIZE*KERNEL_SIZE] = {
+/*	short kernel[KERNEL_SIZE*KERNEL_SIZE] = {
 			0, 0, 0,
 			0, 1, 0,
 			0, 0, 0,
 	};
 */
-	pixel_data streamIn;
-	pixel_data streamOut;
+	pixel_data_in streamIn;
+	pixel_data_out streamOut;
 	linebuffer lb;
 	window win;
 
@@ -86,7 +86,8 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 //		countWait++;
 //		if (countWait > waitTicks)
 //		{
-			streamOut.data = currentPixelValue;
+			int pixelConv2RGBA = currentPixelValue * 0x00010101;
+			streamOut.data = pixelConv2RGBA;
 			//streamOut.data = val;
 			streamOut.keep = streamIn.keep;
 			streamOut.strb = streamIn.strb;
@@ -99,7 +100,7 @@ void stream( pixel_stream &src, pixel_stream &dst, uint8_t l, uint8_t c, uint8_t
 //		}
 
 		// Administration
-				if (cols >= (WIDTH-1))
+				if (streamIn.last)
 					{
 						cols = 0;
 						rows++;
