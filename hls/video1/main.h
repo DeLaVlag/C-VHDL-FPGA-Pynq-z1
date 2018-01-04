@@ -19,9 +19,8 @@
 
 //user for full color functinolity:
 typedef ap_uint<24> uint24;
-//for full color:
-//typedef ap_axiu<24,1,1,1> pixel_data;
-//for grayscale:
+
+//splitting input and output type is essential for this pipeline
 typedef ap_axiu<8,1,1,1> pixel_data_in;
 typedef ap_axiu<32,1,1,1> pixel_data_out;
 
@@ -31,7 +30,9 @@ typedef hls::stream<pixel_data_out> pixel_stream_out;
 typedef hls::LineBuffer<3, WIDTH, short> linebuffer;
 typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> window;
 
-void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t l, uint8_t c, uint8_t r);
+typedef enum{EDGE, IMPULSE, BLUR, SOBEL}kernelchoice;
+
+void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernel, uint8_t c, uint8_t r);
 short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *window);
 
 

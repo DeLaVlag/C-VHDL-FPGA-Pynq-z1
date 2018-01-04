@@ -23,5 +23,5 @@ typedef hls::stream<pixel_data_out> pixel_stream_out;
 
 //typedef hls::stream<pixel_data> pixel_stream;
 
-void stream( pixel_stream_out &src, pixel_stream_in &dst, uint8_t l, uint8_t c, uint8_t r);
+void stream( pixel_stream_out &src, pixel_stream_in &dst, uint8_t kernel, uint8_t c, uint8_t r);
 

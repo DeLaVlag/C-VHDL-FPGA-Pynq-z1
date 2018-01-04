@@ -1,11 +1,11 @@
 #include "main.h"
 
-void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t l, uint8_t c, uint8_t r)
+void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uint8_t c, uint8_t r)
 {
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=&src
 #pragma HLS INTERFACE axis port=&dst
-#pragma HLS INTERFACE s_axilite port=l
+#pragma HLS INTERFACE s_axilite port=kernelchc
 #pragma HLS INTERFACE s_axilite port=c
 #pragma HLS INTERFACE s_axilite port=r
 //Force only 1 clockcycle between start times of consecutive loop iterations
@@ -13,20 +13,34 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t l, uint8_t c, 
 //Full unroll if factor = WIDTH*HEIGHT
 //#pragma HLS unroll factor=16
 
-	// Edge detection kernel
 	short kernel[KERNEL_SIZE*KERNEL_SIZE] = {
-			-1, -1, -1,
-			-1, 8, -1,
-			-1, -1, -1,
+							-1, -1, -1,
+							-1, 8, -1,
+							-1, -1, -1,
+	};
+	short kernelEdge[KERNEL_SIZE*KERNEL_SIZE] = {
+							-1, -1, -1,
+							-1, 8, -1,
+							-1, -1, -1,
+	};
+	char kernelImpulse[KERNEL_SIZE*KERNEL_SIZE] = {
+							0, 0, 0,
+							0, 1, 0,
+							0, 0, 0,
+	};
+	short kernelBlur[KERNEL_SIZE*KERNEL_SIZE] = {
+							1, 2, 1,
+							2, 4, 2,
+							1, 2, 1,
+	};
+	short kernelSobel[KERNEL_SIZE*KERNEL_SIZE] = {
+							-1, -2, -1,
+							 0, 0, 0,
+							1, 2, 1,
 	};
 
-	// Impulse
-/*	short kernel[KERNEL_SIZE*KERNEL_SIZE] = {
-			0, 0, 0,
-			0, 1, 0,
-			0, 0, 0,
-	};
-*/
+	uint8_t impulse=0;
+
 	pixel_data_in streamIn;
 	pixel_data_out streamOut;
 	linebuffer lb;
@@ -45,6 +59,51 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t l, uint8_t c, 
 
 		streamIn = src.read();
 //		src >> streamIn;
+
+		uint8_t kernelchoice=kernelchc;
+
+//		kernelchoice = 2;
+		switch(kernelchoice){
+
+			//edge
+			case 0:
+			{
+				for (int i=0;i<KERNEL_SIZE;i++)
+					kernel[i] = kernelEdge[i];
+				break;
+			}
+			//impulse
+			case 1:
+			{
+				for (int i=0;i<KERNEL_SIZE;i++)
+					kernel[i] = kernelImpulse[i];
+				impulse=1;
+				break;
+			}
+
+			//blur
+			case 2:
+			{
+				for (int i=0;i<KERNEL_SIZE;i++)
+					kernel[i] = kernelBlur[i];
+				break;
+			}
+			//sobel
+			case 3:
+			{
+				for (int i=0;i<KERNEL_SIZE;i++)
+					kernel[i] = kernelSobel[i];
+				break;
+			}
+			default:
+			{
+				for (int i=0;i<KERNEL_SIZE;i++)
+					kernel[i] = kernelEdge[i];
+				break;
+			}
+
+		}
+
 
 		//filling the buffers
 		//LineBuffer shift down, while contents shift up (?!).
@@ -72,10 +131,13 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t l, uint8_t c, 
 		{
 			// Convolution
 			currentPixelValue = pixelSummer(&win);
-			//normalizing for when kernel value is too big for datatype
-			//for edge kernel = 8 * 255 = 2040 < 2^16
-			//adjust the sensitivty of the edge detection
-			//currentPixelValue = currentPixelValue / 4;
+
+			if (impulse){
+				//normalizing for when kernel value is too big for datatype
+				//for edge kernel = 8 * 255 = 2040 < 2^16
+				//adjust the sensitivty of the edge detection
+				currentPixelValue = currentPixelValue / 2;
+			}
 			// Stay positive
 			if (currentPixelValue < 0)
 				currentPixelValue = 0;
@@ -88,7 +150,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t l, uint8_t c, 
 //		{
 			int pixelConv2RGBA = currentPixelValue * 0x00010101;
 			streamOut.data = pixelConv2RGBA;
-			//streamOut.data = val;
+			//streamOut.data = currentPixelValue;
 			streamOut.keep = streamIn.keep;
 			streamOut.strb = streamIn.strb;
 			streamOut.user = streamIn.user;
