@@ -32,7 +32,7 @@ typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> window;
 
 typedef enum{EDGE, IMPULSE, BLUR, SOBEL}kernelchoice;
 
-void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernel, uint8_t c, uint8_t r);
+void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernel, uint8_t normalfactor, uint8_t channelselector);
 short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *window);
 
 

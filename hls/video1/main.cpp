@@ -1,13 +1,13 @@
 #include "main.h"
 
-void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uint8_t c, uint8_t r)
+void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uint8_t normalfactor, uint8_t channelselector)
 {
 #pragma HLS INTERFACE ap_ctrl_none port=return
 #pragma HLS INTERFACE axis port=&src
 #pragma HLS INTERFACE axis port=&dst
 #pragma HLS INTERFACE s_axilite port=kernelchc
-#pragma HLS INTERFACE s_axilite port=c
-#pragma HLS INTERFACE s_axilite port=r
+#pragma HLS INTERFACE s_axilite port=normalfactor
+#pragma HLS INTERFACE s_axilite port=channelselector
 //Force only 1 clockcycle between start times of consecutive loop iterations
 //#pragma HLS PIPELINE II=1
 //Full unroll if factor = WIDTH*HEIGHT
@@ -23,7 +23,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 							-1, 8, -1,
 							-1, -1, -1,
 	};
-	char kernelImpulse[KERNEL_SIZE*KERNEL_SIZE] = {
+	short kernelImpulse[KERNEL_SIZE*KERNEL_SIZE] = {
 							0, 0, 0,
 							0, 1, 0,
 							0, 0, 0,
@@ -39,7 +39,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 							1, 2, 1,
 	};
 
-	uint8_t impulse=0;
+//	uint8_t normalfactor=0;
 
 	pixel_data_in streamIn;
 	pixel_data_out streamOut;
@@ -70,6 +70,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			{
 				for (int i=0;i<KERNEL_SIZE;i++)
 					kernel[i] = kernelEdge[i];
+//				normalfactor=1;
 				break;
 			}
 			//impulse
@@ -77,7 +78,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			{
 				for (int i=0;i<KERNEL_SIZE;i++)
 					kernel[i] = kernelImpulse[i];
-				impulse=1;
+//				normalfactor=4;
 				break;
 			}
 
@@ -86,6 +87,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			{
 				for (int i=0;i<KERNEL_SIZE;i++)
 					kernel[i] = kernelBlur[i];
+//				normalfactor=1;
 				break;
 			}
 			//sobel
@@ -93,18 +95,37 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			{
 				for (int i=0;i<KERNEL_SIZE;i++)
 					kernel[i] = kernelSobel[i];
+//				normalfactor=1;
+				break;
+			}
+			case 4:
+			{
+				if (channelselector==0)streamOut.data = streamIn.data * 0x01010101;
+				if (channelselector==1)streamOut.data = streamIn.data * 0x00010101;
+				if (channelselector==2)streamOut.data = streamIn.data * 0x00000101;
+				if (channelselector==3)streamOut.data = streamIn.data * 0x00000001;
+				if (channelselector==4)streamOut.data = streamIn.data;
+//				streamOut.data = streamIn.data;
+				streamOut.keep = streamIn.keep;
+				streamOut.strb = streamIn.strb;
+				streamOut.user = streamIn.user;
+				streamOut.last = streamIn.last;
+				streamOut.id = streamIn.id;
+				streamOut.dest = streamIn.dest;
+				dst.write(streamOut);
 				break;
 			}
 			default:
 			{
 				for (int i=0;i<KERNEL_SIZE;i++)
 					kernel[i] = kernelEdge[i];
+//				normalfactor=1;
 				break;
 			}
 
 		}
 
-
+if (kernelchoice!=4){
 		//filling the buffers
 		//LineBuffer shift down, while contents shift up (?!).
 		//Xilinx documentatie beweert het tegenovergestelde!
@@ -132,13 +153,12 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			// Convolution
 			currentPixelValue = pixelSummer(&win);
 
-			if (impulse){
 				//normalizing for when kernel value is too big for datatype
 				//for edge kernel = 8 * 255 = 2040 < 2^16
 				//adjust the sensitivty of the edge detection
-				currentPixelValue = currentPixelValue / 2;
-			}
-			// Stay positive
+				currentPixelValue = currentPixelValue / normalfactor;
+
+				// Stay positive
 			if (currentPixelValue < 0)
 				currentPixelValue = 0;
 
@@ -148,9 +168,9 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 //		countWait++;
 //		if (countWait > waitTicks)
 //		{
-			int pixelConv2RGBA = currentPixelValue * 0x00010101;
-			streamOut.data = pixelConv2RGBA;
-			//streamOut.data = currentPixelValue;
+//			int pixelConv2RGBA = currentPixelValue * 0x00010101;
+//			streamOut.data = pixelConv2RGBA;
+			streamOut.data = currentPixelValue;
 			streamOut.keep = streamIn.keep;
 			streamOut.strb = streamIn.strb;
 			streamOut.user = streamIn.user;
@@ -189,7 +209,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 //			// Send to the stream (Block if the FIFO receiver is full)
 //			dst.write(streamOut);
 //		}
-
+}
 }
 // Convolution by adding all the values in the windows buffer
 short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *resultfromlinesliding)

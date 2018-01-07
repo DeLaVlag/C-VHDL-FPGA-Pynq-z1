@@ -13,8 +13,8 @@ int main ()
 	pixel_stream_out outputStream;	//8
 	pixel_data_in streamIn;			//32
 	pixel_data_out streamOut;		//8
-	uint8_t l=0,c=255,r=0;
-	uint8_t kernel=1;
+	uint8_t normalfactor=1,channelselector=0;
+	uint8_t kernel=4;
 
 	// Read input image
 	cv::Mat sourceImg = cv::imread(INPUT_IMG);
@@ -39,7 +39,7 @@ int main ()
 	// Call stream processing function
 //	while (!inputStream.empty())
 //	for (int pixels=0;pixels<HEIGHT*WIDTH;pixels++)
-		stream(outputStream, inputStream, kernel, c, r);
+		stream(outputStream, inputStream, kernel, normalfactor, channelselector);
 
 
 	// Read output data
