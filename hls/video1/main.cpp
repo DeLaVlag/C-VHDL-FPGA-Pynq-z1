@@ -163,7 +163,7 @@ if (kernelchoice!=4){
 			}
 
 		// Stay within image boundaries and sum all pixel values in the window
-		short currentPixelValue = 0;
+		char currentPixelValue = 0;
 		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1))
 		{
 			// Convolution
