@@ -4,12 +4,8 @@
 
 #define WIDTH 1280
 #define HEIGHT 720
-
 #define KERNEL_SIZE 3
 
-// getting and setting of pixels
-// shifting in getters for normalizing to LSB
-// shifting in setters to place back at right position in 32 bit
 #define GR(v) ((v)&0x0000FF)
 #define GG(v) (((v)&0x00FF00)>>8)
 #define GB(v) (((v)&0xFF0000)>>16)
@@ -30,9 +26,30 @@ typedef hls::stream<pixel_data_out> pixel_stream_out;
 typedef hls::LineBuffer<3, WIDTH, short> linebuffer;
 typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> window;
 
-typedef enum{EDGE, IMPULSE, BLUR, SOBEL}kernelchoice;
+
+const short kernelEdge[KERNEL_SIZE*KERNEL_SIZE] = {
+	-1, -1, -1,
+	-1, 8, -1,
+	-1, -1, -1,
+};
+const short kernelImpulse[KERNEL_SIZE*KERNEL_SIZE] = {
+	0, 0, 0,
+	0, 1, 0,
+	0, 0, 0,
+};
+const short kernelBlur[KERNEL_SIZE*KERNEL_SIZE] = {
+	1, 2, 1,
+	2, 4, 2,
+	1, 2, 1,
+};
+const short kernelSobel[KERNEL_SIZE*KERNEL_SIZE] = {
+	-1, -2, -1,
+	0, 0, 0,
+	1, 2, 1,
+};
+
 
 void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernel, uint8_t normalfactor, uint8_t channelselector);
-short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *window);
+short window_sum(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *window);
 
 
