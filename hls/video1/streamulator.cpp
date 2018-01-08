@@ -13,7 +13,7 @@ int main ()
 	pixel_stream_out outputStream;	//8
 	pixel_data_in streamIn;			//32
 	pixel_data_out streamOut;		//8
-	uint8_t normalfactor=1,channelselector=0;
+	uint8_t normalfactor=1,channelselector=1;
 	uint8_t kernel=1;
 
 	// Read input image

@@ -16,7 +16,7 @@ typedef ap_uint<24> uint24;
 //typedef ap_axiu<24,1,1,1> pixel_data;
 //for grayscale
 typedef ap_axiu<32,1,1,1> pixel_data_in;
-typedef ap_axiu<8,1,1,1> pixel_data_out;
+typedef ap_axiu<32,1,1,1> pixel_data_out;
 
 typedef hls::stream<pixel_data_in> pixel_stream_in;
 typedef hls::stream<pixel_data_out> pixel_stream_out;

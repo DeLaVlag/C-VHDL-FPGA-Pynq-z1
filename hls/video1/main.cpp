@@ -87,7 +87,23 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			{
 				for (int i=0;i<KERNEL_SIZE;i++)
 					kernel[i] = kernelBlur[i];
-//				normalfactor=1;
+				normalfactor=1;
+
+//				int n = 2 * (int)(2 * sigma) + 3;
+//				float mean = (float)floor(n / 2.0);
+//				float kernelBlur[KERNELSZ * KERNELSIZE]; // variable length array
+//
+//				fprintf(stderr, "gaussian_filter: kernel size %d, sigma=%g\n",
+//						n, sigma);
+//				size_t c = 0;
+//				for (int i = 0; i < n; i++)
+//					for (int j = 0; j < n; j++) {
+//						kernel[c] = exp(-0.5 * (pow((i - mean) / sigma, 2.0) +
+//												pow((j - mean) / sigma, 2.0)))
+//									/ (2 * M_PI * sigma * sigma);
+//						c++;
+//					}
+
 				break;
 			}
 			//sobel
@@ -174,7 +190,7 @@ if (kernelchoice!=4){
 			if (channelselector==2)streamOut.data = currentPixelValue * 0x00000101;
 			if (channelselector==3)streamOut.data = currentPixelValue * 0x00000001;
 			if (channelselector==4)streamOut.data = currentPixelValue;
-			streamOut.data = currentPixelValue;
+//			streamOut.data = currentPixelValue;
 			streamOut.keep = streamIn.keep;
 			streamOut.strb = streamIn.strb;
 			streamOut.user = streamIn.user;

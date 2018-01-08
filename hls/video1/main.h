@@ -21,7 +21,7 @@
 typedef ap_uint<24> uint24;
 
 //splitting input and output type is essential for this pipeline
-typedef ap_axiu<8,1,1,1> pixel_data_in;
+typedef ap_axiu<32,1,1,1> pixel_data_in;
 typedef ap_axiu<32,1,1,1> pixel_data_out;
 
 typedef hls::stream<pixel_data_in> pixel_stream_in;
