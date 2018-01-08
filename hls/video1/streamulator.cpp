@@ -14,7 +14,7 @@ int main ()
 	pixel_data_in streamIn;			//32
 	pixel_data_out streamOut;		//8
 	uint8_t normalfactor=1,channelselector=0;
-	uint8_t kernel=4;
+	uint8_t kernel=1;
 
 	// Read input image
 	cv::Mat sourceImg = cv::imread(INPUT_IMG);

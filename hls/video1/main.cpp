@@ -168,8 +168,12 @@ if (kernelchoice!=4){
 //		countWait++;
 //		if (countWait > waitTicks)
 //		{
-//			int pixelConv2RGBA = currentPixelValue * 0x00010101;
-//			streamOut.data = pixelConv2RGBA;
+//
+			if (channelselector==0)streamOut.data = currentPixelValue * 0x01010101;
+			if (channelselector==1)streamOut.data = currentPixelValue * 0x00010101;
+			if (channelselector==2)streamOut.data = currentPixelValue * 0x00000101;
+			if (channelselector==3)streamOut.data = currentPixelValue * 0x00000001;
+			if (channelselector==4)streamOut.data = currentPixelValue;
 			streamOut.data = currentPixelValue;
 			streamOut.keep = streamIn.keep;
 			streamOut.strb = streamIn.strb;
