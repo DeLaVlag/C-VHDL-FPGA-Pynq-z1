@@ -49,10 +49,8 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	uint32_t slidefactor=0;
 	static uint32_t rows=0, cols=0;
 
-//	int waitTicks = (WIDTH*(KERNEL_SIZE-1)+KERNEL_SIZE)/2;// 241;
-//	int countWait = 0;
+	float sigma = 0.1; //kernelsize =3*3
 
-//	while (!src.empty()){
 	for (int pixels=0;pixels<HEIGHT*WIDTH;pixels++){
 #pragma HLS PIPELINE II=1
 //		dst.write(src.read());
@@ -68,7 +66,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			//edge
 			case 0:
 			{
-				for (int i=0;i<KERNEL_SIZE;i++)
+				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
 					kernel[i] = kernelEdge[i];
 //				normalfactor=1;
 				break;
@@ -76,7 +74,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			//impulse
 			case 1:
 			{
-				for (int i=0;i<KERNEL_SIZE;i++)
+				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
 					kernel[i] = kernelImpulse[i];
 //				normalfactor=4;
 				break;
@@ -85,31 +83,34 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			//blur
 			case 2:
 			{
-				for (int i=0;i<KERNEL_SIZE;i++)
-					kernel[i] = kernelBlur[i];
-				normalfactor=1;
-
+//				gaussian blur float kernel
 //				int n = 2 * (int)(2 * sigma) + 3;
 //				float mean = (float)floor(n / 2.0);
-//				float kernelBlur[KERNELSZ * KERNELSIZE]; // variable length array
-//
-//				fprintf(stderr, "gaussian_filter: kernel size %d, sigma=%g\n",
-//						n, sigma);
-//				size_t c = 0;
+//				float kernelBlur[KERNEL_SIZE * KERNEL_SIZE]; // variable length array
+////
+//				uint32_t c = 0;
 //				for (int i = 0; i < n; i++)
 //					for (int j = 0; j < n; j++) {
-//						kernel[c] = exp(-0.5 * (pow((i - mean) / sigma, 2.0) +
+//						kernelBlur[c] = exp(-0.5 * (pow((i - mean) / sigma, 2.0) +
 //												pow((j - mean) / sigma, 2.0)))
 //									/ (2 * M_PI * sigma * sigma);
 //						c++;
 //					}
+//				if (pixels==0){
+//					for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
+//						printf("%f\n", kernelBlur[i]);
+//				}
+
+				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
+					kernel[i] = kernelBlur[i];
+//				normalfactor=16;	//en.wikipedia.org/wiki/Kernel_(image_processing)
 
 				break;
 			}
 			//sobel
 			case 3:
 			{
-				for (int i=0;i<KERNEL_SIZE;i++)
+				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
 					kernel[i] = kernelSobel[i];
 //				normalfactor=1;
 				break;
@@ -133,7 +134,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			}
 			default:
 			{
-				for (int i=0;i<KERNEL_SIZE;i++)
+				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
 					kernel[i] = kernelEdge[i];
 //				normalfactor=1;
 				break;
@@ -141,96 +142,80 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 
 		}
 
-if (kernelchoice!=4){
-		//filling the buffers
-		//LineBuffer shift down, while contents shift up (?!).
-		//Xilinx documentatie beweert het tegenovergestelde!
-		lb.shift_pixels_down(cols);
-		lb.insert_top_row(streamIn.data,cols);
+		if (kernelchoice!=4){
 
-		// linebuffer values get multiplied by kernel and put in windowbuffer
-		//short val = 0;
-		FOR_X:for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
-			FOR_Y:for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
+			//LineBuffer shift down, while contents shift up (?!).
+			//Xilinx documentatie beweert het tegenovergestelde!
+			lb.shift_pixels_down(cols);
+			lb.insert_top_row(streamIn.data,cols);
+
+			convolution(&lb, slidefactor, kernel, &win);
+
+			// Stay within image boundaries and sum all pixel values in the window
+			char currentPixelValue = 0;
+			if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1))
 			{
-				// wCols + slidefactor, for sliding over buffer
-				short val = (short)lb.getval(wRows,wCols+slidefactor);
-
-				// kernel * linebufcontent and place in a 3x3 window
-				val = (short)kernel[(wRows*KERNEL_SIZE) + wCols ] * val;
-				//if(val<0)val=0;
-				win.insert(val,wRows,wCols);
-			}
-
-		// Stay within image boundaries and sum all pixel values in the window
-		char currentPixelValue = 0;
-		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1))
-		{
-			// Convolution
-			currentPixelValue = pixelSummer(&win);
+				// Convolution
+				currentPixelValue = pixelSummer(&win);
 
 				//normalizing for when kernel value is too big for datatype
 				//for edge kernel = 8 * 255 = 2040 < 2^16
 				//adjust the sensitivty of the edge detection
 				currentPixelValue = currentPixelValue / normalfactor;
 
-				// Stay positive
-			if (currentPixelValue < 0)
-				currentPixelValue = 0;
+					// Stay positive
+				if (currentPixelValue < 0)
+					currentPixelValue = 0;
 
-			//increasing the iterator for sliding window over the linebuffers for kernelmult
-			slidefactor++;
+				//increasing the iterator for sliding window over the linebuffers for kernelmult
+				slidefactor++;
+			}
+	//
+				if (channelselector==0)streamOut.data = currentPixelValue * 0x01010101;
+				if (channelselector==1)streamOut.data = currentPixelValue * 0x00010101;
+				if (channelselector==2)streamOut.data = currentPixelValue * 0x00000101;
+				if (channelselector==3)streamOut.data = currentPixelValue * 0x00000001;
+				if (channelselector==4)streamOut.data = currentPixelValue;
+	//			streamOut.data = currentPixelValue;
+				streamOut.keep = streamIn.keep;
+				streamOut.strb = streamIn.strb;
+				streamOut.user = streamIn.user;
+				streamOut.last = streamIn.last;
+				streamOut.id = streamIn.id;
+				streamOut.dest = streamIn.dest;
+				dst.write(streamOut);
+	//		}
+
+			// Administration
+				if (streamIn.last){
+					cols = 0;
+					rows++;
+					slidefactor = 0;
+				}
+				else
+					cols++;
+
 		}
-//		countWait++;
-//		if (countWait > waitTicks)
-//		{
-//
-			if (channelselector==0)streamOut.data = currentPixelValue * 0x01010101;
-			if (channelselector==1)streamOut.data = currentPixelValue * 0x00010101;
-			if (channelselector==2)streamOut.data = currentPixelValue * 0x00000101;
-			if (channelselector==3)streamOut.data = currentPixelValue * 0x00000001;
-			if (channelselector==4)streamOut.data = currentPixelValue;
-//			streamOut.data = currentPixelValue;
-			streamOut.keep = streamIn.keep;
-			streamOut.strb = streamIn.strb;
-			streamOut.user = streamIn.user;
-			streamOut.last = streamIn.last;
-			streamOut.id = streamIn.id;
-			streamOut.dest = streamIn.dest;
-			// Send to the stream (Block if the FIFO receiver is full)
-			dst.write(streamOut);
-//		}
-
-		// Administration
-				if (streamIn.last)
-					{
-						cols = 0;
-						rows++;
-						slidefactor = 0;
-					}
-					else
-						cols++;
 
 	}
+}
 
-//		for (countWait = 0; countWait < waitTicks; countWait++)
-//		{
-//			streamOut.data = 0;
-//			streamOut.keep = streamIn.keep;
-//			streamOut.strb = streamIn.strb;
-//			streamOut.user = streamIn.user;
-//			// Send last on the last item
-//			if (countWait < waitTicks - 1)
-//				streamOut.last = 0;
-//			else
-//				streamOut.last = 1;
-//			streamOut.id = streamIn.id;
-//			streamOut.dest = streamIn.dest;
-//			// Send to the stream (Block if the FIFO receiver is full)
-//			dst.write(streamOut);
-//		}
+void convolution(hls::LineBuffer<3, WIDTH, short> *linebuffer, int slidefactor,
+		short *kernel, hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *win){
+	// linebuffer values get multiplied by kernel and put in windowbuffer
+	for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
+		for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
+		{
+			// wCols + slidefactor, for sliding over buffer
+			short val = (short)linebuffer->getval(wRows,wCols+slidefactor);
+
+			// kernel * linebufcontent and place in a 3x3 window
+			val = (short)kernel[(wRows*KERNEL_SIZE) + wCols ] * val;
+			win->insert(val,wRows,wCols);
+		}
+
 }
-}
+
 // Convolution by adding all the values in the windows buffer
 short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *resultfromlinesliding)
 {

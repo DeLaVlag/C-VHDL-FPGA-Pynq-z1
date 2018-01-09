@@ -13,8 +13,12 @@ int main ()
 	pixel_stream_out outputStream;	//8
 	pixel_data_in streamIn;			//32
 	pixel_data_out streamOut;		//8
-	uint8_t normalfactor=1,channelselector=0;
-	uint8_t kernel=0;
+
+	uint8_t normalfactor=1;
+	uint8_t channelselector=0;
+
+	//0:edge;1:impulse;2:blur;3:sobel;4:tie
+	uint8_t kernel=1;
 
 	// Read input image
 	cv::Mat sourceImg = cv::imread(INPUT_IMG);
