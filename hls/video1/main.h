@@ -30,6 +30,9 @@ typedef hls::stream<pixel_data_out> pixel_stream_out;
 typedef hls::LineBuffer<3, WIDTH, short> linebuffer;
 typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> window;
 
+typedef hls::LineBuffer<3, WIDTH, char> char_linebuffer;
+typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,char> char_window;
+
 typedef enum{EDGE, IMPULSE, BLUR, SOBEL}kernelchoice;
 
 void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernel, uint8_t normalfactor, uint8_t channelselector);
@@ -37,3 +40,5 @@ short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *window);
 void convolution(hls::LineBuffer<3, WIDTH, short> *linebuffer, int slidefactor,
 		short kernel[KERNEL_SIZE*KERNEL_SIZE], hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *win);
 
+void convolution2(hls::LineBuffer<3, WIDTH, short> *linebuffer, int slidefactor,
+		short kernel[KERNEL_SIZE*KERNEL_SIZE], hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *win);

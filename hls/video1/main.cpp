@@ -44,9 +44,12 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	pixel_data_in streamIn;
 	pixel_data_out streamOut;
 	linebuffer lb;
+	static linebuffer lb2;
 	window win;
+	static window win2;
 
 	uint32_t slidefactor=0;
+	uint32_t Gslidefactor=0;
 	static uint32_t rows=0, cols=0;
 
 	float sigma = 0.1; //kernelsize =3*3
@@ -153,37 +156,41 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 
 			// Stay within image boundaries and sum all pixel values in the window
 			char currentPixelValue = 0;
-			if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1))
-			{
-				// Convolution
+			if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
 				currentPixelValue = pixelSummer(&win);
-
-				//normalizing for when kernel value is too big for datatype
-				//for edge kernel = 8 * 255 = 2040 < 2^16
-				//adjust the sensitivty of the edge detection
 				currentPixelValue = currentPixelValue / normalfactor;
+				if (currentPixelValue < 0) currentPixelValue = 0;
 
-					// Stay positive
-				if (currentPixelValue < 0)
-					currentPixelValue = 0;
-
-				//increasing the iterator for sliding window over the linebuffers for kernelmult
 				slidefactor++;
 			}
-	//
-				if (channelselector==0)streamOut.data = currentPixelValue * 0x01010101;
-				if (channelselector==1)streamOut.data = currentPixelValue * 0x00010101;
-				if (channelselector==2)streamOut.data = currentPixelValue * 0x00000101;
-				if (channelselector==3)streamOut.data = currentPixelValue * 0x00000001;
-				if (channelselector==4)streamOut.data = currentPixelValue;
-	//			streamOut.data = currentPixelValue;
-				streamOut.keep = streamIn.keep;
-				streamOut.strb = streamIn.strb;
-				streamOut.user = streamIn.user;
-				streamOut.last = streamIn.last;
-				streamOut.id = streamIn.id;
-				streamOut.dest = streamIn.dest;
-				dst.write(streamOut);
+
+			currentPixelValue = (short) currentPixelValue;
+			lb2.shift_pixels_down(cols);
+			lb2.insert_top_row(currentPixelValue,cols);
+
+			convolution2(&lb2, Gslidefactor, kernelSobel, &win2);
+
+			char GcurrentPixelValue = 0;
+				if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
+					GcurrentPixelValue = pixelSummer(&win2);
+					GcurrentPixelValue = GcurrentPixelValue / normalfactor;
+					if (GcurrentPixelValue < 0) GcurrentPixelValue = 0;
+
+					Gslidefactor++;
+				}
+
+			if (channelselector==0)streamOut.data = GcurrentPixelValue * 0x01010101;
+			if (channelselector==1)streamOut.data = GcurrentPixelValue * 0x00010101;
+			if (channelselector==2)streamOut.data = GcurrentPixelValue * 0x00000101;
+			if (channelselector==3)streamOut.data = GcurrentPixelValue * 0x00000001;
+			if (channelselector==4)streamOut.data = GcurrentPixelValue;
+			streamOut.keep = streamIn.keep;
+			streamOut.strb = streamIn.strb;
+			streamOut.user = streamIn.user;
+			streamOut.last = streamIn.last;
+			streamOut.id = streamIn.id;
+			streamOut.dest = streamIn.dest;
+			dst.write(streamOut);
 	//		}
 
 			// Administration
@@ -200,8 +207,23 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	}
 }
 
-void convolution(hls::LineBuffer<3, WIDTH, short> *linebuffer, int slidefactor,
-		short *kernel, hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *win){
+void convolution2(linebuffer *linebuffer, int slidefactor, short *kernel, window *win){
+	// linebuffer values get multiplied by kernel and put in windowbuffer
+	for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
+		for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
+		{
+			// wCols + slidefactor, for sliding over buffer
+			short val = (short)linebuffer->getval(wRows,wCols+slidefactor);
+
+			// kernel * linebufcontent and place in a 3x3 window
+			val = (short)kernel[(wRows*KERNEL_SIZE) + wCols ] * val;
+			win->insert(val,wRows,wCols);
+		}
+
+}
+
+
+void convolution(linebuffer *linebuffer, int slidefactor, short *kernel, window *win){
 	// linebuffer values get multiplied by kernel and put in windowbuffer
 	for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
 		for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
