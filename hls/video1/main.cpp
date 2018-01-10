@@ -157,8 +157,12 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			lb.shift_pixels_down(cols);
 			lb.insert_top_row(streamIn.data,cols);
 
-			convolution(&lb, slidefactor, kernel, &blurWin);
 
+			////////////////////////////////////////////////////////////
+			//Gaussian Blurring
+			////////////////////////////////////////////////////////////
+
+			convolution(&lb, slidefactor, kernel, &blurWin);
 
 			char currentPixelValue = 0;
 			char GPV = 0;
@@ -171,6 +175,10 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 				slidefactor++;
 
 			}
+
+			////////////////////////////////////////////////////////////
+			//Gradient calculation
+			////////////////////////////////////////////////////////////
 
 			//casting to short for generic function convolution
 			currentPixelValue = (short) currentPixelValue;
@@ -193,6 +201,18 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 
 					Gslidefactor++;
 				}
+
+			////////////////////////////////////////////////////////////
+			//Non maximum suppression
+			////////////////////////////////////////////////////////////
+
+			////////////////////////////////////////////////////////////
+			//Tracing edges with hysteresis
+			////////////////////////////////////////////////////////////
+
+			////////////////////////////////////////////////////////////
+			//Outputting
+			////////////////////////////////////////////////////////////
 
 //			if (channelselector==0)streamOut.data = gxycpv * 0x01010101;
 //			if (channelselector==1)streamOut.data = gxycpv * 0x00010101;
