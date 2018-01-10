@@ -33,20 +33,25 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 							2, 4, 2,
 							1, 2, 1,
 	};
-	short kernelSobel[KERNEL_SIZE*KERNEL_SIZE] = {
-							-1, -2, -1,
-							 0, 0, 0,
+	short kernelSobelY[KERNEL_SIZE*KERNEL_SIZE] = {
 							1, 2, 1,
+							0, 0, 0,
+							-1, -2, -1,
 	};
+	short kernelSobelX[KERNEL_SIZE*KERNEL_SIZE] = {
+							-1, 0, 1,
+							-2, 0, 2,
+							-1, 0, 1,
+		};
 
 //	uint8_t normalfactor=0;
 
 	pixel_data_in streamIn;
 	pixel_data_out streamOut;
 	linebuffer lb;
-	static linebuffer lb2;
-	window win;
-	static window win2;
+	linebuffer lb2;
+	window blurWin;
+	window gxWin, gyWin;
 
 	uint32_t slidefactor=0;
 	uint32_t Gslidefactor=0;
@@ -114,7 +119,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			case 3:
 			{
 				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-					kernel[i] = kernelSobel[i];
+					kernel[i] = kernelSobelY[i];
 //				normalfactor=1;
 				break;
 			}
@@ -152,38 +157,48 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			lb.shift_pixels_down(cols);
 			lb.insert_top_row(streamIn.data,cols);
 
-			convolution(&lb, slidefactor, kernel, &win);
+			convolution(&lb, slidefactor, kernel, &blurWin);
 
-			// Stay within image boundaries and sum all pixel values in the window
+
 			char currentPixelValue = 0;
+			char GPV = 0;
+			//First 2 rows and cols have no pixel values thus calc start at row 2 and col 2
 			if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
-				currentPixelValue = pixelSummer(&win);
+				currentPixelValue = pixelSummer(&blurWin);
 				currentPixelValue = currentPixelValue / normalfactor;
 				if (currentPixelValue < 0) currentPixelValue = 0;
 
 				slidefactor++;
+
 			}
 
+			//casting to short for generic function convolution
 			currentPixelValue = (short) currentPixelValue;
 			lb2.shift_pixels_down(cols);
 			lb2.insert_top_row(currentPixelValue,cols);
 
-			convolution2(&lb2, Gslidefactor, kernelSobel, &win2);
+			//performing sobelx and sobely convolution for gradient calculation
+			convolution(&lb2, Gslidefactor, kernelSobelX, &gxWin);
+			convolution(&lb2, Gslidefactor, kernelSobelY, &gyWin);
 
-			char GcurrentPixelValue = 0;
+			//summing the results of both gradient conv and taking the hypot between both values
+			char gxcpv, gycpv, gxycpv = 0;
 				if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
-					GcurrentPixelValue = pixelSummer(&win2);
-					GcurrentPixelValue = GcurrentPixelValue / normalfactor;
-					if (GcurrentPixelValue < 0) GcurrentPixelValue = 0;
+					gxcpv = pixelSummer(&gxWin);
+					gycpv = pixelSummer(&gyWin);
+//					gxcpv = gxcpv / normalfactor;
+					if (gxcpv < 0) gxcpv = 0;
+					if (gycpv < 0) gycpv = 0;
+					gxycpv = hypot(gxcpv,gycpv);
 
 					Gslidefactor++;
 				}
 
-			if (channelselector==0)streamOut.data = GcurrentPixelValue * 0x01010101;
-			if (channelselector==1)streamOut.data = GcurrentPixelValue * 0x00010101;
-			if (channelselector==2)streamOut.data = GcurrentPixelValue * 0x00000101;
-			if (channelselector==3)streamOut.data = GcurrentPixelValue * 0x00000001;
-			if (channelselector==4)streamOut.data = GcurrentPixelValue;
+//			if (channelselector==0)streamOut.data = gxycpv * 0x01010101;
+//			if (channelselector==1)streamOut.data = gxycpv * 0x00010101;
+//			if (channelselector==2)streamOut.data = gxycpv * 0x00000101;
+//			if (channelselector==3)streamOut.data = gxycpv;
+			streamOut.data = gxycpv;
 			streamOut.keep = streamIn.keep;
 			streamOut.strb = streamIn.strb;
 			streamOut.user = streamIn.user;
@@ -198,28 +213,13 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 					cols = 0;
 					rows++;
 					slidefactor = 0;
+					Gslidefactor = 0;
 				}
 				else
 					cols++;
-
 		}
 
 	}
-}
-
-void convolution2(linebuffer *linebuffer, int slidefactor, short *kernel, window *win){
-	// linebuffer values get multiplied by kernel and put in windowbuffer
-	for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
-		for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
-		{
-			// wCols + slidefactor, for sliding over buffer
-			short val = (short)linebuffer->getval(wRows,wCols+slidefactor);
-
-			// kernel * linebufcontent and place in a 3x3 window
-			val = (short)kernel[(wRows*KERNEL_SIZE) + wCols ] * val;
-			win->insert(val,wRows,wCols);
-		}
-
 }
 
 
@@ -235,7 +235,6 @@ void convolution(linebuffer *linebuffer, int slidefactor, short *kernel, window 
 			val = (short)kernel[(wRows*KERNEL_SIZE) + wCols ] * val;
 			win->insert(val,wRows,wCols);
 		}
-
 }
 
 // Convolution by adding all the values in the windows buffer

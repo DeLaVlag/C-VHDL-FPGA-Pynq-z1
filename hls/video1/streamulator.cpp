@@ -18,7 +18,7 @@ int main ()
 	uint8_t channelselector=0;
 
 	//0:edge;1:impulse;2:blur;3:sobel;4:tie
-	uint8_t kernel=1;
+	uint8_t kernel=2;
 
 	// Read input image
 	cv::Mat sourceImg = cv::imread(INPUT_IMG);

@@ -40,5 +40,4 @@ short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *window);
 void convolution(hls::LineBuffer<3, WIDTH, short> *linebuffer, int slidefactor,
 		short kernel[KERNEL_SIZE*KERNEL_SIZE], hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *win);
 
-void convolution2(hls::LineBuffer<3, WIDTH, short> *linebuffer, int slidefactor,
-		short kernel[KERNEL_SIZE*KERNEL_SIZE], hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *win);
+void output(uint8_t channelselector, char currentPixelValue, pixel_stream_in streamIn, pixel_stream_out streamOut);
