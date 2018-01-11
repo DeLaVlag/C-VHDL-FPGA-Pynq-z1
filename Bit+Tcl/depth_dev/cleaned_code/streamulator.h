@@ -7,8 +7,8 @@
 #define WIDTH 1280
 #define HEIGHT 720
 
-#define INPUT_IMG       "C:\\Users\\yoflippo\\Documents\\PYNQ_lab6\\PYNQ\\PYNQ\\hls\\video1\\testimage.png"
-#define OUTPUT_IMG      "C:\\Users\\yoflippo\\Documents\\PYNQ_lab6\\PYNQ\\PYNQ\\hls\\video1\\OUTPUT.bmp"
+#define INPUT_IMG       "D:\\Studie\\RCD\\PYNQ\\PYNQ\\hls\\video1\\download.bmp"
+#define OUTPUT_IMG 		"D:\\Studie\\RCD\\PYNQ\\PYNQ\\hls\\video1\\lbresult.bmp"
 
 typedef ap_axiu<32,1,1,1> pixel_data_in;
 typedef ap_axiu<32,1,1,1> pixel_data_out;
