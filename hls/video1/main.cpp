@@ -49,12 +49,14 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	pixel_data_in streamIn;
 	pixel_data_out streamOut;
 	linebuffer lb;
-	linebuffer lb2;
+	linebuffer lb_gxy;
+	linebuffer lb_nms;
 	window blurWin;
-	window gxWin, gyWin;
+	window gxWin, gyWin, nonMaxSupWin;
 
 	uint32_t slidefactor=0;
 	uint32_t Gslidefactor=0;
+	uint32_t NMS_slidefactor=0;
 	static uint32_t rows=0, cols=0;
 
 	float sigma = 0.1; //kernelsize =3*3
@@ -182,12 +184,12 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 
 			//casting to short for generic function convolution
 			currentPixelValue = (short) currentPixelValue;
-			lb2.shift_pixels_down(cols);
-			lb2.insert_top_row(currentPixelValue,cols);
+			lb_gxy.shift_pixels_down(cols);
+			lb_gxy.insert_top_row(currentPixelValue,cols);
 
 			//performing sobelx and sobely convolution for gradient calculation
-			convolution(&lb2, Gslidefactor, kernelSobelX, &gxWin);
-			convolution(&lb2, Gslidefactor, kernelSobelY, &gyWin);
+			convolution(&lb_gxy, Gslidefactor, kernelSobelX, &gxWin);
+			convolution(&lb_gxy, Gslidefactor, kernelSobelY, &gyWin);
 
 			//summing the results of both gradient conv and taking the hypot between both values
 			char gxcpv, gycpv, gxycpv = 0;
@@ -206,6 +208,21 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			//Non maximum suppression
 			////////////////////////////////////////////////////////////
 
+			//putting gpxypv in windowbuffer for nonMaxSupr
+			gxycpv = (short) gxycpv;
+			lb_nms.shift_pixels_down(cols);
+			lb_nms.insert_top_row(gxycpv,cols);
+
+			char nonmaxsFA, nonmaxRes = 0;
+				if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
+
+					setWinNMS(&lb_nms,&nonMaxSupWin,NMS_slidefactor);
+					nonmaxsFA = (fmod(atan2(gycpv,gxcpv) + M_PI, M_PI) / M_PI) * 8;
+					nonmaxRes = nonMaxSupr(nonmaxsFA,&nonMaxSupWin);
+
+					NMS_slidefactor++;
+				}
+
 			////////////////////////////////////////////////////////////
 			//Tracing edges with hysteresis
 			////////////////////////////////////////////////////////////
@@ -218,7 +235,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 //			if (channelselector==1)streamOut.data = gxycpv * 0x00010101;
 //			if (channelselector==2)streamOut.data = gxycpv * 0x00000101;
 //			if (channelselector==3)streamOut.data = gxycpv;
-			streamOut.data = gxycpv;
+			streamOut.data = nonmaxRes;
 			streamOut.keep = streamIn.keep;
 			streamOut.strb = streamIn.strb;
 			streamOut.user = streamIn.user;
@@ -234,6 +251,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 					rows++;
 					slidefactor = 0;
 					Gslidefactor = 0;
+					NMS_slidefactor = 0;
 				}
 				else
 					cols++;
@@ -242,6 +260,44 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	}
 }
 
+//calculating non max supression of a window with gradient results
+short nonMaxSupr(char curN, window *nmsWin){
+
+	uint16_t ne = nmsWin->getval(0,0);
+	uint16_t ee = nmsWin->getval(0,1);
+	uint16_t se = nmsWin->getval(0,2);
+	uint16_t nn = nmsWin->getval(1,0);
+	uint16_t ctr = nmsWin->getval(1,1);
+	uint16_t ss = nmsWin->getval(1,2);
+	uint16_t nw = nmsWin->getval(2,0);
+	uint16_t ww = nmsWin->getval(2,1);
+	uint16_t sw = nmsWin->getval(2,2);
+	uint16_t result = 0;
+
+
+	if (((curN <= 1 || curN > 7) && ctr > ee && ctr > ww) || // 0 deg
+		((curN > 1 && curN <= 3) && ctr > nw && ctr > se) || // 45 deg
+		((curN > 3 && curN <= 5) && ctr > nn && ctr > ss) || // 90 deg
+		((curN > 5 && curN <= 7) && ctr > ne && ctr > sw))   // 135 deg
+
+		result = ctr;
+	else
+		result = 0;
+
+	return result;
+}
+
+void setWinNMS(linebuffer *lb_nms, window *nonMaxSupWin,int slidefactor){
+	for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
+			for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
+			{
+				// wCols + slidefactor, for sliding over buffer
+				short val = (short)lb_nms->getval(wRows,wCols+slidefactor);
+
+				// place result in a 3x3 window
+				nonMaxSupWin->insert(val,wRows,wCols);
+			}
+}
 
 void convolution(linebuffer *linebuffer, int slidefactor, short *kernel, window *win){
 	// linebuffer values get multiplied by kernel and put in windowbuffer
