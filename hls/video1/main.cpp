@@ -49,17 +49,34 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	pixel_data_in streamIn;
 	pixel_data_out streamOut;
 	linebuffer lb;
+#pragma HLS RESOURCE variable=lb core=RAM_2P_BRAM
+//#pragma HLS ARRAY_PARTITION variable=lb cyclic factor=3
+#pragma HLS DEPENDENCE variable=lb intra false
+
+//#pragma HLS array_partition variable=lb complete
 	linebuffer lb_gxy;
+//#pragma HLS RESOURCE variable=lb_gxy core=RAM_2P
+//#pragma HLS ARRAY_PARTITION variable=lb_gxy complete dim=1
+//#pragma HLS DEPENDENCE variable=lb_gxy array inter false
+//#pragma HLS array_partition variable=lb_gxy complete
+
+//#pragma HLS ARRAY_MAP variable=lb instance=linebuffer6 horizontal
+//#pragma HLS ARRAY_MAP variable=lb_gxy instance=linebuffer6 horizontal
+
 	linebuffer lb_nms;
+	linebuffer lb_teh;
 	window blurWin;
-	window gxWin, gyWin, nonMaxSupWin;
+	window gxWin, gyWin;
+	window nonMaxSupWin;
+	window tehWinRes, tehWinCur;
+
 
 	uint32_t slidefactor=0;
 	uint32_t Gslidefactor=0;
 	uint32_t NMS_slidefactor=0;
-	static uint32_t rows=0, cols=0;
+	uint32_t EdgSlide=0;
 
-	float sigma = 0.1; //kernelsize =3*3
+	static uint32_t rows=0, cols=0;
 
 	for (int pixels=0;pixels<HEIGHT*WIDTH;pixels++){
 #pragma HLS PIPELINE II=1
@@ -156,6 +173,8 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 
 			//LineBuffer shift down, while contents shift up (?!).
 			//Xilinx documentatie beweert het tegenovergestelde!
+//#pragma HLS RESOURCE variable=lb core=RAM_2P
+
 			lb.shift_pixels_down(cols);
 			lb.insert_top_row(streamIn.data,cols);
 
@@ -164,15 +183,15 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			//Gaussian Blurring
 			////////////////////////////////////////////////////////////
 
-			convolution(&lb, slidefactor, kernel, &blurWin);
+			convolution(&lb, slidefactor, kernel, &blurWin, normalfactor);
 
-			char currentPixelValue = 0;
-			char GPV = 0;
+			short blurVal = 0;
+			short GPV = 0;
 			//First 2 rows and cols have no pixel values thus calc start at row 2 and col 2
 			if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
-				currentPixelValue = pixelSummer(&blurWin);
-				currentPixelValue = currentPixelValue / normalfactor;
-				if (currentPixelValue < 0) currentPixelValue = 0;
+				blurVal = pixelSummer(&blurWin);
+//				blurVal = blurVal / normalfactor;
+				if (blurVal < 0) blurVal = 0;
 
 				slidefactor++;
 
@@ -183,16 +202,16 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			////////////////////////////////////////////////////////////
 
 			//casting to short for generic function convolution
-			currentPixelValue = (short) currentPixelValue;
+			blurVal = (short) blurVal;
 			lb_gxy.shift_pixels_down(cols);
-			lb_gxy.insert_top_row(currentPixelValue,cols);
+			lb_gxy.insert_top_row(blurVal,cols);
 
 			//performing sobelx and sobely convolution for gradient calculation
-			convolution(&lb_gxy, Gslidefactor, kernelSobelX, &gxWin);
-			convolution(&lb_gxy, Gslidefactor, kernelSobelY, &gyWin);
+			convolution(&lb_gxy, Gslidefactor, kernelSobelX, &gxWin, 0);
+			convolution(&lb_gxy, Gslidefactor, kernelSobelY, &gyWin, 0);
 
 			//summing the results of both gradient conv and taking the hypot between both values
-			char gxcpv, gycpv, gxycpv = 0;
+			short gxcpv, gycpv, gxycpv = 0;
 				if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
 					gxcpv = pixelSummer(&gxWin);
 					gycpv = pixelSummer(&gyWin);
@@ -208,15 +227,15 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			//Non maximum suppression
 			////////////////////////////////////////////////////////////
 
-			//putting gpxypv in windowbuffer for nonMaxSupr
+//			//putting gpxypv in windowbuffer for nonMaxSupr
 			gxycpv = (short) gxycpv;
 			lb_nms.shift_pixels_down(cols);
 			lb_nms.insert_top_row(gxycpv,cols);
 
-			char nonmaxsFA, nonmaxRes = 0;
+			short nonmaxsFA, nonmaxRes = 0;
 				if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
 
-					setWinNMS(&lb_nms,&nonMaxSupWin,NMS_slidefactor);
+					setWin(&lb_nms,&nonMaxSupWin,NMS_slidefactor);
 					nonmaxsFA = (fmod(atan2(gycpv,gxcpv) + M_PI, M_PI) / M_PI) * 8;
 					nonmaxRes = nonMaxSupr(nonmaxsFA,&nonMaxSupWin);
 
@@ -227,15 +246,46 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			//Tracing edges with hysteresis
 			////////////////////////////////////////////////////////////
 
+			//init tehWin
+			if (rows==0)
+				for (int thxi=0;thxi<KERNEL_SIZE;thxi++)
+					for (int thyi=0;thyi<KERNEL_SIZE;thyi++)
+						tehWinRes.insert(0,thxi,thyi);
+
+			nonmaxRes = (short) nonmaxRes;
+			lb_teh.shift_pixels_down(cols);
+			lb_teh.insert_top_row(nonmaxRes,cols);
+
+			setWin(&lb_teh,&tehWinCur,EdgSlide);
+
+			short tmax=50, tmin=45;
+			if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
+
+				 if (tehWinCur.getval(1,1) >= tmax && tehWinRes.getval(1,1) == 0) { // trace edges
+					 tehWinRes.insert(MAX_BRIGHTNESS,1,1);
+
+					 //Checking the neighbours
+					 for (int thx=0;thx<KERNEL_SIZE;thx++)
+						for (int thy=0;thy<KERNEL_SIZE;thy++)
+							if ((tehWinCur.getval(thx,thy) >= tmin) && (tehWinRes.getval(thx,thy)==0))
+								tehWinRes.insert(MAX_BRIGHTNESS,thx,thy);
+
+				 }
+
+				 EdgSlide++;
+			}
 			////////////////////////////////////////////////////////////
 			//Outputting
 			////////////////////////////////////////////////////////////
 
-//			if (channelselector==0)streamOut.data = gxycpv * 0x01010101;
-//			if (channelselector==1)streamOut.data = gxycpv * 0x00010101;
-//			if (channelselector==2)streamOut.data = gxycpv * 0x00000101;
-//			if (channelselector==3)streamOut.data = gxycpv;
-			streamOut.data = nonmaxRes;
+//			if (channelselector==0)streamOut.data = (char)gxycpv * 0x01010101;
+//			if (channelselector==1)streamOut.data = (char)gxycpv * 0x00010101;
+//			if (channelselector==2)streamOut.data = (char)gxycpv * 0x00000101;
+//			if (channelselector==3)streamOut.data = (char)gxycpv;
+//			if (channelselector==4)streamOut.data = (char)blurVal * 0x01010101;
+//			if (channelselector==5)streamOut.data = (char)blurVal;
+//			if (channelselector==6)streamOut.data = (char)blurVal * 0x00010101;
+			streamOut.data = tehWinRes.getval(1,1);
 			streamOut.keep = streamIn.keep;
 			streamOut.strb = streamIn.strb;
 			streamOut.user = streamIn.user;
@@ -252,6 +302,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 					slidefactor = 0;
 					Gslidefactor = 0;
 					NMS_slidefactor = 0;
+					EdgSlide=0;
 				}
 				else
 					cols++;
@@ -261,7 +312,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 }
 
 //calculating non max supression of a window with gradient results
-short nonMaxSupr(char curN, window *nmsWin){
+short nonMaxSupr(short curN, window *nmsWin){
 
 	uint16_t ne = nmsWin->getval(0,0);
 	uint16_t ee = nmsWin->getval(0,1);
@@ -287,7 +338,7 @@ short nonMaxSupr(char curN, window *nmsWin){
 	return result;
 }
 
-void setWinNMS(linebuffer *lb_nms, window *nonMaxSupWin,int slidefactor){
+void setWin(linebuffer *lb_nms, window *nonMaxSupWin,int slidefactor){
 	for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
 			for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
 			{
@@ -299,16 +350,18 @@ void setWinNMS(linebuffer *lb_nms, window *nonMaxSupWin,int slidefactor){
 			}
 }
 
-void convolution(linebuffer *linebuffer, int slidefactor, short *kernel, window *win){
+void convolution(linebuffer *linebuffer, int slidefactor, short *kernel, window *win, int shft){
 	// linebuffer values get multiplied by kernel and put in windowbuffer
 	for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
 		for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
 		{
 			// wCols + slidefactor, for sliding over buffer
 			short val = (short)linebuffer->getval(wRows,wCols+slidefactor);
+#pragma HLS RESOURCE variable=linebuffer core=RAM_T2P_BRAM latency=1
+#pragma HLS ARRAY_PARTITION variable=linebuffer complete dim=1
 
 			// kernel * linebufcontent and place in a 3x3 window
-			val = (short)kernel[(wRows*KERNEL_SIZE) + wCols ] * val;
+			val = ((short)kernel[(wRows*KERNEL_SIZE) + wCols ] * val)>>shft;
 			win->insert(val,wRows,wCols);
 		}
 }

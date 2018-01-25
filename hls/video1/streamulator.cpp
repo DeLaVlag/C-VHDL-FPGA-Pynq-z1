@@ -14,8 +14,8 @@ int main ()
 	pixel_data_in streamIn;			//32
 	pixel_data_out streamOut;		//8
 
-	uint8_t normalfactor=1;
-	uint8_t channelselector=0;
+	uint8_t normalfactor=4;
+	uint8_t channelselector=4;
 
 	//0:edge;1:impulse;2:blur;3:sobel;4:tie
 	uint8_t kernel=2;
