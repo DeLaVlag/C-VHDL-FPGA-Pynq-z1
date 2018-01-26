@@ -30,12 +30,12 @@ typedef hls::stream<pixel_data_in> pixel_stream_in;
 typedef hls::stream<pixel_data_out> pixel_stream_out;
 
 typedef hls::LineBuffer<3, WIDTH, short> linebuffer;
-typedef hls::LineBuffer<6, WIDTH, short> linebuffer6;
+//typedef hls::LineBuffer<6, WIDTH, short> linebuffer1280;
 
 typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> window;
 
-typedef hls::LineBuffer<3, WIDTH, short> short_linebuffer;
-typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> short_window;
+//typedef hls::LineBuffer<3, WIDTH, short> short_linebuffer;
+typedef hls::Window<KERNEL_SIZE,WIDTH,short> width_window;
 
 typedef enum{EDGE, IMPULSE, BLUR, SOBEL}kernelchoice;
 

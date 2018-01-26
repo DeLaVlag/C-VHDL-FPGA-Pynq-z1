@@ -70,6 +70,9 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	window nonMaxSupWin;
 	window tehWinRes, tehWinCur;
 
+	//window the size of width*kernelsize for edges result
+	width_window tehWWin;
+
 
 	uint32_t slidefactor=0;
 	uint32_t Gslidefactor=0;
@@ -249,8 +252,8 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			//init tehWin
 			if (rows==0)
 				for (int thxi=0;thxi<KERNEL_SIZE;thxi++)
-					for (int thyi=0;thyi<KERNEL_SIZE;thyi++)
-						tehWinRes.insert(0,thxi,thyi);
+					for (int thyi=0;thyi<WIDTH;thyi++)
+						tehWWin.insert(0,thxi,thyi);
 
 			nonmaxRes = (short) nonmaxRes;
 			lb_teh.shift_pixels_down(cols);
@@ -258,21 +261,25 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 
 			setWin(&lb_teh,&tehWinCur,EdgSlide);
 
-			short tmax=50, tmin=45;
+			short tmax=50, tmin=45, tehRes, wwgetval;
 			if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
 
-				 if (tehWinCur.getval(1,1) >= tmax && tehWinRes.getval(1,1) == 0) { // trace edges
-					 tehWinRes.insert(MAX_BRIGHTNESS,1,1);
+//				setWin(&lb_teh,&tehWinCur,EdgSlide);
+				wwgetval = tehWWin.getval(1,cols-1);
+
+				 if (tehWinCur.getval(1,1) >= tmax || wwgetval == MAX_BRIGHTNESS) { // trace edges
+					 if (wwgetval!=MAX_BRIGHTNESS)tehWWin.insert(MAX_BRIGHTNESS,1,cols-1);
 
 					 //Checking the neighbours
 					 for (int thx=0;thx<KERNEL_SIZE;thx++)
 						for (int thy=0;thy<KERNEL_SIZE;thy++)
-							if ((tehWinCur.getval(thx,thy) >= tmin) && (tehWinRes.getval(thx,thy)==0))
-								tehWinRes.insert(MAX_BRIGHTNESS,thx,thy);
-
+							if ((tehWinCur.getval(thx,thy) >= tmin) && (tehWWin.getval(thx,(cols-2+thy))!=MAX_BRIGHTNESS))
+								tehWWin.insert(MAX_BRIGHTNESS,thx,(cols-2+thy));
+//
 				 }
 
-				 EdgSlide++;
+				tehRes=tehWWin.getval(1,cols-1);
+				EdgSlide++;
 			}
 			////////////////////////////////////////////////////////////
 			//Outputting
@@ -285,7 +292,8 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 //			if (channelselector==4)streamOut.data = (char)blurVal * 0x01010101;
 //			if (channelselector==5)streamOut.data = (char)blurVal;
 //			if (channelselector==6)streamOut.data = (char)blurVal * 0x00010101;
-			streamOut.data = tehWinRes.getval(1,1);
+			streamOut.data = tehRes;
+//			streamOut.data = 255;
 			streamOut.keep = streamIn.keep;
 			streamOut.strb = streamIn.strb;
 			streamOut.user = streamIn.user;
@@ -303,6 +311,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 					Gslidefactor = 0;
 					NMS_slidefactor = 0;
 					EdgSlide=0;
+					tehWWin.shift_up();
 				}
 				else
 					cols++;
@@ -357,8 +366,8 @@ void convolution(linebuffer *linebuffer, int slidefactor, short *kernel, window 
 		{
 			// wCols + slidefactor, for sliding over buffer
 			short val = (short)linebuffer->getval(wRows,wCols+slidefactor);
-#pragma HLS RESOURCE variable=linebuffer core=RAM_T2P_BRAM latency=1
-#pragma HLS ARRAY_PARTITION variable=linebuffer complete dim=1
+//#pragma HLS RESOURCE variable=linebuffer core=RAM_T2P_BRAM latency=1
+//#pragma HLS ARRAY_PARTITION variable=linebuffer complete dim=1
 
 			// kernel * linebufcontent and place in a 3x3 window
 			val = ((short)kernel[(wRows*KERNEL_SIZE) + wCols ] * val)>>shft;
