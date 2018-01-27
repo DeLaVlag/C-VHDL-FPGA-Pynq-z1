@@ -68,16 +68,14 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	window blurWin;
 	window gxWin, gyWin;
 	window nonMaxSupWin;
-	window tehWinRes, tehWinCur;
 
-	//window the size of width*kernelsize for edges result
+	//window the size of width*kernelsize for edges with hysteresis result
 	width_window tehWWin;
 
 
 	uint32_t slidefactor=0;
 	uint32_t Gslidefactor=0;
 	uint32_t NMS_slidefactor=0;
-	uint32_t EdgSlide=0;
 
 	static uint32_t rows=0, cols=0;
 
@@ -255,32 +253,25 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 					for (int thyi=0;thyi<WIDTH;thyi++)
 						tehWWin.insert(0,thxi,thyi);
 
-			nonmaxRes = (short) nonmaxRes;
-			lb_teh.shift_pixels_down(cols);
-			lb_teh.insert_top_row(nonmaxRes,cols);
-
-			setWin(&lb_teh,&tehWinCur,EdgSlide);
-
-			short tmax=50, tmin=45, tehRes, wwgetval;
+			short strong=40, weak=35, tehRes, wwgetval;
 			if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
 
-//				setWin(&lb_teh,&tehWinCur,EdgSlide);
-				wwgetval = tehWWin.getval(1,cols-1);
+				//if current pixel = strong just make it max bright
+				if (nonmaxRes >= strong)
+					 tehWWin.insert(MAX_BRIGHTNESS,1,cols-1);
 
-				 if (tehWinCur.getval(1,1) >= tmax || wwgetval == MAX_BRIGHTNESS) { // trace edges
-					 if (wwgetval!=MAX_BRIGHTNESS)tehWWin.insert(MAX_BRIGHTNESS,1,cols-1);
-
-					 //Checking the neighbours
+				//Checking the neighbours: if any neighbour is strong, the weak current pxl strong and thus make it max bright
+				else if(nonmaxRes >= weak)
 					 for (int thx=0;thx<KERNEL_SIZE;thx++)
 						for (int thy=0;thy<KERNEL_SIZE;thy++)
-							if ((tehWinCur.getval(thx,thy) >= tmin) && (tehWWin.getval(thx,(cols-2+thy))!=MAX_BRIGHTNESS))
+							if (tehWWin.getval(thx,(cols-2+thy))==MAX_BRIGHTNESS)
 								tehWWin.insert(MAX_BRIGHTNESS,thx,(cols-2+thy));
-//
-				 }
 
 				tehRes=tehWWin.getval(1,cols-1);
-				EdgSlide++;
 			}
+			else
+				tehRes=0;
+
 			////////////////////////////////////////////////////////////
 			//Outputting
 			////////////////////////////////////////////////////////////
@@ -310,7 +301,6 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 					slidefactor = 0;
 					Gslidefactor = 0;
 					NMS_slidefactor = 0;
-					EdgSlide=0;
 					tehWWin.shift_up();
 				}
 				else
