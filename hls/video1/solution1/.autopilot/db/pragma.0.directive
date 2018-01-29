@@ -1,0 +1,147 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="sin_or_cos_approximation" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="swap_table"/>
+<option name="complete" positionalBoolean="type" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sin_or_cos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="second_order_float::sin_cos_K0"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sin_or_cos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="second_order_float::sin_cos_K1"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sin_or_cos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="second_order_float::sin_cos_K2"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sincos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="second_order_float::cos_K0"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sincos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="second_order_float::cos_K1"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sincos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="second_order_float::cos_K2"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sincos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="second_order_float::sin_K0"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sincos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="second_order_float::sin_K1"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sincos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="second_order_float::sin_K2"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sin_or_cos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="first_order_fixed_16::sin_cos_K0"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sin_or_cos_approximation" label="">
+<pragma name="RESOURCE">
+<option name="variable" positionalBoolean="4" value="first_order_fixed_16::sin_cos_K1"/>
+<option name="core" value="ROM_1P_LUTRAM"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sinf_or_cosf" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="swap_table"/>
+<option name="complete" positionalBoolean="type" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sinf_or_cosf" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="neg_sin_table"/>
+<option name="complete" positionalBoolean="type" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sinf_or_cosf" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="neg_cos_table"/>
+<option name="complete" positionalBoolean="type" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sinf_or_cosf" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="neg_sin_table"/>
+<option name="complete" positionalBoolean="type" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="sinf_or_cosf" label="">
+<pragma name="ARRAY_PARTITION">
+<option name="variable" positionalBoolean="4" value="neg_cos_table"/>
+<option name="complete" positionalBoolean="type" value=""/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="&amp;src"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="&amp;dst"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="l"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="c"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="r"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="stream" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

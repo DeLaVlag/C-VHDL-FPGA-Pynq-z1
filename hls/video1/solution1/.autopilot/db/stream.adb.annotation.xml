@@ -1,0 +1,14 @@
+<annotationInfo>
+<annotationInfo>
+<item  id="56" filename="video1/main.cpp" linenumber="42" name="p_y_load" contextFuncName="stream" moduleName="stream" rtlName="p_y_load_fu_159_p3" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="16" fileDirectory="D:\Studie\RCD\MyRepo\pynq-z1\hls"></item>
+<item  id="57" filename="video1/main.cpp" linenumber="49" name="tmp_7" contextFuncName="stream" moduleName="stream" rtlName="tmp_7_fu_167_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="13" fileDirectory="D:\Studie\RCD\MyRepo\pynq-z1\hls"></item>
+<item  id="58" filename="video1/main.cpp" linenumber="69" name="tmp_data_V" contextFuncName="stream" moduleName="stream" rtlName="tmp_data_V_fu_173_p3" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="6" fileDirectory="D:\Studie\RCD\MyRepo\pynq-z1\hls"></item>
+<item  id="60" filename="video1/main.cpp" linenumber="73" name="tmp_s" contextFuncName="stream" moduleName="stream" rtlName="tmp_s_fu_182_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="23" fileDirectory="D:\Studie\RCD\MyRepo\pynq-z1\hls"></item>
+<item  id="61" filename="video1/main.cpp" linenumber="76" name="x_load_op" contextFuncName="stream" moduleName="stream" rtlName="x_load_op_fu_188_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="23" fileDirectory="D:\Studie\RCD\MyRepo\pynq-z1\hls"></item>
+<item  id="62" filename="video1/main.cpp" linenumber="71" name="y_flag_1" contextFuncName="stream" moduleName="stream" rtlName="y_flag_1_fu_194_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="8" fileDirectory="D:\Studie\RCD\MyRepo\pynq-z1\hls"></item>
+<item  id="63" filename="video1/main.cpp" linenumber="71" name="y_new_1" contextFuncName="stream" moduleName="stream" rtlName="y_new_1_fu_200_p3" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="16" fileDirectory="D:\Studie\RCD\MyRepo\pynq-z1\hls"></item>
+<item  id="64" filename="video1/main.cpp" linenumber="71" name="tmp_3" contextFuncName="stream" moduleName="stream" rtlName="tmp_3_fu_208_p3" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="2" fileDirectory="D:\Studie\RCD\MyRepo\pynq-z1\hls"></item>
+<item  id="65" filename="video1/main.cpp" linenumber="71" name="tmp" contextFuncName="stream" moduleName="stream" rtlName="tmp_fu_216_p2" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="8" fileDirectory="D:\Studie\RCD\MyRepo\pynq-z1\hls"></item>
+<item  id="66" filename="video1/main.cpp" linenumber="71" name="x_new" contextFuncName="stream" moduleName="stream" rtlName="x_new_fu_222_p3" latency="0" BRAM="-1" DSP="-1" FF="0" LUT="16" fileDirectory="D:\Studie\RCD\MyRepo\pynq-z1\hls"></item>
+</annotationInfo>
+</annotationInfo>

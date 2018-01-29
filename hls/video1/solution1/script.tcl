@@ -4,10 +4,11 @@
 ## Copyright (C) 1986-2017 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project video1
-set_top copystream
-add_files video1/main.cpp
+set_top stream
+add_files main.cpp
 add_files video1/main.h
-add_files -tb video1/testbench.cpp
+add_files -tb video1/streamulator.cpp
+add_files -tb video1/streamulator.h
 open_solution "solution1"
 set_part {xc7z020clg400-1} -tool vivado
 create_clock -period 7 -name default

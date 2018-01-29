@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="trace_cntrl" xd:componentRef="trace_cntrl" xd:initiationInterval="x" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_trace_cntrl" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="A-&gt;data" xd:originalName="A" xd:direction="in" xd:interfaceRef="A" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="64"/>
+  <xd:arg xd:name="A-&gt;keep" xd:originalName="A" xd:direction="in" xd:interfaceRef="A" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="8"/>
+  <xd:arg xd:name="A-&gt;strb" xd:originalName="A" xd:direction="in" xd:interfaceRef="A" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="8"/>
+  <xd:arg xd:name="A-&gt;user" xd:originalName="A" xd:direction="in" xd:interfaceRef="A" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="2"/>
+  <xd:arg xd:name="A-&gt;last" xd:originalName="A" xd:direction="in" xd:interfaceRef="A" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="1"/>
+  <xd:arg xd:name="A-&gt;id" xd:originalName="A" xd:direction="in" xd:interfaceRef="A" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="5"/>
+  <xd:arg xd:name="A-&gt;dest" xd:originalName="A" xd:direction="in" xd:interfaceRef="A" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="1"/>
+  <xd:arg xd:name="B-&gt;data" xd:originalName="B" xd:direction="out" xd:interfaceRef="B" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="64"/>
+  <xd:arg xd:name="B-&gt;keep" xd:originalName="B" xd:direction="out" xd:interfaceRef="B" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="8"/>
+  <xd:arg xd:name="B-&gt;strb" xd:originalName="B" xd:direction="out" xd:interfaceRef="B" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="8"/>
+  <xd:arg xd:name="B-&gt;user" xd:originalName="B" xd:direction="out" xd:interfaceRef="B" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="2"/>
+  <xd:arg xd:name="B-&gt;last" xd:originalName="B" xd:direction="out" xd:interfaceRef="B" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="1"/>
+  <xd:arg xd:name="B-&gt;id" xd:originalName="B" xd:direction="out" xd:interfaceRef="B" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="5"/>
+  <xd:arg xd:name="B-&gt;dest" xd:originalName="B" xd:direction="out" xd:interfaceRef="B" xd:busTypeRef="axis" xd:arraySize="50" xd:dataWidth="1"/>
+  <xd:arg xd:name="data_compare" xd:originalName="data_compare" xd:direction="in" xd:interfaceRef="s_axi_trace_cntrl" xd:busTypeRef="axilite" xd:offset="0x10" xd:handshakeRef="ap_none" xd:dataWidth="64"/>
+  <xd:arg xd:name="length" xd:originalName="length" xd:direction="in" xd:interfaceRef="s_axi_trace_cntrl" xd:busTypeRef="axilite" xd:offset="0x1C" xd:handshakeRef="ap_none" xd:dataWidth="32"/>
+  <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
+  <xd:resourceEstimates xd:LUT="477" xd:FF="402" xd:BRAM="0" xd:DSP="0"/>
+</xd:acceleratorMap>

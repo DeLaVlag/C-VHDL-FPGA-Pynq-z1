@@ -1,0 +1,193 @@
+
+
+================================================================
+== Vivado HLS Report for 'pixel_unpack'
+================================================================
+* Date:           Sun Oct 15 10:20:15 2017
+
+* Version:        2016.1 (Build 1538259 on Fri Apr 08 16:12:49 MDT 2016)
+* Project:        pixel_unpack
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |   7.00|      2.88|        0.88|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |    ?|    ?|    ?|    ?|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |    ?|    ?|         6|          4|          4|     ?|    yes   |
+        |- Loop 2  |    ?|    ?|         1|          1|          1|     ?|    yes   |
+        |- Loop 3  |    ?|    ?|         4|          4|          4|     ?|    yes   |
+        |- Loop 4  |    ?|    ?|         2|          2|          2|     ?|    yes   |
+        |- Loop 5  |    ?|    ?|         2|          2|          2|     ?|    yes   |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  |
++-----------------+---------+-------+--------+-------+
+|DSP              |        -|      -|       -|      -|
+|Expression       |        -|      -|       0|      4|
+|FIFO             |        -|      -|       -|      -|
+|Instance         |        0|      -|      68|    104|
+|Memory           |        -|      -|       -|      -|
+|Multiplexer      |        -|      -|       -|     93|
+|Register         |        -|      -|     171|      -|
++-----------------+---------+-------+--------+-------+
+|Total            |        0|      0|     239|    201|
++-----------------+---------+-------+--------+-------+
+|Available        |      280|    220|  106400|  53200|
++-----------------+---------+-------+--------+-------+
+|Utilization (%)  |        0|      0|   ~0   |   ~0  |
++-----------------+---------+-------+--------+-------+
+
++ Detail: 
+    * Instance: 
+    +-------------------------------+-----------------------------+---------+-------+----+-----+
+    |            Instance           |            Module           | BRAM_18K| DSP48E| FF | LUT |
+    +-------------------------------+-----------------------------+---------+-------+----+-----+
+    |pixel_unpack_AXILiteS_s_axi_U  |pixel_unpack_AXILiteS_s_axi  |        0|      0|  68|  104|
+    +-------------------------------+-----------------------------+---------+-------+----+-----+
+    |Total                          |                             |        0|      0|  68|  104|
+    +-------------------------------+-----------------------------+---------+-------+----+-----+
+
+    * DSP48: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +------------------------+----------+-------+---+----+------------+------------+
+    |      Variable Name     | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------+----------+-------+---+----+------------+------------+
+    |has_user_V_2_fu_290_p2  |    or    |      0|  0|   1|           1|           1|
+    |last_9_2_fu_303_p2      |    or    |      0|  0|   1|           1|           1|
+    |tmp4_fu_284_p2          |    or    |      0|  0|   1|           1|           1|
+    |tmp5_fu_297_p2          |    or    |      0|  0|   1|           1|           1|
+    +------------------------+----------+-------+---+----+------------+------------+
+    |Total                   |          |      0|  0|   4|           4|           4|
+    +------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------+----+-----------+-----+-----------+
+    |               Name               | LUT| Input Size| Bits| Total Bits|
+    +----------------------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm                         |  15|         17|    1|         17|
+    |ap_reg_ppiten_pp4_it1             |   1|          2|    1|          2|
+    |ap_sig_ioackin_out_stream_TREADY  |   1|          2|    1|          2|
+    |in_stream_TDATA_blk_n             |   1|          2|    1|          2|
+    |out_stream_TDATA                  |  72|         14|   24|        336|
+    |out_stream_TDATA_blk_n            |   1|          2|    1|          2|
+    |out_stream_TLAST                  |   1|          7|    1|          7|
+    |out_stream_TUSER                  |   1|          4|    1|          4|
+    +----------------------------------+----+-----------+-----+-----------+
+    |Total                             |  93|         50|   31|        372|
+    +----------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                         |  16|   0|   16|          0|
+    |ap_reg_ioackin_out_stream_TREADY  |   1|   0|    1|          0|
+    |ap_reg_ppiten_pp4_it0             |   1|   0|    1|          0|
+    |ap_reg_ppiten_pp4_it1             |   1|   0|    1|          0|
+    |empty_4_reg_371_1                 |   1|   0|    1|          0|
+    |empty_4_reg_371_2                 |   1|   0|    1|          0|
+    |empty_reg_360_1                   |   1|   0|    1|          0|
+    |empty_reg_360_2                   |   1|   0|    1|          0|
+    |last_1_reg_347                    |   1|   0|    1|          0|
+    |last_2_reg_342                    |   1|   0|    1|          0|
+    |last_9_2_reg_382                  |   1|   0|    1|          0|
+    |last_reg_352                      |   1|   0|    1|          0|
+    |mode_0_data_reg                   |  32|   0|   32|          0|
+    |mode_0_vld_reg                    |   0|   0|    1|          1|
+    |p_Result_3_3_reg_392              |  24|   0|   24|          0|
+    |reg_181                           |   8|   0|    8|          0|
+    |reg_185                           |   8|   0|    8|          0|
+    |reg_189                           |   8|   0|    8|          0|
+    |reg_193                           |  16|   0|   16|          0|
+    |tmp_2_reg_366                     |  24|   0|   24|          0|
+    |tmp_4_reg_377                     |  16|   0|   16|          0|
+    |tmp_6_reg_387                     |   8|   0|    8|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             | 171|   0|  172|          1|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+--------------+-------------------+--------------+
+|        RTL Ports       | Dir | Bits|   Protocol   |   Source Object   |    C Type    |
++------------------------+-----+-----+--------------+-------------------+--------------+
+|s_axi_AXILiteS_AWVALID  |  in |    1|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_AWREADY  | out |    1|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_AWADDR   |  in |    5|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_WVALID   |  in |    1|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_WREADY   | out |    1|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_WDATA    |  in |   32|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_WSTRB    |  in |    4|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_ARVALID  |  in |    1|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_ARREADY  | out |    1|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_ARADDR   |  in |    5|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_RVALID   | out |    1|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_RREADY   |  in |    1|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_RDATA    | out |   32|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_RRESP    | out |    2|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_BVALID   | out |    1|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_BREADY   |  in |    1|     s_axi    |      AXILiteS     |    scalar    |
+|s_axi_AXILiteS_BRESP    | out |    2|     s_axi    |      AXILiteS     |    scalar    |
+|ap_clk                  |  in |    1| ap_ctrl_none |    pixel_unpack   | return value |
+|ap_rst_n                |  in |    1| ap_ctrl_none |    pixel_unpack   | return value |
+|control                 |  in |    1| ap_ctrl_none |    pixel_unpack   | return value |
+|ap_rst_n_control        |  in |    1| ap_ctrl_none |    pixel_unpack   | return value |
+|in_stream_TDATA         |  in |   32|     axis     |  in_stream_data_V |    pointer   |
+|in_stream_TVALID        |  in |    1|     axis     |  in_stream_data_V |    pointer   |
+|in_stream_TREADY        | out |    1|     axis     |  in_stream_last_V |    pointer   |
+|in_stream_TLAST         |  in |    1|     axis     |  in_stream_last_V |    pointer   |
+|in_stream_TUSER         |  in |    1|     axis     |  in_stream_user_V |    pointer   |
+|out_stream_TDATA        | out |   24|     axis     | out_stream_data_V |    pointer   |
+|out_stream_TVALID       | out |    1|     axis     | out_stream_last_V |    pointer   |
+|out_stream_TREADY       |  in |    1|     axis     | out_stream_last_V |    pointer   |
+|out_stream_TLAST        | out |    1|     axis     | out_stream_last_V |    pointer   |
+|out_stream_TUSER        | out |    1|     axis     | out_stream_user_V |    pointer   |
++------------------------+-----+-----+--------------+-------------------+--------------+
+

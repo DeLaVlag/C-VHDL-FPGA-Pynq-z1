@@ -1,0 +1,178 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'pixel_unpack'" level="0">
+<item name = "Date">Sun Oct 15 10:20:15 2017
+</item>
+<item name = "Version">2016.1 (Build 1538259 on Fri Apr 08 16:12:49 MDT 2016)</item>
+<item name = "Project">pixel_unpack</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020clg400-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Target clock period (ns)">7.00</item>
+<item name = "Clock uncertainty (ns)">0.88</item>
+<item name = "Estimated clock period (ns)">2.88</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">?, ?, ?, ?, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Loop 1">?, ?, 6, 4, 4, ?, yes</column>
+<column name="- Loop 2">?, ?, 1, 1, 1, ?, yes</column>
+<column name="- Loop 3">?, ?, 4, 4, 4, ?, yes</column>
+<column name="- Loop 4">?, ?, 2, 2, 2, ?, yes</column>
+<column name="- Loop 5">?, ?, 2, 2, 2, ?, yes</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="5">Name, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="DSP">-, -, -, -</column>
+<column name="Expression">-, -, 0, 4</column>
+<column name="FIFO">-, -, -, -</column>
+<column name="Instance">0, -, 68, 104</column>
+<column name="Memory">-, -, -, -</column>
+<column name="Multiplexer">-, -, -, 93</column>
+<column name="Register">-, -, 171, -</column>
+<specialColumn name="Available">280, 220, 106400, 53200</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, ~0, ~0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="6">Instance, Module, BRAM_18K, DSP48E, FF, LUT</keys>
+<column name="pixel_unpack_AXILiteS_s_axi_U">pixel_unpack_AXILiteS_s_axi, 0, 0, 68, 104</column>
+</table>
+</item>
+<item name = "DSP48"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="9">Memory, Module, BRAM_18K, FF, LUT, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="7">Name, BRAM_18K, FF, LUT, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="has_user_V_2_fu_290_p2">or, 0, 0, 1, 1, 1</column>
+<column name="last_9_2_fu_303_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp4_fu_284_p2">or, 0, 0, 1, 1, 1</column>
+<column name="tmp5_fu_297_p2">or, 0, 0, 1, 1, 1</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">15, 17, 1, 17</column>
+<column name="ap_reg_ppiten_pp4_it1">1, 2, 1, 2</column>
+<column name="ap_sig_ioackin_out_stream_TREADY">1, 2, 1, 2</column>
+<column name="in_stream_TDATA_blk_n">1, 2, 1, 2</column>
+<column name="out_stream_TDATA">72, 14, 24, 336</column>
+<column name="out_stream_TDATA_blk_n">1, 2, 1, 2</column>
+<column name="out_stream_TLAST">1, 7, 1, 7</column>
+<column name="out_stream_TUSER">1, 4, 1, 4</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">16, 0, 16, 0</column>
+<column name="ap_reg_ioackin_out_stream_TREADY">1, 0, 1, 0</column>
+<column name="ap_reg_ppiten_pp4_it0">1, 0, 1, 0</column>
+<column name="ap_reg_ppiten_pp4_it1">1, 0, 1, 0</column>
+<column name="empty_4_reg_371_1">1, 0, 1, 0</column>
+<column name="empty_4_reg_371_2">1, 0, 1, 0</column>
+<column name="empty_reg_360_1">1, 0, 1, 0</column>
+<column name="empty_reg_360_2">1, 0, 1, 0</column>
+<column name="last_1_reg_347">1, 0, 1, 0</column>
+<column name="last_2_reg_342">1, 0, 1, 0</column>
+<column name="last_9_2_reg_382">1, 0, 1, 0</column>
+<column name="last_reg_352">1, 0, 1, 0</column>
+<column name="mode_0_data_reg">32, 0, 32, 0</column>
+<column name="mode_0_vld_reg">0, 0, 1, 1</column>
+<column name="p_Result_3_3_reg_392">24, 0, 24, 0</column>
+<column name="reg_181">8, 0, 8, 0</column>
+<column name="reg_185">8, 0, 8, 0</column>
+<column name="reg_189">8, 0, 8, 0</column>
+<column name="reg_193">16, 0, 16, 0</column>
+<column name="tmp_2_reg_366">24, 0, 24, 0</column>
+<column name="tmp_4_reg_377">16, 0, 16, 0</column>
+<column name="tmp_6_reg_387">8, 0, 8, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="s_axi_AXILiteS_AWVALID">in, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_AWREADY">out, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_AWADDR">in, 5, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_WVALID">in, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_WREADY">out, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_WDATA">in, 32, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_WSTRB">in, 4, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_ARVALID">in, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_ARREADY">out, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_ARADDR">in, 5, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_RVALID">out, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_RREADY">in, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_RDATA">out, 32, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_RRESP">out, 2, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_BVALID">out, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_BREADY">in, 1, s_axi, AXILiteS, scalar</column>
+<column name="s_axi_AXILiteS_BRESP">out, 2, s_axi, AXILiteS, scalar</column>
+<column name="ap_clk">in, 1, ap_ctrl_none, pixel_unpack, return value</column>
+<column name="ap_rst_n">in, 1, ap_ctrl_none, pixel_unpack, return value</column>
+<column name="control">in, 1, ap_ctrl_none, pixel_unpack, return value</column>
+<column name="ap_rst_n_control">in, 1, ap_ctrl_none, pixel_unpack, return value</column>
+<column name="in_stream_TDATA">in, 32, axis, in_stream_data_V, pointer</column>
+<column name="in_stream_TVALID">in, 1, axis, in_stream_data_V, pointer</column>
+<column name="in_stream_TREADY">out, 1, axis, in_stream_last_V, pointer</column>
+<column name="in_stream_TLAST">in, 1, axis, in_stream_last_V, pointer</column>
+<column name="in_stream_TUSER">in, 1, axis, in_stream_user_V, pointer</column>
+<column name="out_stream_TDATA">out, 24, axis, out_stream_data_V, pointer</column>
+<column name="out_stream_TVALID">out, 1, axis, out_stream_last_V, pointer</column>
+<column name="out_stream_TREADY">in, 1, axis, out_stream_last_V, pointer</column>
+<column name="out_stream_TLAST">out, 1, axis, out_stream_last_V, pointer</column>
+<column name="out_stream_TUSER">out, 1, axis, out_stream_user_V, pointer</column>
+</table>
+</item>
+</section>
+
+<section name = "Critical Path" level="0">
+<item name = "Max Delay">2.88</item>
+<item name = "Critical Path Table"><table name="Critical Path Table" hasTotal="0">
+<keys size="15">Name, Operator, Delay, Accumulated Delay, Store Source, Resource, Core, Interface, Type, Port, Array, Scope, Pointer, Callee, Phi Node</keys>
+<column name="'mode'">read, 1.00, 1.00, -, -, -, s_axi, read, &apos;mode&apos;, -, -, -, -, -</column>
+</table>
+</item>
+</section>
+</profile>

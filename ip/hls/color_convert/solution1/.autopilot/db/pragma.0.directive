@@ -1,0 +1,64 @@
+<AutoPilot:ProjectResources xmlns:AutoPilot="com.autoesl.autopilot.ui.directiveView">
+<sourceFile name="">
+<directive functionLabel="" functionName="color_convert" label="">
+<pragma name="CLOCK">
+<option name="domain" positionalBoolean="4" value="default"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="color_convert" label="">
+<pragma name="INTERFACE">
+<option name="ap_ctrl_none" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="return"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="color_convert" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="register" positionalBoolean="register" value=""/>
+<option name="port" positionalBoolean="4" value="c1"/>
+<option name="clock" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="color_convert" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="register" positionalBoolean="register" value=""/>
+<option name="port" positionalBoolean="4" value="c2"/>
+<option name="clock" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="color_convert" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="register" positionalBoolean="register" value=""/>
+<option name="port" positionalBoolean="4" value="c3"/>
+<option name="clock" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="color_convert" label="">
+<pragma name="INTERFACE">
+<option name="s_axilite" positionalBoolean="mode" value=""/>
+<option name="register" positionalBoolean="register" value=""/>
+<option name="port" positionalBoolean="4" value="bias"/>
+<option name="clock" value="control"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="color_convert" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="in_data"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="color_convert" label="">
+<pragma name="INTERFACE">
+<option name="axis" positionalBoolean="mode" value=""/>
+<option name="port" positionalBoolean="4" value="out_data"/>
+</pragma>
+</directive>
+<directive functionLabel="" functionName="color_convert" label="">
+<pragma name="PIPELINE">
+<option name="II" value="1"/>
+</pragma>
+</directive>
+</sourceFile>
+</AutoPilot:ProjectResources>

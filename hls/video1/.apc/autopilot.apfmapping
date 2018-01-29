@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="main.cpp" path="D:\Studie\RCD\MyRepo\pynq-z1\hls\main.cpp"/>
+    <originFiles name="main.cpp" path="D:\Studie\RCD\MyRepo\pynq-z1\hls\video1\main.cpp"/>
+    <originFiles name="main.h" path="D:\Studie\RCD\MyRepo\pynq-z1\hls\video1\main.h"/>
+  </source>
+  <testbench>
+    <originFiles name="streamulator.cpp" path="D:\Studie\RCD\MyRepo\pynq-z1\hls\video1\streamulator.cpp"/>
+    <originFiles name="streamulator.h" path="D:\Studie\RCD\MyRepo\pynq-z1\hls\video1\streamulator.h"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

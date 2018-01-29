@@ -1,0 +1,221 @@
+INFO: [HLS 200-10] Running 'D:/Program_Files2/Xilinx/Vivado/2017.3/bin/unwrapped/win64.o/vivado_hls.exe'
+INFO: [HLS 200-10] For user 'Michiel' on host 'chill' (Windows NT_amd64 version 6.2) on Sun Jan 14 22:44:59 +0100 2018
+INFO: [HLS 200-10] In directory 'D:/Studie/RCD/MyRepo/pynq-z1/hls'
+INFO: [HLS 200-10] Opening project 'D:/Studie/RCD/MyRepo/pynq-z1/hls/video1'.
+INFO: [HLS 200-10] Adding design file '../../../PYNQ/PYNQ/hls/video1/main.cpp' to the project
+INFO: [HLS 200-10] Adding design file '../../../PYNQ/PYNQ/hls/video1/main.h' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../PYNQ/PYNQ/hls/video1/streamulator.cpp' to the project
+INFO: [HLS 200-10] Adding test bench file '../../../PYNQ/PYNQ/hls/video1/streamulator.h' to the project
+INFO: [HLS 200-10] Opening solution 'D:/Studie/RCD/MyRepo/pynq-z1/hls/video1/solution1'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 7ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020clg400-1'
+INFO: [HLS 200-10] Analyzing design file '../../../PYNQ/PYNQ/hls/video1/main.cpp' ... 
+WARNING: [HLS 200-40] In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:621:1: error: declaration of anonymous class must be a definition
+class #include <hls_stream.h>
+^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:621:1: warning: declaration does not declare anything [-Wmissing-declarations]
+class #include <hls_stream.h>
+^~~~~
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:658:6: error: redefinition of 'stream' as different kind of symbol
+void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernel, uint8_t normalfactor, uint8_t channelselector);
+     ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_stream.h:98:7: note: previous definition is here
+class stream
+      ^
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:661:92: error: expected unqualified-id
+                short kernel[KERNEL_SIZE*KERNEL_SIZE], hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *win); {
+                                                                                                         ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:716:74: error: nested name specifier 'LineBuffer<ROWS, COLS, T>::' for declaration does not refer into a class, class template or class template partial specialization
+template<int ROWS, int COLS, typename T> void LineBuffer<ROWS, COLS, T>::shift_pixels_down(int col) {
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:718:12: error: use of undeclared identifier 'col'
+    assert(col >= 0 && col < COLS);
+           ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/win64/tools/clang/bin/../lib/clang/3.1/../../../x86_64-w64-mingw32/include\assert.h:67:7: note: expanded from macro 'assert'
+ ((!!(_Expression)) || \
+      ^
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:718:24: error: use of undeclared identifier 'col'
+    assert(col >= 0 && col < COLS);
+                       ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/win64/tools/clang/bin/../lib/clang/3.1/../../../x86_64-w64-mingw32/include\assert.h:67:7: note: expanded from macro 'assert'
+ ((!!(_Expression)) || \
+      ^
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:729:9: error: use of undeclared identifier 'val'
+        val[i][col] = val[i-1][col];
+        ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:729:16: error: use of undeclared identifier 'col'
+        val[i][col] = val[i-1][col];
+               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:729:23: error: use of undeclared identifier 'val'
+        val[i][col] = val[i-1][col];
+                      ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:729:32: error: use of undeclared identifier 'col'
+        val[i][col] = val[i-1][col];
+                               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:756:74: error: nested name specifier 'LineBuffer<ROWS, COLS, T>::' for declaration does not refer into a class, class template or class template partial specialization
+template<int ROWS, int COLS, typename T> void LineBuffer<ROWS, COLS, T>::shift_pixels_up(int col) {
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:758:12: error: use of undeclared identifier 'col'
+    assert(col >= 0 && col < COLS);
+           ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/win64/tools/clang/bin/../lib/clang/3.1/../../../x86_64-w64-mingw32/include\assert.h:67:7: note: expanded from macro 'assert'
+ ((!!(_Expression)) || \
+      ^
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:758:24: error: use of undeclared identifier 'col'
+    assert(col >= 0 && col < COLS);
+                       ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/win64/tools/clang/bin/../lib/clang/3.1/../../../x86_64-w64-mingw32/include\assert.h:67:7: note: expanded from macro 'assert'
+ ((!!(_Expression)) || \
+      ^
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:766:16: error: redefinition of 'i'
+    HLS_SIZE_T i;
+               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:726:16: note: previous definition is here
+    HLS_SIZE_T i;
+               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:769:9: error: use of undeclared identifier 'val'
+        val[i][col] = val[i+1][col];
+        ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:769:16: error: use of undeclared identifier 'col'
+        val[i][col] = val[i+1][col];
+               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:769:23: error: use of undeclared identifier 'val'
+        val[i][col] = val[i+1][col];
+                      ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:769:32: error: use of undeclared identifier 'col'
+        val[i][col] = val[i+1][col];
+                               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:795:74: error: nested name specifier 'LineBuffer<ROWS, COLS, T>::' for declaration does not refer into a class, class template or class template partial specialization
+template<int ROWS, int COLS, typename T> void LineBuffer<ROWS, COLS, T>::insert_bottom_row(T value, int col) {
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+
+ERROR: [HLS 200-70] Compilation errors found:
+Pragma processor failed: In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:621:1: error: declaration of anonymous class must be a definition
+class #include <hls_stream.h>
+^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:621:1: warning: declaration does not declare anything [-Wmissing-declarations]
+class #include <hls_stream.h>
+^~~~~
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:658:6: error: redefinition of 'stream' as different kind of symbol
+void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernel, uint8_t normalfactor, uint8_t channelselector);
+     ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_stream.h:98:7: note: previous definition is here
+class stream
+      ^
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:661:92: error: expected unqualified-id
+                short kernel[KERNEL_SIZE*KERNEL_SIZE], hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *win); {
+                                                                                                         ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:716:74: error: nested name specifier 'LineBuffer<ROWS, COLS, T>::' for declaration does not refer into a class, class template or class template partial specialization
+template<int ROWS, int COLS, typename T> void LineBuffer<ROWS, COLS, T>::shift_pixels_down(int col) {
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:718:12: error: use of undeclared identifier 'col'
+    assert(col >= 0 && col < COLS);
+           ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/win64/tools/clang/bin/../lib/clang/3.1/../../../x86_64-w64-mingw32/include\assert.h:67:7: note: expanded from macro 'assert'
+ ((!!(_Expression)) || \
+      ^
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:718:24: error: use of undeclared identifier 'col'
+    assert(col >= 0 && col < COLS);
+                       ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/win64/tools/clang/bin/../lib/clang/3.1/../../../x86_64-w64-mingw32/include\assert.h:67:7: note: expanded from macro 'assert'
+ ((!!(_Expression)) || \
+      ^
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:729:9: error: use of undeclared identifier 'val'
+        val[i][col] = val[i-1][col];
+        ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:729:16: error: use of undeclared identifier 'col'
+        val[i][col] = val[i-1][col];
+               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:729:23: error: use of undeclared identifier 'val'
+        val[i][col] = val[i-1][col];
+                      ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:729:32: error: use of undeclared identifier 'col'
+        val[i][col] = val[i-1][col];
+                               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:756:74: error: nested name specifier 'LineBuffer<ROWS, COLS, T>::' for declaration does not refer into a class, class template or class template partial specialization
+template<int ROWS, int COLS, typename T> void LineBuffer<ROWS, COLS, T>::shift_pixels_up(int col) {
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:758:12: error: use of undeclared identifier 'col'
+    assert(col >= 0 && col < COLS);
+           ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/win64/tools/clang/bin/../lib/clang/3.1/../../../x86_64-w64-mingw32/include\assert.h:67:7: note: expanded from macro 'assert'
+ ((!!(_Expression)) || \
+      ^
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:758:24: error: use of undeclared identifier 'col'
+    assert(col >= 0 && col < COLS);
+                       ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/win64/tools/clang/bin/../lib/clang/3.1/../../../x86_64-w64-mingw32/include\assert.h:67:7: note: expanded from macro 'assert'
+ ((!!(_Expression)) || \
+      ^
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.cpp:1:
+In file included from ../../../PYNQ/PYNQ/hls/video1/main.h:2:
+In file included from D:/Program_Files2/Xilinx/Vivado/2017.3/include\hls_video.h:56:
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:766:16: error: redefinition of 'i'
+    HLS_SIZE_T i;
+               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:726:16: note: previous definition is here
+    HLS_SIZE_T i;
+               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:769:9: error: use of undeclared identifier 'val'
+        val[i][col] = val[i+1][col];
+        ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:769:16: error: use of undeclared identifier 'col'
+        val[i][col] = val[i+1][col];
+               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:769:23: error: use of undeclared identifier 'val'
+        val[i][col] = val[i+1][col];
+                      ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:769:32: error: use of undeclared identifier 'col'
+        val[i][col] = val[i+1][col];
+                               ^
+D:/Program_Files2/Xilinx/Vivado/2017.3/include/hls/hls_video_mem.h:795:74: error: nested name specifier 'LineBuffer<ROWS, COLS, T>::' for declaration does not refer into a class, class template or class template partial specialization
+template<int ROWS, int COLS, typename T> void LineBuffer<ROWS, COLS, T>::insert_bottom_row(T value, int col) {
+                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+1 warning and 20 errors generated.
+Failed checking during preprocessing.
+    while executing
+"source D:/Studie/RCD/MyRepo/pynq-z1/hls/video1/solution1/csynth.tcl"
+    invoked from within
+"hls::main D:/Studie/RCD/MyRepo/pynq-z1/hls/video1/solution1/csynth.tcl"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel 1 hls::main {*}$args"
+    (procedure "hls_proc" line 5)
+    invoked from within
+"hls_proc $argv"

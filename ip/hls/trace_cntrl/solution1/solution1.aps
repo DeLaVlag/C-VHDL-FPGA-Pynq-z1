@@ -1,0 +1,25 @@
+<AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <config>
+        <schedule model="trace_cntrl"/>
+    </config>
+    <ExportDesign askAgain="true" evaluate="false" rtl="verilog" formatName="ip_catalog">
+        <Format formatName="ip_catalog" description="Controller for the PYNQ Trace Analyser" vendor="xilinx" library="" version="1.3" driver_input_dir="" display_name="Trace Analyser Controller" taxonomy=""/>
+    </ExportDesign>
+    <name>
+        <value string="solution1"/>
+    </name>
+    <project>
+        <value string="trace_cntrl"/>
+    </project>
+    <targetInfo>
+        <TargetInfo value="xc7z020:clg484:-1"/>
+    </targetInfo>
+    <libraryList>
+        <library value="xilinx/zynq/zynq" name="DefaultPlatform"/>
+        <library value="xilinx/zynq/zynq_fpv6" name="DefaultPlatform"/>
+    </libraryList>
+    <clockList>
+        <clock default="false" name="default" period="10"/>
+    </clockList>
+</AutoPilot:solution>
+
