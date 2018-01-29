@@ -48,12 +48,12 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 #pragma HLS DEPENDENCE variable=lb array inter false
 
 	linebuffer lb_gxy;
-#pragma HLS RESOURCE variable=lb_gxy core=RAM_2P
+#pragma HLS RESOURCE variable=lb_gxy core=RAM_2P_BRAM
 //#pragma HLS ARRAY_PARTITION variable=lb_gxy complete dim=1
 #pragma HLS DEPENDENCE variable=lb_gxy array inter false
 
 	linebuffer lb_nms;
-#pragma HLS RESOURCE variable=lb_nms core=RAM_2P
+#pragma HLS RESOURCE variable=lb_nms core=RAM_2P_BRAM
 //#pragma HLS ARRAY_PARTITION variable=lb_gxy complete dim=1
 #pragma HLS DEPENDENCE variable=lb_nms array inter false
 
@@ -63,7 +63,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 
 	//window the size of width*kernelsize for edges with hysteresis result
 	width_window tehWWin;
-#pragma HLS RESOURCE variable=tehWWin core=RAM_2P
+#pragma HLS RESOURCE variable=tehWWin core=RAM_2P_BRAM
 //#pragma HLS ARRAY_PARTITION variable=lb_gxy complete dim=1
 #pragma HLS DEPENDENCE variable=tehWWin array inter false
 
