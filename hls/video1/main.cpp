@@ -64,8 +64,9 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	//window the size of width*kernelsize for edges with hysteresis result
 	width_window tehWWin;
 #pragma HLS RESOURCE variable=tehWWin core=RAM_2P_BRAM
-//#pragma HLS ARRAY_PARTITION variable=lb_gxy complete dim=1
-#pragma HLS DEPENDENCE variable=tehWWin array inter false
+//#pragma HLS ARRAY_PARTITION variable=tehWWin complete dim=1
+//#pragma HLS array_partition variable=tehWWin block factor=4 dim=2
+#pragma HLS DEPENDENCE variable=tehWWin inter false
 
 	uint32_t slidefactor=0;
 	uint32_t Gslidefactor=0;
@@ -73,9 +74,13 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 
 	static uint32_t rows=0, cols=0;
 
-
+//__attribute__((opencl_unroll_hint(n)))
+//deze loop wordt dus helemaal niet unrolled.
 	for (int pixels=0;pixels<HEIGHT*WIDTH;pixels++){
+
+//#pragma HLS DATAFLOW
 #pragma HLS PIPELINE II=1
+//#pragma HLS loop_merge force
 
 		streamIn = src.read();
 
@@ -156,7 +161,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 				for (int thyi=0;thyi<WIDTH;thyi++)
 					tehWWin.insert(0,thxi,thyi);
 
-		short strong=40, weak=35, tehRes, wwgetval;
+		short strong=115, weak=75, tehRes, wwgetval;
 		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
 
 			//if current pixel = strong just make it max bright
@@ -167,6 +172,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			else if(nonmaxRes >= weak)
 				 for (int thx=0;thx<KERNEL_SIZE;thx++)
 					for (int thy=0;thy<KERNEL_SIZE;thy++)
+//#pragma HLS unroll factor=2
 						if (tehWWin.getval(thx,(cols-2+thy))==MAX_BRIGHTNESS)
 							tehWWin.insert(MAX_BRIGHTNESS,thx,(cols-2+thy));
 
@@ -251,13 +257,15 @@ void convolution(linebuffer *linebuffer, int slidefactor, short *kernel, window 
 	// linebuffer values get multiplied by kernel and put in windowbuffer
 	for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
 		for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
+#pragma HLS unroll factor=2
 		{
 			// wCols + slidefactor, for sliding over buffer
 			short val = (short)linebuffer->getval(wRows,wCols+slidefactor);
-//#pragma HLS RESOURCE variable=linebuffer core=RAM_T2P_BRAM latency=1
+//#pragma HLS RESOURCE variable=linebuffer core=RAM_2P_BRAM
 //#pragma HLS ARRAY_PARTITION variable=linebuffer complete dim=1
 
 			// kernel * linebufcontent and place in a 3x3 window
+#pragma HLS RESOURCE variable=val core=MulnS
 			val = ((short)kernel[(wRows*KERNEL_SIZE) + wCols ] * val)>>shft;
 			win->insert(val,wRows,wCols);
 		}

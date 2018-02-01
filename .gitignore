@@ -66,6 +66,9 @@
 #TCL - files
 #########
 !*.tcl
+#BIT - files
+#########
+!*.bit
 #########
 #Journal - files
 #########
