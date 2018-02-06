@@ -1,0 +1,13 @@
+vhdl xil_defaultlib "AESL_sim_pkg.vhd"
+sv work "glbl.v"
+vhdl xil_defaultlib "AESL_axi_slave_AXILiteS.vhd"
+vhdl xil_defaultlib "AESL_axi_s_dst.vhd"
+vhdl xil_defaultlib "AESL_axi_s_src.vhd"
+vhdl xil_defaultlib "stream.autotb.vhd"
+vhdl xil_defaultlib "stream.vhd"
+vhdl xil_defaultlib "stream_AXILiteS_s_axi.vhd"
+vhdl xil_defaultlib "stream_lb_val_0.vhd"
+vhdl xil_defaultlib "stream_lb_val_1.vhd"
+vhdl xil_defaultlib "stream_mul_18ns_3cud.vhd"
+vhdl xil_defaultlib "stream_mul_26ns_3bkb.vhd"
+

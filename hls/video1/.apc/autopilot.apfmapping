@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="main.h" path="D:\Studie\RCD\PYNQ\PYNQ\hls\video1\main.h"/>
+    <originFiles name="main.cpp" path="D:\Studie\RCD\PYNQ\PYNQ\hls\video1\main.cpp"/>
+    <originFiles name="hypotCLUT.h" path="D:\Studie\RCD\PYNQ\PYNQ\hls\video1\hypotCLUT.h"/>
+    <originFiles name="atan2fx100.h" path="D:\Studie\RCD\PYNQ\PYNQ\hls\video1\atan2fx100.h"/>
+  </source>
+  <testbench>
+    <originFiles name="streamulator.h" path="D:\Studie\RCD\PYNQ\PYNQ\hls\video1\streamulator.h"/>
+    <originFiles name="streamulator.cpp" path="D:\Studie\RCD\PYNQ\PYNQ\hls\video1\streamulator.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

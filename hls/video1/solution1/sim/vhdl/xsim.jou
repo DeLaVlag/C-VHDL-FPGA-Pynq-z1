@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# xsim v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Fri Feb  2 23:48:07 2018
+# Process ID: 13680
+# Current directory: D:/Studie/RCD/PYNQ/PYNQ/hls/video1/solution1/sim/vhdl
+# Command line: xsim.exe -mode tcl -source {xsim.dir/stream/xsim_script.tcl}
+# Log file: D:/Studie/RCD/PYNQ/PYNQ/hls/video1/solution1/sim/vhdl/xsim.log
+# Journal file: D:/Studie/RCD/PYNQ/PYNQ/hls/video1/solution1/sim/vhdl\xsim.jou
+#-----------------------------------------------------------
+source xsim.dir/stream/xsim_script.tcl
+source stream.tcl
