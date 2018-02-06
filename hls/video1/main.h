@@ -29,23 +29,28 @@ typedef ap_axiu<32,1,1,1> pixel_data_out;
 typedef hls::stream<pixel_data_in> pixel_stream_in;
 typedef hls::stream<pixel_data_out> pixel_stream_out;
 
-typedef hls::LineBuffer<3, WIDTH, short> linebuffer;
-//typedef hls::LineBuffer<6, WIDTH, short> linebuffer1280;
+typedef hls::LineBuffer<3, WIDTH, uint8_t> linebuffer;
+//typedef hls::LineBuffer<6, WIDTH, int> linebuffer1280;
 
-typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> window;
+typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,uint8_t> window;
 
-//typedef hls::LineBuffer<3, WIDTH, short> short_linebuffer;
-typedef hls::Window<KERNEL_SIZE,WIDTH,short> width_window;
+//typedef hls::LineBuffer<3, WIDTH, int> int_linebuffer;
+typedef hls::Window<KERNEL_SIZE,WIDTH,uint8_t> width_window;
 
-typedef enum{EDGE, IMPULSE, BLUR, SOBEL}kernelchoice;
+//typedef enum{EDGE, IMPULSE, BLUR, SOBEL}kernelchoice;
 
 void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernel, uint8_t normalfactor, uint8_t channelselector);
-short pixelSummer(window *window);
-void convolution(linebuffer *linebuffer, int slidefactor,
-		short kernel[KERNEL_SIZE*KERNEL_SIZE], window *win, int normalfactor);
+uint8_t pixelSummer(window *window);
+void convolution(linebuffer *linebuffer, uint16_t slidefactor,
+		uint8_t kernel[KERNEL_SIZE*KERNEL_SIZE], window *win, uint8_t normalfactor);
 
-void output(uint8_t channelselector, short currentPixelValue, pixel_stream_in streamIn, pixel_stream_out streamOut);
+void output(uint8_t channelselector, uint8_t currentPixelValue, pixel_stream_in streamIn, pixel_stream_out streamOut);
 
-void setWin(linebuffer *lb_nms, window *nonMaxSupWin,int slidefactor);
+void setWin(linebuffer *lb_nms, window *nonMaxSupWin,uint16_t slidefactor);
 
-short nonMaxSupr(short curN, window *nmsWin);
+uint8_t nonMaxSupr(uint8_t curN, window *nmsWin);
+
+uint8_t gaussianBlurring(uint16_t rows, uint16_t cols, window *win);
+uint8_t gradient(uint16_t rows, uint16_t cols,window *gxWin, window *gyWin, int8_t *gxcpv, int8_t *gycpv);
+uint8_t NMS(uint16_t rows, uint16_t cols, linebuffer *lb_nms, window *nonMaxSupWin, int8_t *gxcpv, int8_t *gycpv );
+uint8_t edgeTraceHysteresis(uint16_t rows, uint16_t cols, width_window *tehWWin, uint8_t nonmaxRes);
