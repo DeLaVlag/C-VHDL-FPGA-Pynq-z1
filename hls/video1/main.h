@@ -26,16 +26,16 @@ typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,uint8_t> window;
 typedef hls::Window<KERNEL_SIZE,WIDTH,uint8_t> width_window;
 
 
-uint8_t kernelEdge[KERNEL_SIZE*KERNEL_SIZE] = {
-    -1, -1, -1,
-    -1, 8, -1,
-    -1, -1, -1,
-};
-uint8_t kernelImpulse[KERNEL_SIZE*KERNEL_SIZE] = {
-    0, 0, 0,
-    0, 1, 0,
-    0, 0, 0,
-};
+//uint8_t kernelEdge[KERNEL_SIZE*KERNEL_SIZE] = {
+//    -1, -1, -1,
+//    -1, 8, -1,
+//    -1, -1, -1,
+//};
+//uint8_t kernelImpulse[KERNEL_SIZE*KERNEL_SIZE] = {
+//    0, 0, 0,
+//    0, 1, 0,
+//    0, 0, 0,
+//};
 uint8_t kernelBlur[KERNEL_SIZE*KERNEL_SIZE] = {
     1, 2, 1,
     2, 4, 2,

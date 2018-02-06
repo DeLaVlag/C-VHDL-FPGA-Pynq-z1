@@ -1,6 +1,6 @@
 #include "main.h"
+#include "atan2fx100.h"
 #include "hypotCLUT.h"
-#include "atan2f.h"
 
 uint16_t slidefactor=0;
 uint16_t Gslidefactor=0;
@@ -8,197 +8,160 @@ uint16_t NMS_slidefactor=0;
 
 void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uint8_t normalfactor, uint8_t channelselector)
 {
-    #pragma HLS INTERFACE ap_ctrl_none port=return
-    #pragma HLS INTERFACE axis port=&src
-    #pragma HLS INTERFACE axis port=&dst
-    #pragma HLS INTERFACE s_axilite port=kernelchc
-    #pragma HLS INTERFACE s_axilite port=normalfactor
-    #pragma HLS INTERFACE s_axilite port=channelselector
-    
-    uint8_t kernel[KERNEL_SIZE*KERNEL_SIZE] = {
-        -1, -1, -1,
-        -1, 8, -1,
-        -1, -1, -1,
-    };
-    
-    pixel_data_in streamIn;
-    pixel_data_out streamOut;
-    linebuffer lb;
-    #pragma HLS RESOURCE variable=lb core=RAM_2P_BRAM
-    #pragma HLS DEPENDENCE variable=lb array inter false
-    
-    linebuffer lb_gxy;
-    #pragma HLS RESOURCE variable=lb_gxy core=RAM_2P_BRAM
-    #pragma HLS DEPENDENCE variable=lb_gxy array inter false
-    
-    linebuffer lb_nms;
-    #pragma HLS RESOURCE variable=lb_nms core=RAM_2P_BRAM
-    #pragma HLS DEPENDENCE variable=lb_nms array inter false
-    
-    window win, gxWin, gyWin, nonMaxSupWin;
-    
-    //  window the size of width*kernelsize for edges with hysteresis result
-    width_window tehWWin;
-    #pragma HLS RESOURCE variable=tehWWin core=RAM_2P_BRAM
-    #pragma HLS DEPENDENCE variable=tehWWin inter false
-    
-    uint16_t rows=0, cols=0;    //static adjusted
-    for (uint32_t pixels=0;pixels<HEIGHT*WIDTH;pixels++){
-        #pragma HLS PIPELINE II=1
-        streamIn = src.read();
-        
-        switch(kernelchc){
-            case 0:            //edge
-            for (uint8_t i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-            kernel[i] = kernelEdge[i];
-            break;
-            case 1:            //impulse
-            for (uint8_t i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-            kernel[i] = kernelImpulse[i];
-            break;
-            case 2:            //blur
-            for (uint8_t i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-            kernel[i] = kernelBlur[i];
-            break;
-            case 3:            //sobel
-            for (uint8_t i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-            kernel[i] = kernelSobelX[i];
-            break;
-            case 4:
-            if (channelselector==0)streamOut.data = streamIn.data * 0x01010101;
-            if (channelselector==1)streamOut.data = streamIn.data * 0x00010101;
-            if (channelselector==2)streamOut.data = streamIn.data * 0x00000101;
-            if (channelselector==3)streamOut.data = streamIn.data * 0x00000001;
-            if (channelselector==4)streamOut.data = streamIn.data;
-            streamOut.keep = streamIn.keep;
-            streamOut.strb = streamIn.strb;
-            streamOut.user = streamIn.user;
-            streamOut.last = streamIn.last;
-            streamOut.id = streamIn.id;
-            streamOut.dest = streamIn.dest;
-            dst.write(streamOut);
-            break;
-            default:
-            for (uint8_t i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-            kernel[i] = kernelEdge[i];
-            break;
-        }
-        
-        if (kernelchc!=4){
-            
-            ////////////////////////////////////////////////////////////
-            //Gaussian Blurring
-            ////////////////////////////////////////////////////////////
-            lb.shift_pixels_down(cols);
-            lb.insert_top_row(streamIn.data,cols);
-            convolution(&lb, slidefactor, kernel, &win, normalfactor);
-            uint8_t blurVal = gaussianBlurring(rows, cols, &win);
-            
-            ////////////////////////////////////////////////////////////
-            //Gradient calculation
-            ////////////////////////////////////////////////////////////
-            lb_gxy.shift_pixels_down(cols);
-            lb_gxy.insert_top_row(blurVal,cols);
-            
-            //performing sobelx and sobely convolution for gradient calculation
-            convolution(&lb_gxy, Gslidefactor, kernelSobelX, &gxWin, 0);
-            convolution(&lb_gxy, Gslidefactor, kernelSobelY, &gyWin, 0);
-            
-            int8_t gxcpv=0, gycpv=0;
-            uint8_t gxycpv = gradient(rows, cols, &gxWin, &gyWin, &gxcpv, &gycpv);
-            
-            ////////////////////////////////////////////////////////////
-            //Non maximum suppression
-            ////////////////////////////////////////////////////////////
-            lb_nms.shift_pixels_down(cols);
-            lb_nms.insert_top_row(gxycpv,cols);
-            
-            uint8_t nonmaxRes = NMS(rows, cols, &lb_nms, &nonMaxSupWin, &gxcpv, &gycpv );
-            
-            ////////////////////////////////////////////////////////////
-            //Tracing edges with hysteresis
-            ////////////////////////////////////////////////////////////
-            uint8_t tehRes = edgeTraceHysteresis(rows, cols, &tehWWin, nonmaxRes);
-            
-            ////////////////////////////////////////////////////////////
-            //Outputting
-            ////////////////////////////////////////////////////////////
-            
-            if (channelselector==0)streamOut.data = blurVal   * 0x01010101;
-            if (channelselector==1)streamOut.data = gxycpv    * 0x01010101;
-            if (channelselector==2)streamOut.data = nonmaxRes * 0x01010101;
-            if (channelselector==3)streamOut.data = tehRes    * 0x01010101;
-            if (channelselector==4)streamOut.data = blurVal;
-            if (channelselector==5)streamOut.data = gxycpv;
-            if (channelselector==6)streamOut.data = nonmaxRes;
-            if (channelselector==7)streamOut.data = tehRes;
-            
-            streamOut.keep = streamIn.keep;
-            streamOut.strb = streamIn.strb;
-            streamOut.user = streamIn.user;
-            streamOut.last = streamIn.last;
-            streamOut.id   = streamIn.id;
-            streamOut.dest = streamIn.dest;
-            dst.write(streamOut);
-            
-            // Administration
-            if (streamIn.last){
-                cols = 0;
-                rows++;
-                slidefactor = 0;
-                Gslidefactor = 0;
-                NMS_slidefactor = 0;
-                tehWWin.shift_up();
-            }
-            else {
-                cols++;
-            }
-        }
-    }
-} //end function
+#pragma HLS INTERFACE ap_ctrl_none port=return
+//#pragma HLS interface s_axilite port=return
+#pragma HLS INTERFACE axis port=&src
+#pragma HLS INTERFACE axis port=&dst
+#pragma HLS INTERFACE s_axilite port=kernelchc
+#pragma HLS INTERFACE s_axilite port=normalfactor
+#pragma HLS INTERFACE s_axilite port=channelselector
 
+	uint8_t kernel[KERNEL_SIZE*KERNEL_SIZE] = {
+		-1, -1, -1,
+		-1, 8, -1,
+		-1, -1, -1,
+	};
+
+	pixel_data_in streamIn;
+	pixel_data_out streamOut;
+	linebuffer lb;
+#pragma HLS RESOURCE variable=lb core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb array inter false
+
+linebuffer lb_gxy;
+#pragma HLS RESOURCE variable=lb_gxy core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_gxy array inter false
+
+linebuffer lb_nms;
+#pragma HLS RESOURCE variable=lb_nms core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_nms array inter false
+
+
+	window win;
+	window gxWin, gyWin;
+	window nonMaxSupWin;
+
+//	window the size of width*kernelsize for edges with hysteresis result
+	width_window tehWWin;
+#pragma HLS RESOURCE variable=tehWWin core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=tehWWin inter false
+	//init tehWin
+	for (uint8_t thxi=0;thxi<KERNEL_SIZE;thxi++){
+		for (uint16_t thyi=0;thyi<WIDTH;thyi++){
+			tehWWin.insert(0,thxi,thyi);
+		}
+	}
+
+	uint16_t rows=0, cols=0;    //static adjusted
+
+	for (uint32_t pixels=0;pixels<HEIGHT*WIDTH;pixels++){
+#pragma HLS PIPELINE II=1
+
+		streamIn = src.read();
+
+		////////////////////////////////////////////////////////////
+		//Gaussian Blurring
+		////////////////////////////////////////////////////////////
+		lb.shift_pixels_down(cols);
+		lb.insert_top_row(streamIn.data,cols);
+		convolution(&lb, slidefactor, kernelBlur, &win, normalfactor);
+		uint8_t blurVal = gaussianBlurring(rows, cols, &win);
+
+		////////////////////////////////////////////////////////////
+		//Gradient calculation
+		////////////////////////////////////////////////////////////
+		lb_gxy.shift_pixels_down(cols);
+		lb_gxy.insert_top_row(blurVal,cols);
+
+		//performing sobelx and sobely convolution for gradient calculation
+		convolution(&lb_gxy, Gslidefactor, kernelSobelX, &gxWin, 0);
+		convolution(&lb_gxy, Gslidefactor, kernelSobelY, &gyWin, 0);
+
+		int8_t gxcpv=0, gycpv=0;
+		uint8_t gxycpv = gradient(rows, cols, &gxWin, &gyWin, &gxcpv, &gycpv);
+
+		////////////////////////////////////////////////////////////
+		//Non maximum suppression
+		////////////////////////////////////////////////////////////
+		lb_nms.shift_pixels_down(cols);
+		lb_nms.insert_top_row(gxycpv,cols);
+
+		uint8_t nonmaxRes = NMS(rows, cols, &lb_nms, &nonMaxSupWin, &gxcpv, &gycpv );
+
+		////////////////////////////////////////////////////////////
+		//Tracing edges with hysteresis
+		////////////////////////////////////////////////////////////
+		uint8_t tehRes = edgeTraceHysteresis(rows, cols, &tehWWin, nonmaxRes);
+
+		////////////////////////////////////////////////////////////
+		//Outputting
+		////////////////////////////////////////////////////////////
+
+		if (channelselector==0)streamOut.data = blurVal * 0x01010101;
+		if (channelselector==1)streamOut.data = gxycpv * 0x00010101;
+		if (channelselector==2)streamOut.data = nonmaxRes * 0x01010101;
+		if (channelselector==3)streamOut.data = tehRes;
+		if (channelselector==4)streamOut.data = blurVal;
+		if (channelselector==5)streamOut.data = gxycpv;
+		if (channelselector==6)streamOut.data = nonmaxRes;
+		if (channelselector==7)streamOut.data = tehRes;
+		streamOut.keep = streamIn.keep;
+		streamOut.strb = streamIn.strb;
+		streamOut.user = streamIn.user;
+		streamOut.last = streamIn.last;
+		streamOut.id = streamIn.id;
+		streamOut.dest = streamIn.dest;
+		dst.write(streamOut);
+
+
+		// Administration
+		if (streamIn.last){
+			cols = 0;
+			rows++;
+			slidefactor = 0;
+			Gslidefactor = 0;
+			NMS_slidefactor = 0;
+			tehWWin.shift_up();
+		}
+		else {
+			cols++;
+		}
+	}
+}
 
 uint8_t edgeTraceHysteresis(uint16_t rows, uint16_t cols, width_window *tehWWin, uint8_t nonmaxRes){
-    uint8_t strong=50, weak=45, tehRes;
-    
-    if (rows==0){     //init tehWin
-        for (int thxi=0;thxi<KERNEL_SIZE;thxi++){
-            for (int thyi=0;thyi<WIDTH;thyi++){
-                tehWWin->insert(0,thxi,thyi);
-            }
-        }
-    }
-    
-    if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
-        if (nonmaxRes >= strong){        //if current pixel = strong just make it max bright
-            tehWWin->insert(MAX_BRIGHTNESS,1,cols-1);
-        }
-        else if(nonmaxRes >= weak){         //Checking the neighbours: if any neighbour is strong, make the weak current pxl strong
-            for (int thx=0;thx<KERNEL_SIZE;thx++){
-                for (int thy=0;thy<KERNEL_SIZE;thy++){
-                    if (tehWWin->getval(thx,(cols-2+thy))==MAX_BRIGHTNESS){
-                        tehWWin->insert(MAX_BRIGHTNESS,thx,(cols-2+thy));
-                    }
-                }
-            }
-            tehRes=tehWWin->getval(1,cols-1);
-            if(tehRes<0)tehRes=0;
-        }
-        return tehRes;
-    }
+	uint8_t strong=50, weak=45, tehRes;
+
+		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
+			if (nonmaxRes >= strong){        //if current pixel = strong just make it max bright
+				tehWWin->insert(MAX_BRIGHTNESS,1,cols-1);
+			}
+		else if(nonmaxRes >= weak){		//Checking the neighbours: if any neighbour is strong, make the weak current pxl strong
+			for (uint8_t thx=0;thx<KERNEL_SIZE;thx++){
+				for (uint8_t thy=0;thy<KERNEL_SIZE;thy++){
+					if (tehWWin->getval(thx,(cols-2+thy))==MAX_BRIGHTNESS){
+						tehWWin->insert(MAX_BRIGHTNESS,thx,(cols-2+thy));
+					}
+				}
+			}
+		}
+	tehRes=tehWWin->getval(1,cols-1);
+	if(tehRes<0)tehRes=0;
+	}
+	return tehRes;
 }
 
 uint8_t NMS(uint16_t rows, uint16_t cols, linebuffer *lb_nms, window *nonMaxSupWin, int8_t *gxcpv, int8_t *gycpv ){
     uint8_t nonmaxRes=0;
-    
+
     if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
         uint8_t nonmaxsFA=0;
         setWin(lb_nms,nonMaxSupWin,NMS_slidefactor);
-        
-        nonmaxsFA = ((atan2FLUT[*gxcpv][*gycpv])/3) * 8;
+
+        nonmaxsFA = ((atan2FLUT[*gxcpv][*gycpv])/300) * 8;
         nonmaxRes = (uint8_t)nonMaxSupr(nonmaxsFA,nonMaxSupWin);
         if (nonmaxRes<0)nonmaxRes=0;
-        
+
         NMS_slidefactor++;
     }
     return nonmaxRes;
@@ -207,7 +170,7 @@ uint8_t NMS(uint16_t rows, uint16_t cols, linebuffer *lb_nms, window *nonMaxSupW
 
 uint8_t gradient(uint16_t rows, uint16_t cols,window *gxWin, window *gyWin, int8_t *gxcpv, int8_t *gycpv){
     //summing the results of both gradient conv and taking the hypot between both values
-    
+
     uint8_t gxycpv = 0;
     if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
         *gxcpv = pixelSummer(gxWin);
@@ -229,10 +192,10 @@ uint8_t gaussianBlurring(uint16_t rows, uint16_t cols, window *win){
     if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1))
     {
         blurVal = pixelSummer(win);         // Convolution
-        
+
         if (blurVal < 0)         // Stay positive
         blurVal = 0;
-        
+
         slidefactor++;         //increasing the iterator for sliding window over the linebuffers for kernelmult
     }
     return blurVal;
@@ -251,8 +214,8 @@ uint8_t nonMaxSupr(uint8_t curN, window *nmsWin){
     uint8_t ww     = nmsWin->getval(2,1);
     uint8_t sw     = nmsWin->getval(2,2);
     uint8_t result = 0;
-    
-    
+
+
     if (((curN <= 1 || curN > 7) && ctr > ee && ctr > ww) || // 0 deg
     ((curN > 1 && curN <= 3) && ctr > nw && ctr > se) || // 45 deg
     ((curN > 3 && curN <= 5) && ctr > nn && ctr > ss) || // 90 deg
@@ -262,7 +225,7 @@ uint8_t nonMaxSupr(uint8_t curN, window *nmsWin){
     else{
         result = 0;
     }
-    
+
     return result;
 }
 
@@ -306,4 +269,3 @@ uint8_t pixelSummer(window *resultfromlinesliding){
 	}
 	return sum;
 }
-

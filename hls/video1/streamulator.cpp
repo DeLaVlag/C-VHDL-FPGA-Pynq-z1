@@ -14,9 +14,9 @@ int32_t main () {
 
     std::remove(OUTPUT_IMG); // delete file
 
-    uint8_t normalfactor=1;
-    uint8_t channelselector=0;
-    uint8_t kernel=1;     //0:edge;1:impulse;2:blur;3:sobel;4:tie
+    uint8_t normalfactor=4;
+    uint8_t channelselector=3;
+    uint8_t kernel=2;     //0:edge;1:impulse;2:blur;3:sobel;4:tie
 
     // Read input image
     cv::Mat sourceImg = cv::imread(INPUT_IMG);
