@@ -29,6 +29,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 		lb.insert_top_row(streamIn,cols);
 
 		pixel_data_in blurVal;
+<<<<<<< Updated upstream
 		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
 			if (kernelchc==0)blurVal = lb.getval(0,cols);
 			if (kernelchc==1)blurVal = lb.getval(1,cols);
@@ -41,6 +42,36 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 		if (channelselector==1)streamOut.data = outputPxl * 0x00010101;
 		if (channelselector==2)streamOut.data = blurVal.data * 0x01010101;
 		if (channelselector==3)streamOut.data = blurVal.data;
+=======
+		uint32_t outputPxl=0;
+		uint32_t outputPxl2=0;
+		uint8_t outputPxl3=0;
+		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
+			blurVal = lb.getval(2,cols);
+			outputPxl = blurVal.data;
+			outputPxl2 = outputPxl;
+			outputPxl2 = outputPxl2 - 100;
+			outputPxl3 = blurVal.data;;
+			if (outputPxl<0)outputPxl=0;
+			if (outputPxl2<0)outputPxl2=0;
+			if (outputPxl3<0)outputPxl3=0;
+		}
+		else {
+			blurVal.data = 0;
+		}
+
+		if (channelselector==0)streamOut.data = outputPxl * 0x00000001;
+		if (channelselector==1)streamOut.data = outputPxl * 0x00000100;
+		if (channelselector==2)streamOut.data = outputPxl * 0x00010000;;
+		if (channelselector==3)streamOut.data = blurVal.data * 0x01010101;
+		if (channelselector==4)streamOut.data = blurVal.data * 0x01000000;
+		if (channelselector==5)streamOut.data = (outputPxl2) * 0x01010101;
+		if (channelselector==6)streamOut.data = (outputPxl2) * 0x00010100;
+		if (channelselector==7)streamOut.data = outputPxl3 * 0x01010101;
+		if (channelselector==8)streamOut.data = outputPxl3;
+		if (channelselector==9)streamOut.data = (outputPxl3&0xFF)* 0x00000001;
+
+>>>>>>> Stashed changes
 		streamOut.keep = streamIn.keep;
 		streamOut.strb = streamIn.strb;
 		streamOut.user = streamIn.user;
