@@ -14,15 +14,23 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 
 	pixel_data_in streamIn;
 	pixel_data_out streamOut;
-	linebuffer lb_p1, lb_p2, lb_p3, lb_p4;
+	uint32_t outputPxl=0;
+	uint32_t outputPxl2=0;
+
+	//	linebuffer lb_p1, lb_p2, lb_p3, lb_p4;
+	uint8_t lb_p1[3][WIDTH];
+	uint8_t lb_p2[3][WIDTH];
+	uint8_t lb_p3[3][WIDTH];
+	uint8_t lb_p4[3][WIDTH];
 #pragma HLS RESOURCE variable=lb_p1 core=RAM_2P_BRAM
 #pragma HLS DEPENDENCE variable=lb_p1 array inter false
-#pragma HLS RESOURCE variable=lb_p2 core=RAM_2P_BRAM
-#pragma HLS DEPENDENCE variable=lb_p2 array inter false
-#pragma HLS RESOURCE variable=lb_p3 core=RAM_2P_BRAM
-#pragma HLS DEPENDENCE variable=lb_p3 array inter false
-#pragma HLS RESOURCE variable=lb_p4 core=RAM_2P_BRAM
-#pragma HLS DEPENDENCE variable=lb_p4 array inter false
+
+	#pragma HLS RESOURCE variable=lb_p2 core=RAM_2P_BRAM
+	#pragma HLS DEPENDENCE variable=lb_p2 array inter false
+	#pragma HLS RESOURCE variable=lb_p3 core=RAM_2P_BRAM
+	#pragma HLS DEPENDENCE variable=lb_p3 array inter false
+	#pragma HLS RESOURCE variable=lb_p4 core=RAM_2P_BRAM
+	#pragma HLS DEPENDENCE variable=lb_p4 array inter false
 
 	uint32_t pxlVal=0;
 	static uint16_t rows=0, cols=0;    //static adjusted
@@ -40,24 +48,30 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 		p3=((pxlVal&0xFF0000)>>16);
 		p4=((pxlVal&0xFF000000)>>24);
 
-		lb_p1.shift_pixels_down(cols);
-		lb_p1.insert_top_row(p1,cols);
-		lb_p2.shift_pixels_down(cols);
-		lb_p2.insert_top_row(p2,cols);
-		lb_p3.shift_pixels_down(cols);
-		lb_p3.insert_top_row(p3,cols);
-		lb_p4.shift_pixels_down(cols);
-		lb_p4.insert_top_row(p4,cols);
+        shiftPxlsDown(lb_p1, cols);
+        insertTop(lb_p1, cols,p1);
+        shiftPxlsDown(lb_p2, cols);
+        insertTop(lb_p2, cols,p2);
+        shiftPxlsDown(lb_p3, cols);
+        insertTop(lb_p3, cols,p3);
+        shiftPxlsDown(lb_p4, cols);
+        insertTop(lb_p4, cols,p4);
 
-		uint32_t outputPxl=0;
-		uint32_t outputPxl2=0;
-		uint32_t outputPxl3=0;
-		uint24 outPxl4=0, outPxl5=0, outPxl6=0;
+//		lb_p1.shift_pixels_down(cols);
+//		lb_p1.insert_top_row(p1,cols);
+//		lb_p2.shift_pixels_down(cols);
+//		lb_p2.insert_top_row(p2,cols);
+//		lb_p3.shift_pixels_down(cols);
+//		lb_p3.insert_top_row(p3,cols);
+//		lb_p4.shift_pixels_down(cols);
+//		lb_p4.insert_top_row(p4,cols);
+
+
 		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
-			rp1 = lb_p1.getval(2,cols);
-			rp2 = lb_p2.getval(2,cols);
-			rp3 = lb_p3.getval(2,cols);
-			rp4 = lb_p4.getval(2,cols);
+			rp1 = getval(lb_p1,2,cols);
+			rp2 = getval(lb_p2,2,cols);
+			rp3 = getval(lb_p3,2,cols);
+			rp4 = getval(lb_p4,2,cols);
 			outputPxl = streamIn.data;
 			outputPxl2=(rp4<<24|rp3<<16|rp2<<8|rp1);
 		}
@@ -91,4 +105,25 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			cols++;
 		}
 	}
+}
+
+void shiftPxlsDown(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t col){
+    for(uint8_t i = KERNEL_SIZE-1; i > 0; i--) {
+//#pragma HLS unroll
+        val[i][col] = val[i-1][col];
+    }
+}
+
+void insertTop(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t col, uint8_t value){
+//#pragma HLS ARRAY_PARTITION variable=val cyclic factor=2 dim=1 partition
+//#pragma HLS PIPELINE rewind
+//#pragma HLS UNROLL factor=2
+	val[0][col] = value;
+}
+
+uint8_t getval(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t row, uint16_t col){
+//#pragma HLS ARRAY_PARTITION variable=val cyclic factor=2 dim=1 partition
+//#pragma HLS PIPELINE rewind
+//#pragma HLS UNROLL factor=2
+	return val[row][col];
 }

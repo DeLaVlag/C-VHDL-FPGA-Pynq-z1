@@ -64,3 +64,6 @@ uint32_t gaussianBlurring(uint16_t rows, uint16_t cols, window *win);
 uint8_t gradient(uint16_t rows, uint16_t cols,window *gxWin, window *gyWin, int8_t *gxcpv, int8_t *gycpv);
 uint8_t NMS(uint16_t rows, uint16_t cols, linebuffer *lb_nms, window *nonMaxSupWin, int8_t *gxcpv, int8_t *gycpv );
 uint8_t edgeTraceHysteresis(uint16_t rows, uint16_t cols, width_window *tehWWin, uint8_t nonmaxRes);
+void shiftPxlsDown(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t col);
+void insertTop(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t col, uint8_t value);
+uint8_t getval(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t row, uint16_t col);
