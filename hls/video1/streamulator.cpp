@@ -15,8 +15,8 @@ int32_t main () {
     std::remove(OUTPUT_IMG); // delete file
 
     uint8_t normalfactor=4;
-    uint8_t channelselector=2;
-    uint8_t kernel=2;     //0:edge;1:impulse;2:blur;3:sobel;4:tie
+    uint8_t channelselector=1;
+    uint8_t kernel=1;     //0:impulse;1:blur;2:sobelx;3:sobely;4:edge
 
     // Read input image
     cv::Mat sourceImg = cv::imread(INPUT_IMG);
@@ -38,8 +38,8 @@ int32_t main () {
 
     // Call stream processing function
     //  while (!inputStream.empty())
-    //  for (int32_t pixels=0;pixels<HEIGHT*WIDTH;pixels++)
-    stream(outputStream, inputStream, kernel, normalfactor, channelselector);
+//    for (int32_t pixels=0;pixels<HEIGHT*WIDTH;pixels++)
+    	stream(outputStream, inputStream, kernel, normalfactor, channelselector);
 
     // Read output data
     for (int32_t rows=0; rows < HEIGHT; rows++) {
