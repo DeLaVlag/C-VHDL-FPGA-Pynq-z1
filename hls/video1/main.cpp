@@ -1,328 +1,326 @@
 #include "main.h"
+#include "hypotCLUT.h"
+#include "atan2fx100.h"
+
+uint16_t slidefactor=0;
 
 void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uint8_t normalfactor, uint8_t channelselector)
 {
 #pragma HLS INTERFACE ap_ctrl_none port=return
+//#pragma HLS interface s_axilite port=return
 #pragma HLS INTERFACE axis port=&src
 #pragma HLS INTERFACE axis port=&dst
 #pragma HLS INTERFACE s_axilite port=kernelchc
 #pragma HLS INTERFACE s_axilite port=normalfactor
 #pragma HLS INTERFACE s_axilite port=channelselector
-//Force only 1 clockcycle between start times of consecutive loop iterations
-//#pragma HLS PIPELINE II=1
-//Full unroll if factor = WIDTH*HEIGHT
-//#pragma HLS unroll factor=16
-
-	short kernel[KERNEL_SIZE*KERNEL_SIZE] = {
-							-1, -1, -1,
-							-1, 8, -1,
-							-1, -1, -1,
-	};
-	short kernelEdge[KERNEL_SIZE*KERNEL_SIZE] = {
-							-1, -1, -1,
-							-1, 8, -1,
-							-1, -1, -1,
-	};
-	short kernelImpulse[KERNEL_SIZE*KERNEL_SIZE] = {
-							0, 0, 0,
-							0, 1, 0,
-							0, 0, 0,
-	};
-	short kernelBlur[KERNEL_SIZE*KERNEL_SIZE] = {
-							1, 2, 1,
-							2, 4, 2,
-							1, 2, 1,
-	};
-	short kernelSobelY[KERNEL_SIZE*KERNEL_SIZE] = {
-							1, 2, 1,
-							0, 0, 0,
-							-1, -2, -1,
-	};
-	short kernelSobelX[KERNEL_SIZE*KERNEL_SIZE] = {
-							-1, 0, 1,
-							-2, 0, 2,
-							-1, 0, 1,
-		};
-
-//	uint8_t normalfactor=0;
 
 	pixel_data_in streamIn;
 	pixel_data_out streamOut;
-	linebuffer lb;
-	linebuffer lb_gxy;
-	linebuffer lb_nms;
-	window blurWin;
-	window gxWin, gyWin, nonMaxSupWin;
+	uint32_t pxlVal=0;
+	static uint16_t rows=0, cols=0;    //static adjusted
+	uint32_t plainPxl_32=0, blurPxl_32=0, gradPxl_32=0, nmsPxl_32=0;
 
-	uint32_t slidefactor=0;
-	uint32_t Gslidefactor=0;
-	uint32_t NMS_slidefactor=0;
-	static uint32_t rows=0, cols=0;
+	uint8_t kernel[KERNEL_SIZE*KERNEL_SIZE] = {
+			0, 0, 0,
+			0, 1, 0,
+			0, 0, 0,
+		};
 
-	float sigma = 0.1; //kernelsize =3*3
+	// data strucs for blurring
+	uint8_t lb_p1[3][WIDTH];
+	uint8_t lb_p2[3][WIDTH];
+	uint8_t lb_p3[3][WIDTH];
+	uint8_t lb_p4[3][WIDTH];
 
-	for (int pixels=0;pixels<HEIGHT*WIDTH;pixels++){
+//	linebuffer lb_p1, lb_p2, lb_p3, lb_p4;
+#pragma HLS RESOURCE variable=lb_p1 core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p1 array inter false
+#pragma HLS RESOURCE variable=lb_p2 core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p2 array inter false
+#pragma HLS RESOURCE variable=lb_p3 core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p3 array inter false
+#pragma HLS RESOURCE variable=lb_p4 core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p4 array inter false
+	uint8_t p1=0, p2=0, p3=0, p4=0;
+	uint8_t bVal1=0, bVal2=0, bVal3=0, bVal4=0;
+	window bWin1,bWin2,bWin3,bWin4;
+
+	// data strucs for gradient
+	uint8_t lb_p1_gxy[3][WIDTH];
+	uint8_t lb_p2_gxy[3][WIDTH];
+	uint8_t lb_p3_gxy[3][WIDTH];
+	uint8_t lb_p4_gxy[3][WIDTH];
+#pragma HLS RESOURCE variable=lb_p1_gxy core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p1_gxy array inter false
+#pragma HLS RESOURCE variable=lb_p2_gxy core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p2_gxy array inter false
+#pragma HLS RESOURCE variable=lb_p3_gxy core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p3_gxy array inter false
+#pragma HLS RESOURCE variable=lb_p4_gxy core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p4_gxy array inter false
+	window gxWin1,gxWin2,gxWin3,gxWin4,gyWin1,gyWin2,gyWin3,gyWin4;
+	int8_t gxcpv1=0, gycpv1=0, gxcpv2=0, gycpv2=0, gxcpv3=0, gycpv3=0, gxcpv4=0, gycpv4=0;
+	uint8_t gxycpv1=0, gxycpv2=0, gxycpv3=0, gxycpv4=0;
+
+	// data strucs for nonmaxsup
+	uint8_t lb_p1_nms[3][WIDTH];
+	uint8_t lb_p2_nms[3][WIDTH];
+	uint8_t lb_p3_nms[3][WIDTH];
+	uint8_t lb_p4_nms[3][WIDTH];
+#pragma HLS RESOURCE variable=lb_p1_nms core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p1_nms array inter false
+#pragma HLS RESOURCE variable=lb_p2_nms core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p2_nms array inter false
+#pragma HLS RESOURCE variable=lb_p3_nms core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p3_nms array inter false
+#pragma HLS RESOURCE variable=lb_p4_nms core=RAM_2P_BRAM
+#pragma HLS DEPENDENCE variable=lb_p4_nms array inter false
+	window nmsWin1,nmsWin2,nmsWin3,nmsWin4;
+	uint8_t nms1=0, nms2=0, nms3=0,nms4=0;
+
+
+	for (uint32_t pixels=0;pixels<HEIGHT*WIDTH;pixels++){
 #pragma HLS PIPELINE II=1
-//		dst.write(src.read());
 
 		streamIn = src.read();
-//		src >> streamIn;
+		pxlVal = streamIn.data;
 
-		uint8_t kernelchoice=kernelchc;
+		p1=(pxlVal&0xFF);
+		p2=((pxlVal&0xFF00)>>8);
+		p3=((pxlVal&0xFF0000)>>16);
+		p4=((pxlVal&0xFF000000)>>24);
 
-//		kernelchoice = 2;
-		switch(kernelchoice){
+        if(kernelchc==0) for (uint8_t i=0; i<KERNEL_SIZE*KERNEL_SIZE; i++) kernel[i] = kernelImpulse[i];
+        if(kernelchc==1) for (uint8_t i=0; i<KERNEL_SIZE*KERNEL_SIZE; i++) kernel[i] = kernelBlur[i];
+        if(kernelchc==2) for (uint8_t i=0; i<KERNEL_SIZE*KERNEL_SIZE; i++) kernel[i] = kernelSobelY[i];
+        if(kernelchc==3) for (uint8_t i=0; i<KERNEL_SIZE*KERNEL_SIZE; i++) kernel[i] = kernelSobelX[i];
+        if(kernelchc==4) for (uint8_t i=0; i<KERNEL_SIZE*KERNEL_SIZE; i++) kernel[i] = kernelEdge[i];
 
-			//edge
-			case 0:
-			{
-				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-					kernel[i] = kernelEdge[i];
-//				normalfactor=1;
-				break;
-			}
-			//impulse
-			case 1:
-			{
-				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-					kernel[i] = kernelImpulse[i];
-//				normalfactor=4;
-				break;
-			}
+		////////////////////////////////////////////////////////////
+		//Gaussian Blurring
+		////////////////////////////////////////////////////////////
 
-			//blur
-			case 2:
-			{
-//				gaussian blur float kernel
-//				int n = 2 * (int)(2 * sigma) + 3;
-//				float mean = (float)floor(n / 2.0);
-//				float kernelBlur[KERNEL_SIZE * KERNEL_SIZE]; // variable length array
-////
-//				uint32_t c = 0;
-//				for (int i = 0; i < n; i++)
-//					for (int j = 0; j < n; j++) {
-//						kernelBlur[c] = exp(-0.5 * (pow((i - mean) / sigma, 2.0) +
-//												pow((j - mean) / sigma, 2.0)))
-//									/ (2 * M_PI * sigma * sigma);
-//						c++;
-//					}
-//				if (pixels==0){
-//					for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-//						printf("%f\n", kernelBlur[i]);
-//				}
+        shiftPxlsDown(lb_p1, cols);
+        insertTop(lb_p1, cols,p1);
+        shiftPxlsDown(lb_p2, cols);
+        insertTop(lb_p2, cols,p2);
+        shiftPxlsDown(lb_p3, cols);
+        insertTop(lb_p3, cols,p3);
+        shiftPxlsDown(lb_p4, cols);
+        insertTop(lb_p4, cols,p4);
 
-				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-					kernel[i] = kernelBlur[i];
-//				normalfactor=16;	//en.wikipedia.org/wiki/Kernel_(image_processing)
+		bVal1 = gaussianBlurring(rows, cols, &bWin1, lb_p1, slidefactor, kernel, normalfactor);
+		bVal2 = gaussianBlurring(rows, cols, &bWin2, lb_p2, slidefactor, kernel, normalfactor);
+		bVal3 = gaussianBlurring(rows, cols, &bWin3, lb_p3, slidefactor, kernel, normalfactor);
+		bVal4 = gaussianBlurring(rows, cols, &bWin4, lb_p4, slidefactor, kernel, normalfactor);
 
-				break;
-			}
-			//sobel
-			case 3:
-			{
-				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-					kernel[i] = kernelSobelY[i];
-//				normalfactor=1;
-				break;
-			}
-			case 4:
-			{
-				if (channelselector==0)streamOut.data = streamIn.data * 0x01010101;
-				if (channelselector==1)streamOut.data = streamIn.data * 0x00010101;
-				if (channelselector==2)streamOut.data = streamIn.data * 0x00000101;
-				if (channelselector==3)streamOut.data = streamIn.data * 0x00000001;
-				if (channelselector==4)streamOut.data = streamIn.data;
-//				streamOut.data = streamIn.data;
-				streamOut.keep = streamIn.keep;
-				streamOut.strb = streamIn.strb;
-				streamOut.user = streamIn.user;
-				streamOut.last = streamIn.last;
-				streamOut.id = streamIn.id;
-				streamOut.dest = streamIn.dest;
-				dst.write(streamOut);
-				break;
-			}
-			default:
-			{
-				for (int i=0;i<KERNEL_SIZE*KERNEL_SIZE;i++)
-					kernel[i] = kernelEdge[i];
-//				normalfactor=1;
-				break;
-			}
+		////////////////////////////////////////////////////////////
+		//Gradient calculation
+		////////////////////////////////////////////////////////////
 
+        shiftPxlsDown(lb_p1_gxy, cols);
+        insertTop(lb_p1_gxy, cols,bVal1);
+        shiftPxlsDown(lb_p2_gxy, cols);
+        insertTop(lb_p2_gxy, cols,bVal2);
+        shiftPxlsDown(lb_p3_gxy, cols);
+        insertTop(lb_p3_gxy, cols,bVal3);
+        shiftPxlsDown(lb_p4_gxy, cols);
+        insertTop(lb_p4_gxy, cols,bVal4);
+
+//		//performing sobelx and sobely convolution for gradient calculation
+		convolution(lb_p1_gxy, slidefactor, kernelSobelX, &gxWin1, 0);
+		convolution(lb_p1_gxy, slidefactor, kernelSobelY, &gyWin1, 0);
+		convolution(lb_p2_gxy, slidefactor, kernelSobelX, &gxWin2, 0);
+		convolution(lb_p2_gxy, slidefactor, kernelSobelY, &gyWin2, 0);
+		convolution(lb_p3_gxy, slidefactor, kernelSobelX, &gxWin3, 0);
+		convolution(lb_p3_gxy, slidefactor, kernelSobelY, &gyWin3, 0);
+		convolution(lb_p4_gxy, slidefactor, kernelSobelX, &gxWin4, 0);
+		convolution(lb_p4_gxy, slidefactor, kernelSobelY, &gyWin4, 0);
+
+		gxycpv1 = gradient(rows, cols, &gxWin1, &gyWin1, &gxcpv1, &gycpv1);
+		gxycpv2 = gradient(rows, cols, &gxWin1, &gyWin2, &gxcpv2, &gycpv2);
+		gxycpv3 = gradient(rows, cols, &gxWin1, &gyWin3, &gxcpv3, &gycpv3);
+		gxycpv4 = gradient(rows, cols, &gxWin1, &gyWin4, &gxcpv4, &gycpv4);
+
+		////////////////////////////////////////////////////////////
+		//Non maximum suppression
+		////////////////////////////////////////////////////////////
+
+		shiftPxlsDown(lb_p1_nms, cols);
+		insertTop(lb_p1_nms, cols,gxycpv1);
+		shiftPxlsDown(lb_p2_nms, cols);
+		insertTop(lb_p2_nms, cols,gxycpv2);
+		shiftPxlsDown(lb_p3_nms, cols);
+		insertTop(lb_p3_nms, cols,gxycpv3);
+		shiftPxlsDown(lb_p4_nms, cols);
+		insertTop(lb_p4_nms, cols,gxycpv4);
+
+		nms1 = NMS(rows, cols, lb_p1_nms, &nmsWin1, &gxcpv1, &gycpv1, slidefactor);
+		nms2 = NMS(rows, cols, lb_p2_nms, &nmsWin2, &gxcpv2, &gycpv2, slidefactor);
+		nms3 = NMS(rows, cols, lb_p3_nms, &nmsWin3, &gxcpv3, &gycpv3, slidefactor);
+		nms4 = NMS(rows, cols, lb_p4_nms, &nmsWin4, &gxcpv4, &gycpv4, slidefactor);
+
+		////////////////////////////////////////////////////////////
+		//Outputting
+		////////////////////////////////////////////////////////////
+
+		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
+			slidefactor++;
+			plainPxl_32 = streamIn.data;
+			blurPxl_32=(bVal4<<24|bVal3<<16|bVal2<<8|bVal1);
+			gradPxl_32=(gxycpv4<<24|gxycpv3<<16|gxycpv2<<8|gxycpv1);
+			nmsPxl_32=(nms4<<24|nms3<<16|nms2<<8|nms1);
 		}
 
-		if (kernelchoice!=4){
+		if (channelselector==0)streamOut.data = plainPxl_32;
+		if (channelselector==1)streamOut.data = blurPxl_32;
+		if (channelselector==2)streamOut.data = gradPxl_32;
+		if (channelselector==3)streamOut.data = nmsPxl_32;
 
-			//LineBuffer shift down, while contents shift up (?!).
-			//Xilinx documentatie beweert het tegenovergestelde!
-			lb.shift_pixels_down(cols);
-			lb.insert_top_row(streamIn.data,cols);
+		streamOut.keep = streamIn.keep;
+		streamOut.strb = streamIn.strb;
+		streamOut.user = streamIn.user;
+		streamOut.last = streamIn.last;
+		streamOut.id = streamIn.id;
+		streamOut.dest = streamIn.dest;
+		dst.write(streamOut);
 
 
-			////////////////////////////////////////////////////////////
-			//Gaussian Blurring
-			////////////////////////////////////////////////////////////
-
-			convolution(&lb, slidefactor, kernel, &blurWin);
-
-			char currentPixelValue = 0;
-			char GPV = 0;
-			//First 2 rows and cols have no pixel values thus calc start at row 2 and col 2
-			if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
-				currentPixelValue = pixelSummer(&blurWin);
-				currentPixelValue = currentPixelValue / normalfactor;
-				if (currentPixelValue < 0) currentPixelValue = 0;
-
-				slidefactor++;
-
-			}
-
-			////////////////////////////////////////////////////////////
-			//Gradient calculation
-			////////////////////////////////////////////////////////////
-
-			//casting to short for generic function convolution
-			currentPixelValue = (short) currentPixelValue;
-			lb_gxy.shift_pixels_down(cols);
-			lb_gxy.insert_top_row(currentPixelValue,cols);
-
-			//performing sobelx and sobely convolution for gradient calculation
-			convolution(&lb_gxy, Gslidefactor, kernelSobelX, &gxWin);
-			convolution(&lb_gxy, Gslidefactor, kernelSobelY, &gyWin);
-
-			//summing the results of both gradient conv and taking the hypot between both values
-			char gxcpv, gycpv, gxycpv = 0;
-				if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
-					gxcpv = pixelSummer(&gxWin);
-					gycpv = pixelSummer(&gyWin);
-//					gxcpv = gxcpv / normalfactor;
-					if (gxcpv < 0) gxcpv = 0;
-					if (gycpv < 0) gycpv = 0;
-					gxycpv = hypot(gxcpv,gycpv);
-
-					Gslidefactor++;
-				}
-
-			////////////////////////////////////////////////////////////
-			//Non maximum suppression
-			////////////////////////////////////////////////////////////
-
-			//putting gpxypv in windowbuffer for nonMaxSupr
-			gxycpv = (short) gxycpv;
-			lb_nms.shift_pixels_down(cols);
-			lb_nms.insert_top_row(gxycpv,cols);
-
-			char nonmaxsFA, nonmaxRes = 0;
-				if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
-
-					setWinNMS(&lb_nms,&nonMaxSupWin,NMS_slidefactor);
-					nonmaxsFA = (fmod(atan2(gycpv,gxcpv) + M_PI, M_PI) / M_PI) * 8;
-					nonmaxRes = nonMaxSupr(nonmaxsFA,&nonMaxSupWin);
-
-					NMS_slidefactor++;
-				}
-
-			////////////////////////////////////////////////////////////
-			//Tracing edges with hysteresis
-			////////////////////////////////////////////////////////////
-
-			////////////////////////////////////////////////////////////
-			//Outputting
-			////////////////////////////////////////////////////////////
-
-//			if (channelselector==0)streamOut.data = gxycpv * 0x01010101;
-//			if (channelselector==1)streamOut.data = gxycpv * 0x00010101;
-//			if (channelselector==2)streamOut.data = gxycpv * 0x00000101;
-//			if (channelselector==3)streamOut.data = gxycpv;
-			streamOut.data = nonmaxRes;
-			streamOut.keep = streamIn.keep;
-			streamOut.strb = streamIn.strb;
-			streamOut.user = streamIn.user;
-			streamOut.last = streamIn.last;
-			streamOut.id = streamIn.id;
-			streamOut.dest = streamIn.dest;
-			dst.write(streamOut);
-	//		}
-
-			// Administration
-				if (streamIn.last){
-					cols = 0;
-					rows++;
-					slidefactor = 0;
-					Gslidefactor = 0;
-					NMS_slidefactor = 0;
-				}
-				else
-					cols++;
+		// Administration
+		if (streamIn.last){
+			cols = 0;
+			rows++;
+			slidefactor=0;
 		}
-
+		else {
+			cols++;
+		}
 	}
 }
 
+uint8_t NMS(uint16_t rows, uint16_t cols, uint8_t lb_nms[KERNEL_SIZE][WIDTH], window *nonMaxSupWin,
+		int8_t *gxcpv, int8_t *gycpv, uint16_t slifac){
+    uint8_t nonmaxRes=0;
+
+    if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
+        uint8_t nonmaxsFA=0;
+        setWin(lb_nms,nonMaxSupWin,slifac);
+
+        nonmaxsFA = ((atan2FLUT[*gxcpv][*gycpv])/300) * 8;
+        nonmaxRes = (uint8_t)nonMaxSupr(nonmaxsFA,nonMaxSupWin);
+        if (nonmaxRes<0)nonmaxRes=0;
+    }
+    return nonmaxRes;
+}
+
 //calculating non max supression of a window with gradient results
-short nonMaxSupr(char curN, window *nmsWin){
+uint8_t nonMaxSupr(uint8_t curN, window *nmsWin){
+    uint8_t ne     = nmsWin->getval(0,0);
+    uint8_t ee     = nmsWin->getval(0,1);
+    uint8_t se     = nmsWin->getval(0,2);
+    uint8_t nn     = nmsWin->getval(1,0);
+    uint8_t ctr    = nmsWin->getval(1,1);
+    uint8_t ss     = nmsWin->getval(1,2);
+    uint8_t nw     = nmsWin->getval(2,0);
+    uint8_t ww     = nmsWin->getval(2,1);
+    uint8_t sw     = nmsWin->getval(2,2);
+    uint8_t result = 0;
 
-	uint16_t ne = nmsWin->getval(0,0);
-	uint16_t ee = nmsWin->getval(0,1);
-	uint16_t se = nmsWin->getval(0,2);
-	uint16_t nn = nmsWin->getval(1,0);
-	uint16_t ctr = nmsWin->getval(1,1);
-	uint16_t ss = nmsWin->getval(1,2);
-	uint16_t nw = nmsWin->getval(2,0);
-	uint16_t ww = nmsWin->getval(2,1);
-	uint16_t sw = nmsWin->getval(2,2);
-	uint16_t result = 0;
 
-
-	if (((curN <= 1 || curN > 7) && ctr > ee && ctr > ww) || // 0 deg
-		((curN > 1 && curN <= 3) && ctr > nw && ctr > se) || // 45 deg
-		((curN > 3 && curN <= 5) && ctr > nn && ctr > ss) || // 90 deg
-		((curN > 5 && curN <= 7) && ctr > ne && ctr > sw))   // 135 deg
-
-		result = ctr;
-	else
-		result = 0;
-
-	return result;
+    if (((curN <= 1 || curN > 7) && ctr > ee && ctr > ww) || // 0 deg
+    ((curN > 1 && curN <= 3) && ctr > nw && ctr > se) || // 45 deg
+    ((curN > 3 && curN <= 5) && ctr > nn && ctr > ss) || // 90 deg
+    ((curN > 5 && curN <= 7) && ctr > ne && ctr > sw)){   // 135 deg
+        result = ctr;
+    }
+    else{
+        result = 0;
+    }
+    return result;
+}
+void setWin(uint8_t lb[KERNEL_SIZE][WIDTH], window *nonMaxSupWin,uint16_t slidefactor){
+    for (uint8_t wRows = 0; wRows < KERNEL_SIZE; wRows++){
+        for (uint8_t wCols = 0; wCols < KERNEL_SIZE; wCols++)
+        {
+            // wCols + slidefactor, for sliding over buffer
+            uint8_t val = ((uint8_t)getval(lb,wRows,wCols+slidefactor));
+            // place result in a 3x3 window
+            nonMaxSupWin->insert(val,wRows,wCols);
+        }
+    }
 }
 
-void setWinNMS(linebuffer *lb_nms, window *nonMaxSupWin,int slidefactor){
-	for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
-			for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
-			{
-				// wCols + slidefactor, for sliding over buffer
-				short val = (short)lb_nms->getval(wRows,wCols+slidefactor);
+uint8_t gradient(uint16_t rows, uint16_t cols,window *gxWin, window *gyWin, int8_t *gxcpv, int8_t *gycpv){
+    //summing the results of both gradient conv and taking the hypot between both values
 
-				// place result in a 3x3 window
-				nonMaxSupWin->insert(val,wRows,wCols);
-			}
+    uint8_t gxycpv = 0;
+    if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
+        *gxcpv = pixelSummer(gxWin);
+        *gycpv = pixelSummer(gyWin);
+        if (*gxcpv < 0) *gxcpv = 0;
+        if (*gycpv < 0) *gycpv = 0;
+        if (*gxcpv > 255) *gxcpv = 255;
+        if (*gycpv > 255) *gycpv = 255;
+        gxycpv = hypotCLUT[*gxcpv][*gycpv];
+    }
+    return gxycpv;
 }
 
-void convolution(linebuffer *linebuffer, int slidefactor, short *kernel, window *win){
-	// linebuffer values get multiplied by kernel and put in windowbuffer
-	for (int wRows = 0; wRows < KERNEL_SIZE; wRows++)
-		for (int wCols = 0; wCols < KERNEL_SIZE; wCols++)
-		{
-			// wCols + slidefactor, for sliding over buffer
-			short val = (short)linebuffer->getval(wRows,wCols+slidefactor);
+uint8_t gaussianBlurring(uint16_t rows, uint16_t cols, window *bWin, uint8_t lb[KERNEL_SIZE][WIDTH],
+		uint16_t slifac, uint8_t *kernel, uint8_t nfac){
+    uint8_t blurVal =0;
 
-			// kernel * linebufcontent and place in a 3x3 window
-			val = (short)kernel[(wRows*KERNEL_SIZE) + wCols ] * val;
-			win->insert(val,wRows,wCols);
-		}
+    convolution(lb, slifac, kernel, bWin, nfac);
+
+    if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1))
+    {
+        blurVal = pixelSummer(bWin);         // Convolution
+        if (blurVal < 0)         // Stay positive
+        blurVal = 0;
+    }
+    return blurVal;
+}
+
+void convolution(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t slidefactor,
+uint8_t *kernel, window *win, uint8_t normalfactor){
+//#pragma HLS ARRAY_PARTITION variable=linebuffer cyclic factor=2 dim=1 partition
+    for (uint8_t wRows = 0; wRows < KERNEL_SIZE; wRows++){
+        for (uint8_t wCols = 0; wCols < KERNEL_SIZE; wCols++)
+        {
+            // wCols + slidefactor, for sliding over buffer
+            uint8_t pxl = (uint8_t)getval(val,wRows,wCols+slidefactor);
+            // kernel * linebufcontent and place in a 3x3 window
+            pxl = ((uint8_t)kernel[(wRows*KERNEL_SIZE) + wCols ] * pxl)>>normalfactor;
+            win->insert(pxl,wRows,wCols);
+        }
+    }
 }
 
 // Convolution by adding all the values in the windows buffer
-short pixelSummer(hls::Window<KERNEL_SIZE,KERNEL_SIZE,short> *resultfromlinesliding)
-{
-	short sum = 0;
+uint8_t pixelSummer(window *resultfromlinesliding){
+    uint8_t sum = 0;
 
-	for (int rows = 0; rows < KERNEL_SIZE; rows++)
-		for (int cols = 0; cols < KERNEL_SIZE; cols++)
+	for (uint8_t rows = 0; rows < KERNEL_SIZE; rows++){
+		for (uint8_t cols = 0; cols < KERNEL_SIZE; cols++)
 		{
-			sum = sum + (short)resultfromlinesliding->getval(rows,cols);
+			sum = sum + (uint8_t)resultfromlinesliding->getval(rows,cols);
 		}
+	}
 	return sum;
+}
 
+void shiftPxlsDown(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t col){
+
+    for(uint8_t i = KERNEL_SIZE-1; i > 0; i--) {
+#pragma HLS unroll
+        val[i][col] = val[i-1][col];
+    }
+}
+
+void insertTop(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t col, uint8_t value){
+	val[0][col] = value;
+}
+
+uint8_t getval(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t row, uint16_t col){
+	return val[row][col];
 }
