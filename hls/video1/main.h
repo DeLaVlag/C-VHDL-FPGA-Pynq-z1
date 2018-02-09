@@ -56,15 +56,17 @@ uint8_t kernelSobelX[KERNEL_SIZE*KERNEL_SIZE] = {
 void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernel, uint8_t normalfactor, uint8_t channelselector);
 uint8_t pixelSummer(window *window);
 void convolution(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t slidefactor,
-uint8_t kernel[KERNEL_SIZE*KERNEL_SIZE], window *win, uint8_t normalfactor);
+		uint8_t kernel[KERNEL_SIZE*KERNEL_SIZE], window *win, uint8_t normalfactor);
 void output(uint8_t channelselector, uint8_t currentPixelValue, pixel_stream_in streamIn, pixel_stream_out streamOut);
 void setWin(linebuffer *lb_nms, window *nonMaxSupWin,uint16_t slidefactor);
-uint8_t nonMaxSupr(uint8_t curN, window *nmsWin);
+//uint8_t nonMaxSupr(uint8_t curN, window *nmsWin);
 uint8_t gaussianBlurring(uint16_t rows, uint16_t cols, window *bWin, uint8_t lb[KERNEL_SIZE][WIDTH],
 		uint16_t slifac, uint8_t *kernel, uint8_t nfac);
 uint8_t gradient(uint16_t rows, uint16_t cols,window *gxWin, window *gyWin, int8_t *gxcpv, int8_t *gycpv);
-uint8_t NMS(uint16_t rows, uint16_t cols, linebuffer *lb_nms, window *nonMaxSupWin, int8_t *gxcpv, int8_t *gycpv );
-uint8_t edgeTraceHysteresis(uint16_t rows, uint16_t cols, width_window *tehWWin, uint8_t nonmaxRes);
+//uint8_t NMS(uint16_t rows, uint16_t cols, linebuffer *lb_nms, window *nonMaxSupWin, int8_t *gxcpv, int8_t *gycpv );
+//uint8_t edgeTraceHysteresis(uint16_t rows, uint16_t cols, width_window *tehWWin, uint8_t nonmaxRes);
+
+//Linebuffer getters en setters
 void shiftPxlsDown(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t col);
 void insertTop(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t col, uint8_t value);
 uint8_t getval(uint8_t val[KERNEL_SIZE][WIDTH], uint16_t row, uint16_t col);
