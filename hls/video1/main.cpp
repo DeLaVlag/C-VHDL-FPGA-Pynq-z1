@@ -28,7 +28,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	//blur datastructs
 	uint8_t lb[KERNEL_SIZE][WIDTH*PXL_QUANTITY];
 	uint8_t pxls=0;
-	uint8_t read_pxls=0;
+	uint8_t read_pxls[PXL_QUANTITY];
 #pragma HLS RESOURCE variable=lb core=RAM_2P_BRAM
 #pragma HLS DEPENDENCE variable=lb inter false
 	uint8_t bVal=0;
@@ -48,6 +48,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			pxls=((pxlVal&(0xFF<<i*8))>>i*8);
 			shiftPxlsDown(lb, PXL_QUANTITY*cols+i);
 			insertTop(lb, PXL_QUANTITY*cols+i, pxls);
+			read_pxls[i] = gaussianBlurring(rows, cols, &bWin, lb, PXL_QUANTITY*slidefactor+i, kernel, normalfactor);
 		}
 
 //		for(uint8_t i=0;i<PXL_QUANTITY;i++){
@@ -55,10 +56,9 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 //		}
 
 		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
-			for(int8_t j=0;j<4;j++){
+			for(int8_t j=4;j>=0;j--){
 //				read_pxls = getval(lb,0,PXL_QUANTITY*cols+j);
-				read_pxls = gaussianBlurring(rows, cols, &bWin, lb, PXL_QUANTITY*slidefactor+j, kernel, normalfactor);
-				outputPxl2|=((read_pxls<<(j*8)));
+				outputPxl2|=((read_pxls[j]<<(j*8)));
 			}
 			outputPxl = streamIn.data;
 		}
