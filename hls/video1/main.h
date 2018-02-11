@@ -56,7 +56,7 @@ uint8_t kernelSobelX[KERNEL_SIZE*KERNEL_SIZE] = {
 
 void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernel, uint8_t normalfactor, uint8_t channelselector);
 uint8_t pixelSummer(window *window);
-void convolution(uint8_t val[KERNEL_SIZE][WIDTH*PXL_QUANTITY], uint16_t slidefactor,
+void convolution(uint8_t val[KERNEL_SIZE][WIDTH*PXL_QUANTITY], uint16_t slifac,
 		uint8_t kernel[KERNEL_SIZE*KERNEL_SIZE], window *win, uint8_t normalfactor);
 //void output(uint8_t channelselector, uint8_t currentPixelValue, pixel_stream_in streamIn, pixel_stream_out streamOut);
 uint8_t edgeTraceHysteresis(uint16_t rows, uint16_t cols, width_window *tehWWin, uint8_t nonmaxRes);

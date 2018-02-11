@@ -48,7 +48,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 			pxls=((pxlVal&(0xFF<<i*8))>>i*8);
 			shiftPxlsDown(lb, PXL_QUANTITY*cols+i);
 			insertTop(lb, PXL_QUANTITY*cols+i, pxls);
-			read_pxls[i] = gaussianBlurring(rows, cols, &bWin, lb, PXL_QUANTITY*slidefactor+i, kernel, normalfactor);
+			read_pxls[i] = gaussianBlurring(rows, cols, &bWin, lb, PXL_QUANTITY*slidefactor+i, kernelImpulse, normalfactor);
 		}
 
 //		for(uint8_t i=0;i<PXL_QUANTITY;i++){
@@ -56,6 +56,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 //		}
 
 		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
+			slidefactor++;
 			for(int8_t j=4;j>=0;j--){
 //				read_pxls = getval(lb,0,PXL_QUANTITY*cols+j);
 				outputPxl2|=((read_pxls[j]<<(j*8)));
@@ -78,6 +79,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 		// Administration
 		if (streamIn.last){
 			cols = 0;
+			slidefactor=0;
 			rows++;
 		}
 		else {
@@ -102,14 +104,14 @@ uint8_t gaussianBlurring(uint16_t rows, uint16_t cols, window *bWin, uint8_t lb[
     return blurVal;
 }
 
-void convolution(uint8_t val[KERNEL_SIZE][WIDTH*PXL_QUANTITY], uint16_t slidefactor,
+void convolution(uint8_t val[KERNEL_SIZE][WIDTH*PXL_QUANTITY], uint16_t slifac,
 uint8_t *kernel, window *win, uint8_t normalfactor){
 //#pragma HLS ARRAY_PARTITION variable=linebuffer cyclic factor=2 dim=1 partition
     for (uint8_t wRows = 0; wRows < KERNEL_SIZE; wRows++){
         for (uint8_t wCols = 0; wCols < KERNEL_SIZE; wCols++)
         {
             // wCols + slidefactor, for sliding over buffer
-            uint8_t pxl = (uint8_t)getval(val,wRows,wCols+slidefactor);
+            uint8_t pxl = (uint8_t)getval(val,wRows,wCols+slifac);
             // kernel * linebufcontent and place in a 3x3 window
             pxl = ((uint8_t)kernel[(wRows*KERNEL_SIZE) + wCols ] * pxl)>>normalfactor;
             win->insert(pxl,wRows,wCols);
