@@ -17,20 +17,32 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 	pixel_data_out streamOut;
 	uint32_t outputPxl=0;
 	uint32_t outputPxl2=0;
+	uint32_t outputPxl3=0;
+	uint32_t outputPxl4=0;
 	static uint16_t rows=0, cols=0;
 	uint32_t pxlVal=0;
 	uint8_t kernel[KERNEL_SIZE*KERNEL_SIZE] = {
-		    1, 2, 1,
-		    2, 4, 2,
-		    1, 2, 1,
+		    0, 0, 0,
+		    0, 1, 0,
+		    0, 0, 0,
 		};
 
 	//blur datastructs
 	uint8_t lb[KERNEL_SIZE][WIDTH*PXL_QUANTITY];
-	uint8_t pxls=0;
+	for(uint8_t i=0;i<KERNEL_SIZE;i++)
+		for(uint16_t j=0;j<WIDTH*PXL_QUANTITY;j++)
+			lb[i][j]=0;
+	uint8_t pxls[PXL_QUANTITY];
 	uint8_t read_pxls[PXL_QUANTITY];
+	for(uint8_t j=0;j<PXL_QUANTITY-1;j++)
+		read_pxls[j]=0;
+	uint8_t read_pxls2[PXL_QUANTITY];
+	for(uint8_t j=0;j<PXL_QUANTITY-1;j++)
+		read_pxls2[j]=0;
 #pragma HLS RESOURCE variable=lb core=RAM_2P_BRAM
 #pragma HLS DEPENDENCE variable=lb inter false
+#pragma HLS ARRAY_PARTITION variable=lb complete dim=1 partition
+#pragma HLS ARRAY_PARTITION variable=lb cyclic factor=4 dim=2 partition
 	uint8_t bVal=0;
 	window bWin;
 
@@ -39,33 +51,46 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 
 		streamIn = src.read();
 		pxlVal = streamIn.data;
+//
+        if(kernelchc==0) for (uint8_t i=0; i<KERNEL_SIZE*KERNEL_SIZE; i++) kernel[i] = kernelImpulse[i];
+        if(kernelchc==1) for (uint8_t i=0; i<KERNEL_SIZE*KERNEL_SIZE; i++) kernel[i] = kernelBlur[i];
+//        if(kernelchc==2) for (uint8_t i=0; i<KERNEL_SIZE*KERNEL_SIZE; i++) kernel[i] = kernelSobelY[i];
+//        if(kernelchc==3) for (uint8_t i=0; i<KERNEL_SIZE*KERNEL_SIZE; i++) kernel[i] = kernelSobelX[i];
+        if(kernelchc==4) for (uint8_t i=0; i<KERNEL_SIZE*KERNEL_SIZE; i++) kernel[i] = kernelEdge[i];
 
 		////////////////////////////////////////////////////////////
 		//Gaussian Blurring
 		////////////////////////////////////////////////////////////
 
 		for(uint8_t i=0;i<PXL_QUANTITY;i++){
-			pxls=((pxlVal&(0xFF<<i*8))>>i*8);
+			pxls[i]=((pxlVal&(0xFF<<i*8))>>i*8);
 			shiftPxlsDown(lb, PXL_QUANTITY*cols+i);
-			insertTop(lb, PXL_QUANTITY*cols+i, pxls);
-			read_pxls[i] = gaussianBlurring(rows, cols, &bWin, lb, PXL_QUANTITY*slidefactor+i, kernelImpulse, normalfactor);
+			insertTop(lb, PXL_QUANTITY*cols+i, pxls[i]);
+//			read_pxls[i] = gaussianBlurring(rows, cols, &bWin, lb,
+//					PXL_QUANTITY*slidefactor+i, kernel, normalfactor);
 		}
 
-//		for(uint8_t i=0;i<PXL_QUANTITY;i++){
-//				bVal[i] = gaussianBlurring(rows, cols, &bWin, lb, slidefactor, kernel, normalfactor);
-//		}
+		for(uint8_t i=0;i<PXL_QUANTITY;i++){
+			read_pxls[i] = gaussianBlurring(rows, cols, &bWin, lb,
+					PXL_QUANTITY*slidefactor+i, kernel, normalfactor);
+		}
 
 		if ((rows >= KERNEL_SIZE-1) && (cols >= KERNEL_SIZE-1)){
 			slidefactor++;
-			for(int8_t j=4;j>=0;j--){
-//				read_pxls = getval(lb,0,PXL_QUANTITY*cols+j);
+			for(int8_t j=(PXL_QUANTITY-1),k=0;j>=0;j--,k++){
+				read_pxls2[j] = getval(lb,1,PXL_QUANTITY*cols+j);
+
 				outputPxl2|=((read_pxls[j]<<(j*8)));
+				outputPxl3|=((read_pxls2[j]<<(j*8)));
+				outputPxl4|=((read_pxls2[k]<<(j*8)));
 			}
 			outputPxl = streamIn.data;
 		}
 
 		if (channelselector==0)streamOut.data = outputPxl;
 		if (channelselector==1)streamOut.data = outputPxl2;
+		if (channelselector==2)streamOut.data = outputPxl3;
+		if (channelselector==3)streamOut.data = outputPxl4;
 
 		streamOut.keep = streamIn.keep;
 		streamOut.strb = streamIn.strb;
@@ -85,6 +110,7 @@ void stream( pixel_stream_in &src, pixel_stream_out &dst, uint8_t kernelchc, uin
 		else {
 			cols++;
 			outputPxl2=0;
+			outputPxl3=0;
 		}
 	}
 }

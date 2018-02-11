@@ -23,7 +23,7 @@ typedef hls::stream<pixel_data_in> pixel_stream_in;
 typedef hls::stream<pixel_data_out> pixel_stream_out;
 
 //typedef hls::LineBuffer<3, WIDTH, uint8_t,0> linebuffer;
-typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,uint32_t> window;
+typedef hls::Window<KERNEL_SIZE,KERNEL_SIZE,uint8_t> window;
 typedef hls::Window<KERNEL_SIZE,WIDTH,uint8_t> width_window;
 
 
